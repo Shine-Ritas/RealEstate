@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --font-barlow-condensed: "Barlow Condensed", ui-sans-serif, system-ui,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Primary colors - Blue theme */
+    --color-primary: #1e40af;
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1e40af;
+    --color-primary-800: #1e3a8a;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+    --color-on-primary: #ffffff;
+
+    /* Secondary colors */
+    --color-secondary: #6366f1;
+    --color-on-secondary: #f8fafc;
+
+    /* Background colors */
+    --color-surface: #ffffff;
+    --color-surface-variant: #f8fafc;
+    --color-background: #ffffff;
+
+    /* Text colors */
+    --color-on-surface: #1b1b18;
+    --color-on-surface-variant: #475569;
+    --color-on-background: #1b1b18;
+
+    /* Border colors */
+    --color-outline: #e2e8f0;
+    --color-outline-strong: #cbd5e1;
+    --color-divider: #e2e8f0;
+
+    /* Status colors */
+    --color-info: #0ea5e9;
+    --color-on-info: #f8fafc;
+    --color-success: #10b981;
+    --color-on-success: #f8fafc;
+    --color-warning: #f59e0b;
+    --color-on-warning: #0f172a;
+    --color-danger: #ef4444;
+    --color-on-danger: #f8fafc;
+
+    /* Property status colors */
+    --color-for-sale: #10b981;
+    --color-for-rent: #f59e0b;
+
+    /* border radius */
+    --radius-radius: var(--radius-lg);
+
+    --color-accent: var(--color-primary);
+    --color-accent-content: var(--color-on-primary);
+    --color-accent-foreground: var(--color-surface);
+}
+
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-primary-400);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+        
+        /* Dark mode background colors */
+        --color-surface: #0f172a;
+        --color-surface-variant: #1e293b;
+        --color-background: #0a0a0a;
+        
+        /* Dark mode text colors */
+        --color-on-surface: #f8fafc;
+        --color-on-surface-variant: #cbd5e1;
+        --color-on-background: #f8fafc;
+        
+        /* Dark mode border colors */
+        --color-outline: #334155;
+        --color-outline-strong: #475569;
+        --color-divider: #334155;
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */

@@ -1,0 +1,117 @@
+<?php
+
+return [
+    // Header
+    'app_name' => 'ThaiEstate',
+    'nav_buy' => 'Buy',
+    'nav_rent' => 'Rent',
+    'nav_sell' => 'Sell',
+    'nav_projects' => 'Projects',
+    'nav_about' => 'About',
+    'nav_commercial' => 'Commercial',
+    'btn_list_property' => 'List Property',
+    'btn_contact_agent' => 'Contact Agent',
+
+    // Hero Section
+    'hero_title' => 'Find Your Dream Property in Thailand',
+    'hero_subtitle' => 'Discover residential and commercial properties across Thailand. From Bangkok condos to Phuket villas.',
+    'btn_explore_properties' => 'Explore Properties',
+    'btn_learn_more' => 'Learn More',
+
+    // Search Bar
+    'search_property_type' => 'Property Type',
+    'search_location' => 'Location',
+    'search_price_range' => 'Price Range',
+    'search_bedrooms' => 'Bedrooms',
+    'search_location_placeholder' => 'Bangkok, Phuket...',
+    'search_btn' => 'Search Properties',
+    'option_all_types' => 'All Types',
+    'option_any_price' => 'Any Price',
+    'option_any' => 'Any',
+
+    // Property Types
+    'property_types_title' => 'Property Types',
+    'property_type_condominiums' => 'Condominiums',
+    'property_type_condominiums_desc' => 'Modern living spaces',
+    'property_type_houses' => 'Houses',
+    'property_type_houses_desc' => 'Family homes',
+    'property_type_land' => 'Land',
+    'property_type_land_desc' => 'Development opportunities',
+    'property_type_commercial' => 'Commercial',
+    'property_type_commercial_desc' => 'Business properties',
+
+    // Featured Properties
+    'featured_properties_title' => 'Featured Properties',
+    'view_all' => 'View All',
+    'for_sale' => 'For Sale',
+    'for_rent' => 'For Rent',
+    'beds' => 'Beds',
+    'baths' => 'Baths',
+
+    // Market Insights
+    'market_insights_title' => 'Market Insights',
+    'active_listings' => 'Active Listings',
+    'average_price' => 'Average Price',
+    'price_growth_yoy' => 'Price Growth YoY',
+
+    // CTA Section
+    'cta_title' => 'Ready to Find Your Perfect Property?',
+    'cta_subtitle' => 'Join thousands of satisfied customers who found their dream homes through our platform.',
+    'btn_start_searching' => 'Start Searching',
+    'btn_list_your_property' => 'List Your Property',
+
+    // Footer
+    'footer_tagline' => 'Your trusted partner for real estate in Thailand.',
+    'footer_properties' => 'Properties',
+    'footer_support' => 'Support',
+    'footer_contact' => 'Contact',
+    'footer_help_center' => 'Help Center',
+    'footer_contact_us' => 'Contact Us',
+    'footer_terms' => 'Terms',
+    'footer_privacy' => 'Privacy',
+    'footer_copyright' => '© :year ThaiEstate. All rights reserved.',
+
+    // Breadcrumb
+    'breadcrumb_home' => 'Home',
+
+    // Property Detail Page
+    'property_description_title' => 'Property Description',
+    'special_features_title' => 'Special Features',
+    'nearby_locations_title' => 'Nearby Locations',
+    'property_details_title' => 'Property Details',
+    'schedule_viewing_title' => 'Schedule a Viewing',
+    'property_code' => 'Property Code',
+    'floor' => 'Floor',
+    'developer' => 'Developer',
+    'year_built' => 'Year Built',
+    'width' => 'Width',
+    'height' => 'Height',
+    'listed' => 'Listed',
+    'property_owner' => 'Property Owner',
+    'admin_contact' => 'Admin Contact',
+    'btn_call_now' => 'Call Now',
+    'btn_whatsapp' => 'WhatsApp',
+    'form_your_name' => 'Your Name',
+    'form_email_address' => 'Email Address',
+    'form_phone_number' => 'Phone Number',
+    'form_message' => 'Message',
+    'form_name_placeholder' => 'Enter your name',
+    'form_email_placeholder' => 'Enter your email',
+    'form_phone_placeholder' => 'Enter your phone number',
+    'form_message_placeholder' => 'Enter your message',
+    'form_submit' => 'Schedule Viewing',
+    'viewing_request_success' => 'Viewing request submitted successfully! We will contact you soon.',
+
+    // Special Features
+    'feature_swimming_pool' => 'Swimming Pool',
+    'feature_game_room' => 'Game Room',
+    'feature_parking_space' => 'Parking Space',
+    'feature_fitness_center' => 'Fitness Center',
+    'feature_security' => '24/7 Security',
+    'feature_high_speed_internet' => 'High-Speed Internet',
+
+    // Nearby Locations
+    'location_min_walk' => ':minutes min walk',
+    'location_min_drive' => ':minutes min drive',
+];
+
