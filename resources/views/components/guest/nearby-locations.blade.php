@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-surface-variant rounded-xl p-6 md:p-8 border border-outline">
-    <h2 class="text-2xl font-bold text-on-surface mb-6">Nearby Locations</h2>
+    <h2 class="text-2xl font-bold text-on-surface mb-6">{{ __('guest.nearby_locations_title') }}</h2>
     <div class="space-y-4">
         @php
             $locations = $locations ?? [

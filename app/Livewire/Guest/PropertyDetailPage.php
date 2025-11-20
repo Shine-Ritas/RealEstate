@@ -2,14 +2,17 @@
 
 namespace App\Livewire\Guest;
 
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 class PropertyDetailPage extends Component
 {
     public $name = '';
+
     public $email = '';
+
     public $phone = '';
+
     public $message = '';
 
     protected $rules = [
@@ -25,7 +28,7 @@ class PropertyDetailPage extends Component
 
         // TODO: Implement viewing schedule logic
         // For now, just show a success message
-        session()->flash('message', 'Viewing request submitted successfully! We will contact you soon.');
+        session()->flash('message', __('guest.viewing_request_success'));
 
         // Reset form
         $this->reset(['name', 'email', 'phone', 'message']);

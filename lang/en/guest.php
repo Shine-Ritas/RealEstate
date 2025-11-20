@@ -114,4 +114,3 @@ return [
     'location_min_walk' => ':minutes min walk',
     'location_min_drive' => ':minutes min drive',
 ];
-

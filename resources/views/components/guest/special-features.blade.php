@@ -1,14 +1,14 @@
 <section class="bg-white dark:bg-surface-variant rounded-xl p-6 md:p-8 border border-outline">
-    <h2 class="text-2xl font-bold text-on-surface mb-6">Special Features</h2>
+    <h2 class="text-2xl font-bold text-on-surface mb-6">{{ __('guest.special_features_title') }}</h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         @php
             $features = $features ?? [
-                ['icon' => 'swimmer', 'name' => 'Swimming Pool'],
-                ['icon' => 'game', 'name' => 'Game Room'],
-                ['icon' => 'car', 'name' => 'Parking Space'],
-                ['icon' => 'gym', 'name' => 'Fitness Center'],
-                ['icon' => 'shield', 'name' => '24/7 Security'],
-                ['icon' => 'wifi', 'name' => 'High-Speed Internet'],
+                ['icon' => 'swimmer', 'name' => __('guest.feature_swimming_pool')],
+                ['icon' => 'game', 'name' => __('guest.feature_game_room')],
+                ['icon' => 'car', 'name' => __('guest.feature_parking_space')],
+                ['icon' => 'gym', 'name' => __('guest.feature_fitness_center')],
+                ['icon' => 'shield', 'name' => __('guest.feature_security')],
+                ['icon' => 'wifi', 'name' => __('guest.feature_high_speed_internet')],
             ];
         @endphp
 
