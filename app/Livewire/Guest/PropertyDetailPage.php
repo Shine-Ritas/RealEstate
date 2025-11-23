@@ -2,27 +2,32 @@
 
 namespace App\Livewire\Guest;
 
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class PropertyDetailPage extends Component
 {
-    public $name = '';
+    public string $name = '';
 
-    public $email = '';
+    public string $email = '';
 
-    public $phone = '';
+    public string $phone = '';
 
-    public $message = '';
-
-    protected $rules = [
+    public string $message = '';
+    
+    /**
+     * @var array<string, string>
+     * @phpstan-var array<string, string>
+     */
+    protected array $rules = [
         'name' => 'required|min:3',
         'email' => 'required|email',
         'phone' => 'required',
         'message' => 'nullable|string|max:500',
     ];
 
-    public function scheduleViewing()
+    public function scheduleViewing(): void
     {
         $this->validate();
 
@@ -35,7 +40,7 @@ class PropertyDetailPage extends Component
     }
 
     #[Layout('components.layouts.guest.guest-layout')]
-    public function render()
+    public function render(): View
     {
         return view('livewire.guest.property-detail-page');
     }
