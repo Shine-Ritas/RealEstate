@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\PropertyType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PropertyTypeSeeder extends Seeder
@@ -15,7 +14,7 @@ class PropertyTypeSeeder extends Seeder
     {
         $data = ['Condominiums', 'Houses', 'Land', 'Commercial'];
 
-        foreach($data as $item){
+        foreach ($data as $item) {
             PropertyType::create([
                 'name' => $item,
                 'status' => 'active',

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -14,19 +13,19 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $actions = ['create','update','delete','view'];
-        $modules = ['users','roles','permissions','property_types','projects','properties','bookings','payments','reports','settings'];
+        $actions = ['create', 'update', 'delete', 'view'];
+        $modules = ['users', 'roles', 'permissions', 'property_types', 'projects', 'properties', 'bookings', 'payments', 'reports', 'settings'];
 
-        $roles = ['admin','agent','user','data-entry'];
+        $roles = ['admin', 'agent', 'user', 'data-entry'];
 
-        foreach($roles as $role){
+        foreach ($roles as $role) {
             $role = Role::create([
                 'name' => $role,
             ]);
         }
 
-        foreach($modules as $module){
-            foreach($actions as $action){
+        foreach ($modules as $module) {
+            foreach ($actions as $action) {
                 $permission = Permission::create([
                     'name' => $action.'-'.$module,
                 ]);

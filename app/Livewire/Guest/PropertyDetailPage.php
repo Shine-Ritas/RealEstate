@@ -15,9 +15,10 @@ class PropertyDetailPage extends Component
     public string $phone = '';
 
     public string $message = '';
-    
+
     /**
      * @var array<string, string>
+     *
      * @phpstan-var array<string, string>
      */
     protected array $rules = [

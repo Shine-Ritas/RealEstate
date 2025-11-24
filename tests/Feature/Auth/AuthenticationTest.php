@@ -3,6 +3,8 @@
 use App\Models\User;
 use Laravel\Fortify\Features;
 
+uses()->group('debug');
+
 test('login screen can be rendered', function () {
     $response = $this->get(route('login'));
 

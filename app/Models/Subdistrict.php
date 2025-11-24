@@ -10,6 +10,7 @@ class Subdistrict extends Model
 {
     /** @use HasFactory<\Database\Factories\SubdistrictFactory> */
     use HasFactory;
+
     protected $fillable = [
         's_code',
         's_name',
@@ -19,6 +20,7 @@ class Subdistrict extends Model
 
     /**
      * Summary of district
+     *
      * @return BelongsTo<District, $this>
      */
     public function district(): BelongsTo

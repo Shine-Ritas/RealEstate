@@ -16,4 +16,3 @@ class District extends Model
         'p_code',
     ];
 }
-

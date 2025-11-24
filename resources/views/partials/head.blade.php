@@ -76,7 +76,14 @@
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&family=barlow-condensed:400,500,600,700" rel="stylesheet" />
 <link href="{{ asset('assets/css/daisy.min.css') }}" rel="stylesheet" type="text/css" />
 
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@php
+    $hasViteManifest = file_exists(public_path('build/manifest.json'));
+    $hasViteHot = file_exists(public_path('hot'));
+@endphp
+
+@if ($hasViteManifest || $hasViteHot)
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@endif
 
 <!-- Chart.js CDN (global) -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

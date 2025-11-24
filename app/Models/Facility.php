@@ -16,5 +16,4 @@ class Facility extends Model
         'description',
         'status',
     ];
-
 }
