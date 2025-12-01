@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PropertyType;
+use App\Models\ProjectType;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PropertyTypeSeeder extends Seeder
+class ProjectTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +16,7 @@ class PropertyTypeSeeder extends Seeder
         $data = ['Condominiums', 'Houses', 'Land', 'Commercial'];
 
         foreach ($data as $item) {
-            PropertyType::create([
+            ProjectType::create([
                 'name' => $item,
                 'status' => 'active',
             ]);

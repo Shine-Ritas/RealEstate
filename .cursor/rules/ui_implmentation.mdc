@@ -1,0 +1,108 @@
+---
+alwaysApply: true
+---
+
+# UI Implementation Rules for Thailand Real Estate Project
+
+## Global CSS Architecture
+
+### Primary Rule: Always Use Global CSS
+- **NEVER** create inline styles or component-specific CSS files
+- **ALWAYS** use the global CSS file: `resources/css/app.css`
+- **ALWAYS** extend the existing CSS custom properties (CSS variables) defined in the `@theme` layer
+- Use Tailwind utility classes for layout and spacing, but extend global CSS variables for theming
+
+### CSS Variable Usage
+- Use existing CSS custom properties from `resources/css/app.css`:
+  - Color system: `--color-primary`, `--color-secondary`, `--color-surface`, etc.
+  - Text colors: `--color-on-surface`, `--color-on-background`
+  - Border colors: `--color-outline`, `--color-divider`
+  - Status colors: `--color-success`, `--color-danger`, `--color-warning`
+- When adding new colors or design tokens, add them to the `@theme` layer in `app.css`
+- Maintain consistency by reusing existing variables rather than creating new ones
+
+### Design System Principles
+
+#### Modern Real Estate Design for Thailand
+- **Color Palette**: Use warm, inviting colors that reflect Thai architecture and culture
+  - Primary colors should convey trust and professionalism (blues, teals)
+  - Accent colors should evoke luxury and premium properties (golds, deep purples)
+  - Natural tones for property listings (greens, earth tones)
+- **Typography**: 
+  - Use the defined font families: `--font-sans` (Instrument Sans) and `--font-barlow-condensed`
+  - Maintain readability for property descriptions and Thai language support
+- **Spacing**: Use consistent spacing scale (Tailwind's default scale)
+- **Border Radius**: Use `--radius-radius` variable for consistent rounded corners
+
+#### Real Estate Specific Components
+- Property cards should use consistent styling from global CSS
+- Property status badges should use: `--color-for-sale` and `--color-for-rent`
+- Image galleries should maintain aspect ratios and use consistent borders
+- Forms should use the global field styling defined in `[data-flux-field]`
+
+### Code Organization
+
+#### Adding New Styles
+1. **First**: Check if existing CSS variables or Tailwind utilities can be used
+2. **Second**: If new design tokens are needed, add them to the `@theme` layer in `app.css`
+3. **Third**: If component-specific styles are absolutely necessary, add them to the `@layer base` or create a new `@layer components` in `app.css`
+4. **Never**: Create separate CSS files for individual components or views
+
+#### Dark Mode Support
+- Always ensure new styles work with both light and dark modes
+- Use CSS variables that automatically adapt (they're already defined in `.dark` class)
+- Test color contrast for accessibility in both modes
+
+### Best Practices
+
+#### Maintainability
+- Keep all styles centralized in `resources/css/app.css`
+- Document new CSS variables with comments explaining their purpose
+- Group related styles together (colors, typography, spacing, etc.)
+- Use semantic naming for CSS variables (e.g., `--color-primary` not `--color-blue-500`)
+
+#### Performance
+- Avoid CSS-in-JS or runtime style generation
+- Use CSS variables for dynamic theming instead of inline styles
+- Leverage Tailwind's purging to remove unused styles
+
+#### Thailand Real Estate Context
+- Ensure designs are culturally appropriate for Thai market
+- Support both Thai and English text display
+- Consider mobile-first approach (high mobile usage in Thailand)
+- Use imagery and icons that resonate with Thai real estate market
+- Ensure color choices work well in tropical/light environments
+
+### Examples
+
+#### ✅ Good: Using Global CSS
+```blade
+<div class="bg-surface text-on-surface rounded-radius p-4">
+    <h2 class="text-primary font-barlow-condensed">Property Details</h2>
+</div>
+```
+
+#### ❌ Bad: Inline Styles
+```blade
+<div style="background-color: #fff; color: #1b1b18; border-radius: 8px; padding: 1rem;">
+    <h2 style="color: #1e40af; font-family: 'Barlow Condensed';">Property Details</h2>
+</div>
+```
+
+#### ✅ Good: Extending Global CSS
+```css
+/* In app.css @theme layer */
+--color-property-featured: #f59e0b;
+--color-property-premium: #8b5cf6;
+```
+
+#### ❌ Bad: Component-Specific CSS File
+```css
+/* Don't create: resources/css/components/property-card.css */
+.property-card { ... }
+```
+
+### Migration Notes
+- When refactoring existing components, move any inline styles or component CSS to `app.css`
+- Update components to use CSS variables and Tailwind utilities
+- Maintain backward compatibility during migration

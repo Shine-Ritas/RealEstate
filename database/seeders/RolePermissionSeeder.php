@@ -14,7 +14,7 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         $actions = ['create', 'update', 'delete', 'view'];
-        $modules = ['users', 'roles', 'permissions', 'property_types', 'projects', 'properties', 'bookings', 'payments', 'reports', 'settings'];
+        $modules = ['users', 'roles', 'permissions', 'property_types', 'projects', 'properties', 'bookings', 'reports', 'settings'];
 
         $roles = ['admin', 'agent', 'user', 'data-entry'];
 

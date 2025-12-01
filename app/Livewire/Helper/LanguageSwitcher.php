@@ -3,6 +3,7 @@
 namespace App\Livewire\Helper;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -27,7 +28,7 @@ class LanguageSwitcher extends Component
         $this->currentLocale = App::currentLocale();
     }
 
-    public function switchLanguage(string $locale): ?RedirectResponse
+    public function switchLanguage(string $locale): Redirector | RedirectResponse | null
     {
         if (array_key_exists($locale, $this->languages)) {
             App::setLocale($locale);
