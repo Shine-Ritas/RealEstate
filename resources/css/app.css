@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+ 
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+    --font-barlow-condensed: "Barlow Condensed", ui-sans-serif, system-ui,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Primary colors - Blue theme */
+    --color-primary: #1e40af;
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1e40af;
+    --color-primary-800: #1e3a8a;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+    --color-on-primary: #ffffff;
+
+
+    --color-secondary: #6366f1;
+    --color-on-secondary: #f8fafc;
+
+    /* Background colors */
+    --color-surface: #ffffff;
+    --color-surface-variant: #f8fafc;
+    --color-background: #ffffff;
+
+    /* Text colors */
+    --color-on-surface: #1b1b18;
+    --color-on-surface-variant: #475569;
+    --color-on-background: #1b1b18;
+
+    /* Border colors */
+    --color-outline: #e2e8f0;
+    --color-outline-strong: #cbd5e1;
+    --color-divider: #e2e8f0;
+
+    /* Status colors */
+    --color-info: #0ea5e9;
+    --color-on-info: #f8fafc;
+    --color-success: #10b981;
+    --color-on-success: #f8fafc;
+    --color-warning: #f59e0b;
+    --color-on-warning: #0f172a;
+    --color-danger: #ef4444;
+    --color-on-danger: #f8fafc;
+
+    /* Property status colors */
+    --color-for-sale: #10b981;
+    --color-for-rent: #f59e0b;
+
+    /* border radius */
+    --radius-radius: var(--radius-lg);
+
+    --color-accent: var(--color-primary);
+    --color-accent-content: var(--color-on-primary);
+    --color-accent-foreground: var(--color-surface);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+}
+
+
+
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight text-on-surface font-medium text-sm;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* Input field styling for auth pages */
+.auth-card input[data-flux-control],
+.auth-card textarea[data-flux-control],
+.auth-card select[data-flux-control] {
+    @apply bg-surface text-on-surface;
+    border: 1px solid var(--color-outline) !important;
+    border-radius: var(--radius-radius) !important;
+    padding: 0.625rem 0.75rem !important;
+}
+
+.auth-card input[data-flux-control]:focus,
+.auth-card textarea[data-flux-control]:focus,
+.auth-card select[data-flux-control]:focus {
+    border-color: var(--color-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1) !important;
+}
+
+.auth-card input[data-flux-control]::placeholder,
+.auth-card textarea[data-flux-control]::placeholder {
+    @apply text-on-surface-variant;
+    color: var(--color-on-surface-variant) !important;
+    opacity: 0.7;
+}
+
+/* Auth Page Styles */
+@layer components {
+    /* Auth Card Container */
+    .auth-card {
+        @apply bg-surface rounded-radius border border-outline p-8 shadow-sm;
+    }
+
+    .dark .auth-card {
+        @apply border-outline;
+    }
+
+    /* Auth Header with Icon */
+    .auth-header-icon {
+        @apply flex items-center justify-center w-16 h-16 rounded-full bg-primary-100;
+    }
+
+    .auth-header-icon svg {
+        @apply w-8 h-8 text-primary-700;
+    }
+
+    /* Social Login Buttons */
+    .social-login-button {
+        @apply flex items-center justify-center gap-3 w-full px-4 py-3 rounded-radius border border-outline bg-surface text-on-surface font-medium transition-colors hover:bg-surface-variant hover:border-outline-strong;
+    }
+
+    .dark .social-login-button {
+        @apply border-outline hover:bg-surface-variant hover:border-outline-strong;
+    }
+
+    .social-login-button:active {
+        @apply scale-[0.98];
+    }
+
+    .social-login-icon {
+        @apply w-5 h-5;
+    }
+
+    /* Divider with Text */
+    .auth-divider {
+        @apply relative flex items-center justify-center my-6;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+        @apply content-[''] flex-1 h-px bg-divider;
+    }
+
+    .auth-divider span {
+        @apply px-4 text-sm text-on-surface-variant;
+    }
+
+    /* Auth Link Styling */
+    .auth-link {
+        @apply !text-primary hover:text-primary-600 font-medium transition-colors;
+    }
+
+    /* Flux Label Styling for Auth Pages */
+    .auth-card [data-flux-label] {
+        @apply text-on-surface font-medium text-sm mb-1;
+        color: var(--color-on-surface) !important;
+    }
+
+    /* Primary Button Styling for Auth Pages */
+    .auth-card form button[type="submit"],
+    .auth-card button[type="submit"] {
+        background-color: var(--color-primary) !important;
+        color: var(--color-on-primary) !important;
+        border: none !important;
+    }
+
+    .auth-card form button[type="submit"]:hover,
+    .auth-card button[type="submit"]:hover {
+        background-color: var(--color-primary-700) !important;
+    }
+
+    .auth-card form button[type="submit"] svg,
+    .auth-card button[type="submit"] svg {
+        color: var(--color-on-primary) !important;
+    }
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */
