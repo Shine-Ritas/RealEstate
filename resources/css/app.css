@@ -6,7 +6,6 @@
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
@@ -73,28 +72,7 @@
 }
 
 
-@layer theme {
-    .dark {
-        --color-accent: var(--color-primary-400);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-        
-        /* Dark mode background colors */
-        --color-surface: #0f172a;
-        --color-surface-variant: #1e293b;
-        --color-background: #0a0a0a;
-        
-        /* Dark mode text colors */
-        --color-on-surface: #f8fafc;
-        --color-on-surface-variant: #cbd5e1;
-        --color-on-background: #f8fafc;
-        
-        /* Dark mode border colors */
-        --color-outline: #334155;
-        --color-outline-strong: #475569;
-        --color-divider: #334155;
-    }
-}
+
 
 @layer base {
 
@@ -112,13 +90,38 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight text-on-surface font-medium text-sm;
 }
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* Input field styling for auth pages */
+.auth-card input[data-flux-control],
+.auth-card textarea[data-flux-control],
+.auth-card select[data-flux-control] {
+    @apply bg-surface text-on-surface;
+    border: 1px solid var(--color-outline) !important;
+    border-radius: var(--radius-radius) !important;
+    padding: 0.625rem 0.75rem !important;
+}
+
+.auth-card input[data-flux-control]:focus,
+.auth-card textarea[data-flux-control]:focus,
+.auth-card select[data-flux-control]:focus {
+    border-color: var(--color-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1) !important;
+}
+
+.auth-card input[data-flux-control]::placeholder,
+.auth-card textarea[data-flux-control]::placeholder {
+    @apply text-on-surface-variant;
+    color: var(--color-on-surface-variant) !important;
+    opacity: 0.7;
 }
 
 /* Auth Page Styles */
@@ -134,15 +137,11 @@ select:focus[data-flux-control] {
 
     /* Auth Header with Icon */
     .auth-header-icon {
-        @apply flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 mb-6;
+        @apply flex items-center justify-center w-16 h-16 rounded-full bg-primary-100;
     }
 
     .auth-header-icon svg {
-        @apply w-8 h-8 text-primary;
-    }
-
-    .dark .auth-header-icon svg {
-        @apply text-primary-400;
+        @apply w-8 h-8 text-primary-700;
     }
 
     /* Social Login Buttons */
@@ -178,11 +177,31 @@ select:focus[data-flux-control] {
 
     /* Auth Link Styling */
     .auth-link {
-        @apply text-primary hover:text-primary-600 font-medium transition-colors;
+        @apply !text-primary hover:text-primary-600 font-medium transition-colors;
     }
 
-    .dark .auth-link {
-        @apply text-primary-400 hover:text-primary-300;
+    /* Flux Label Styling for Auth Pages */
+    .auth-card [data-flux-label] {
+        @apply text-on-surface font-medium text-sm mb-1;
+        color: var(--color-on-surface) !important;
+    }
+
+    /* Primary Button Styling for Auth Pages */
+    .auth-card form button[type="submit"],
+    .auth-card button[type="submit"] {
+        background-color: var(--color-primary) !important;
+        color: var(--color-on-primary) !important;
+        border: none !important;
+    }
+
+    .auth-card form button[type="submit"]:hover,
+    .auth-card button[type="submit"]:hover {
+        background-color: var(--color-primary-700) !important;
+    }
+
+    .auth-card form button[type="submit"] svg,
+    .auth-card button[type="submit"] svg {
+        color: var(--color-on-primary) !important;
     }
 }
 

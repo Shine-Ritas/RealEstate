@@ -2,7 +2,7 @@
     <!-- Current Language Button -->
     <button
         @click="open = !open"
-        class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-surface-variant transition-colors"
+        class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-variant transition-colors"
     >
         <span class="text-2xl">{{ $languages[$currentLocale]['flag'] ?? '🌐' }}</span>
         <span class="hidden md:inline font-medium text-sm text-on-surface-variant">
@@ -18,7 +18,7 @@
         x-show="open"
         @click.away="open = false"
         x-transition
-        class="absolute right-0 mt-2 w-48 bg-white dark:bg-surface border border-outline rounded-lg shadow-lg overflow-hidden z-50"
+        class="absolute right-0 mt-2 w-48 bg-surface border border-outline rounded-lg shadow-lg overflow-hidden z-50"
     >
         @foreach ($languages as $code => $lang)
             <button

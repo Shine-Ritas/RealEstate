@@ -28,7 +28,7 @@ class LanguageSwitcher extends Component
         $this->currentLocale = App::currentLocale();
     }
 
-    public function switchLanguage(string $locale): Redirector | RedirectResponse | null
+    public function switchLanguage(string $locale): Redirector|RedirectResponse|null
     {
         if (array_key_exists($locale, $this->languages)) {
             App::setLocale($locale);
