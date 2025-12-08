@@ -6,7 +6,7 @@
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.darkd, .darkd *));
 
 @theme {
  
@@ -31,6 +31,8 @@
     --color-primary-900: #1e3a8a;
     --color-primary-950: #172554;
     --color-on-primary: #ffffff;
+
+
 
 
     --color-secondary: #6366f1;
@@ -65,6 +67,9 @@
     --color-for-sale: #10b981;
     --color-for-rent: #f59e0b;
 
+    --color-zinc-500: #1b1b18;
+
+
     /* border radius */
     --radius-radius: var(--radius-lg);
 
@@ -80,6 +85,8 @@
         --color-accent-foreground: var(--color-neutral-800);
     }
 }
+
+
 
 
 
@@ -134,6 +141,12 @@ select:focus[data-flux-control] {
     opacity: 0.7;
 }
 
+
+.data-current\:text-\(--color-accent-content\) {
+    &[data-current] {
+        color: var(--color-zinc-500);
+    }
+}
 /* Auth Page Styles */
 @layer components {
     /* Auth Card Container */
@@ -219,70 +232,13 @@ select:focus[data-flux-control] {
         @apply flex flex-col gap-2;
     }
 
-    /* Active Navigation Item Styles - Elegant with Left Border Accent */
-    [data-flux-navlist-item][data-current="true"],
-    [data-flux-navlist-item][aria-current="page"] {
-        @apply bg-primary/10 text-primary font-semibold;
-        position: relative;
-        border-left: 3px solid var(--color-primary);
-        padding-left: calc(0.75rem - 3px);
-    }
-
-    /* Active state icon color */
-    [data-flux-navlist-item][data-current="true"] svg,
-    [data-flux-navlist-item][aria-current="page"] svg {
-        color: var(--color-primary) !important;
-    }
-
-    /* Navigation Item Hover Effects */
-    [data-flux-navlist-item]:not([data-current="true"]):not([aria-current="page"]) {
-        @apply transition-all duration-200 ease-in-out;
-        background-color: transparent;
-    }
-
-    [data-flux-navlist-item]:not([data-current="true"]):not([aria-current="page"]):hover {
-        @apply bg-surface-variant text-on-surface;
-    }
-
+   
     /* Navigation Group Styles */
     .nav-group {
         @apply mb-2;
     }
 
-    /* Navigation Group Children Spacing */
-    [data-flux-navlist-group] [data-flux-navlist-item] {
-        @apply ml-4 pl-4;
-        border-left: 2px solid transparent;
-        transition: all 0.2s ease-in-out;
-    }
-
-    [data-flux-navlist-group] [data-flux-navlist-item]:hover {
-        border-left-color: var(--color-primary);
-        @apply bg-primary/5 text-on-surface;
-    }
-
-    [data-flux-navlist-group] [data-flux-navlist-item][data-current="true"],
-    [data-flux-navlist-group] [data-flux-navlist-item][aria-current="page"] {
-        @apply bg-primary/10 text-primary font-semibold;
-        border-left: 3px solid var(--color-primary);
-        margin-left: 0.25rem;
-        padding-left: calc(0.75rem - 3px);
-    }
-
-    /* Active child item icon color */
-    [data-flux-navlist-group] [data-flux-navlist-item][data-current="true"] svg,
-    [data-flux-navlist-group] [data-flux-navlist-item][aria-current="page"] svg {
-        color: var(--color-primary) !important;
-    }
-
-    /* Dark Mode Adjustments */
-    .dark [data-flux-navlist-item]:not([data-current="true"]):not([aria-current="page"]):hover {
-        @apply bg-zinc-800;
-    }
-
-    .dark [data-flux-navlist-group] [data-flux-navlist-item]:hover {
-        @apply bg-primary/10;
-    }
+   
 }
 
 /* \[:where(&)\]:size-4 {

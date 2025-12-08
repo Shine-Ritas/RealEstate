@@ -49,9 +49,9 @@ class FacilitySeeder extends Seeder
             ['name' => 'Lobby',               'icon' => 'home-modern',        'status' => 'active'],
 
             // Sports
-            ['name' => 'Tennis Court',        'icon' => 'circle',             'status' => 'active'],
-            ['name' => 'Basketball Court',    'icon' => 'circle',             'status' => 'active'],
-            ['name' => 'Squash Court',        'icon' => 'circle',             'status' => 'active'],
+            ['name' => 'Tennis Court',        'icon' => 'information-circle',             'status' => 'active'],
+            ['name' => 'Basketball Court',    'icon' => 'information-circle',             'status' => 'active'],
+            ['name' => 'Squash Court',        'icon' => 'information-circle',             'status' => 'active'],
             ['name' => 'Yoga Room',           'icon' => 'user',               'status' => 'active'],
 
             // Lifestyle
