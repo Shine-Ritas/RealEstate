@@ -4,7 +4,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <!-- Header with Logo and Title -->
@@ -19,60 +19,58 @@
             </a>
 
             <!-- Navigation Menu -->
-            <flux:navlist variant="outline">
-                <flux:navlist.item 
-                    icon="home" 
-                    :href="route('dashboard')" 
-                    :current="request()->routeIs('dashboard')" 
-                    wire:navigate
-                >
-                    {{ __('Dashboard') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item 
-                    icon="building-office-2" 
-                    href="{{ route('dashboard') }}" 
-                    :current="request()->routeIs('properties*')" 
-                    wire:navigate
-                >
-                    {{ __('Properties') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item 
-                    icon="speaker-wave" 
-                    href="{{ route('dashboard') }}" 
-                    :current="request()->routeIs('announcements*')" 
-                    wire:navigate
-                >
-                    {{ __('Announcements') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item 
-                    icon="user-group" 
-                    href="{{ route('dashboard') }}" 
-                    :current="request()->routeIs('users*')" 
-                    wire:navigate
-                >
-                    {{ __('Users') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item 
-                    icon="map-pin" 
-                    href="{{ route('dashboard') }}" 
-                    :current="request()->routeIs('locations*')" 
-                    wire:navigate
-                >
-                    {{ __('Locations') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item 
-                    icon="cog-6-tooth" 
-                    :href="route('profile.edit')" 
-                    :current="request()->routeIs('settings*')" 
-                    wire:navigate
-                >
-                    {{ __('Settings') }}
-                </flux:navlist.item>
+            <flux:navlist variant="outline" class="sidebar-nav">
+                @foreach (sidebar() as $sidebar)
+                    @if (isset($sidebar['permission']) && ($sidebar['permission'] == 'public' || auth()->user()->hasPermissionTo($sidebar['permission'])))
+                        @if(isset($sidebar['children']))
+                            @php
+                                $isExpanded = false;
+                                foreach($sidebar['children'] as $child) {
+                                    $routeMatch = isset($child['route_name']) 
+                                        ? request()->routeIs($child['route_name']) 
+                                        : request()->routeIs($child['route']);
+                                    if($routeMatch) {
+                                        $isExpanded = true;
+                                        break;
+                                    }
+                                }
+                            @endphp
+                            <flux:navlist.group 
+                                :heading="__($sidebar['title'])" 
+                                :icon="$sidebar['icon']"
+                                expandable
+                                :expanded="$isExpanded"
+                                class="grid nav-group cursor-pointer mb-1"
+                            >
+                                <div class="flex flex-col gap-1 mt-2">
+                                    @foreach($sidebar['children'] as $child)
+                                        @if(isset($child['permission']) && ($child['permission'] == 'public' || auth()->user()->hasPermissionTo($child['permission'])))
+                                            <flux:navlist.item 
+                                                :icon="$child['icon']" 
+                                                :href="$child['route']" 
+                                                :current="isset($child['route_name']) ? request()->routeIs($child['route_name']) : request()->routeIs($child['route'])" 
+                                                wire:navigate
+                                                class="rounded-lg"
+                                            >
+                                                {{ __($child['title']) }}
+                                            </flux:navlist.item>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </flux:navlist.group>
+                        @else
+                            <flux:navlist.item 
+                                :icon="$sidebar['icon']" 
+                                :href="$sidebar['route']" 
+                                :current="isset($sidebar['route_name']) ? request()->routeIs($sidebar['route_name']) : request()->routeIs($sidebar['route'])" 
+                                wire:navigate
+                                class="rounded-lg"
+                            >
+                                {{ __($sidebar['title']) }}
+                            </flux:navlist.item>
+                        @endif
+                    @endif
+                @endforeach
             </flux:navlist>
 
             <flux:spacer />

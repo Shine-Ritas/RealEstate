@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ProjectTypeSeeder::class,
             PartnerSeeder::class,
             SocialLinkSeeder::class,
+            FacilitySeeder::class,
         ]);
     }
 }

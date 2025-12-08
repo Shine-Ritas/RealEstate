@@ -16,9 +16,8 @@ class FacilitySeeder extends Seeder
             // Core Facilities
             ['name' => 'Swimming Pool',       'icon' => 'swimming',          'status' => 'active'],
             ['name' => 'Gym',                 'icon' => 'dumbbell',           'status' => 'active'],
-            ['name' => 'Sauna',               'icon' => 'flame',              'status' => 'active'],
+            ['name' => 'Sauna',               'icon' => 'fire',              'status' => 'active'],
             ['name' => 'Steam Room',          'icon' => 'cloud',              'status' => 'active'],
-            ['name' => 'Jacuzzi',             'icon' => 'waves',              'status' => 'active'],
 
             // Security
             ['name' => '24-Hour Security',    'icon' => 'shield-check',       'status' => 'active'],
@@ -36,7 +35,7 @@ class FacilitySeeder extends Seeder
             ['name' => 'Rooftop Garden',      'icon' => 'leaf',               'status' => 'active'],
             ['name' => 'Garden / Park',       'icon' => 'tree-pine',          'status' => 'active'],
             ['name' => 'Playground',          'icon' => 'sailboat',           'status' => 'active'],
-            ['name' => 'BBQ Area',            'icon' => 'flame',              'status' => 'active'],
+            ['name' => 'BBQ Area',            'icon' => 'fire',              'status' => 'active'],
 
             // Indoor Facilities
             ['name' => 'Library',             'icon' => 'book-open',          'status' => 'active'],
