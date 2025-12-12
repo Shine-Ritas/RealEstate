@@ -41,7 +41,9 @@
     /* Background colors */
     --color-surface: #ffffff;
     --color-surface-variant: #f8fafc;
+
     --color-background: #ffffff;
+    --color-secondary-background: #f2f3f5;
 
     /* Text colors */
     --color-on-surface: #1b1b18;

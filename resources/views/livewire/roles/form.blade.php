@@ -1,6 +1,7 @@
 <div>
     <div
         x-data="{ show: @js($showModal) }"
+        x-effect="show = $wire.showModal"
         x-show="show"
         x-on:open-role-form.window="show = true; $wire.handleOpenModal($event.detail || {})"
         x-on:close-modal.window="show = false"

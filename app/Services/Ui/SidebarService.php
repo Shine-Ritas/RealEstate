@@ -81,13 +81,6 @@ class SidebarService
                         'route_name' => 'property-types.index',
                         'permission' => 'view-property_types',
                     ],
-                    [
-                        'title' => 'Projects',
-                        'icon' => 'building-office',
-                        'route' => route('dashboard'), // Update when projects.index route exists
-                        'route_name' => 'projects.index',
-                        'permission' => 'view-projects',
-                    ],
                 ],
             ],
             [
@@ -96,6 +89,13 @@ class SidebarService
                 'route' => route('facilities.index'),
                 'route_name' => 'facilities*',
                 'permission' => 'view-property_types', // Update when facilities permission exists
+            ],
+            [
+                'title' => 'Projects',
+                'icon' => 'building-office',
+                'route' => route('dashboard'), // Update when projects.index route exists
+                'route_name' => 'projects.index',
+                'permission' => 'view-projects',
             ],
             [
                 'title' => 'Bookings',

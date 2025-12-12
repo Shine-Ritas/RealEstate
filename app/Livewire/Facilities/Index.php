@@ -10,9 +10,14 @@ class Index extends Component
 {
     use WithPagination;
 
+    public string $search = '';
+
     public bool $showDeleteModal = false;
 
     public ?Facility $facilityToDelete = null;
+
+    protected $listeners = ['facility-saved' => '$refresh'];
+
 
     public function openDeleteModal(int $facilityId): void
     {
@@ -31,19 +36,36 @@ class Index extends Component
         if ($this->facilityToDelete) {
             $this->facilityToDelete->delete();
             $this->closeDeleteModal();
-            session()->flash('message', 'Facility deleted successfully.');
+            $this->dispatch('notify', [
+                'variant' => 'danger',
+                'title' => 'Error',
+                'message' => 'Facility Deleted Successfully.',
+            ]);
         }
     }
 
-    protected $listeners = ['facility-saved' => '$refresh'];
+
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        $facilities = Facility::orderBy('name')
+        $facilities = Facility::when($this->search, function ($query) {
+            $query->where(function ($q) {
+                $q->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            });
+        })
+            ->orderBy('name')
             ->paginate(12);
 
         return view('livewire.facilities.index', [
             'facilities' => $facilities,
+        ])->layout('components.layouts.app', [
+            'header' => "Facility Management",
+            'subtitle' => 'Manage property facilities and amenities',
         ]);
     }
 }

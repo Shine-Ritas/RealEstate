@@ -1,5 +1,9 @@
 <?php
 
+use App\Livewire\Project\Index as ProjectIndex;
+use App\Livewire\Facilities\Index as FacilitiesIndex;
+use App\Livewire\Roles\Index as RolesIndex;
+use App\Livewire\Roles\Permissions as RolesPermissionsIndex;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -14,18 +18,14 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('user-password.edit');
 
     // Role Management Routes
-    Route::get('/roles', function () {
-        return view('roles.index');
-    })->name('roles.index');
+    Route::get('/roles', RolesIndex::class)->name('roles.index');
 
-    Route::get('/roles/{roleId}/permissions', function ($roleId) {
-        return view('roles.permissions', ['roleId' => (int) $roleId]);
-    })->name('roles.permissions');
+    Route::get('/roles/{roleId}/permissions', RolesPermissionsIndex::class)->name('roles.permissions');
 
     // Facility Management Routes
-    Route::get('/facilities', function () {
-        return view('facilities.index');
-    })->name('facilities.index');
+    Route::get('/facilities', FacilitiesIndex::class)->name('facilities.index');
+
+    Route::get('projects',ProjectIndex::class);
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');

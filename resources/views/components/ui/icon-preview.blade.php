@@ -5,10 +5,4 @@
 ])
 
 
-
-
-@php
-    // Use component syntax: flux:icon.{name}
-    $fluxComponent = 'flux:icon.' . $name;
-@endphp
-<flux:icon name="{{ $name }}" class="{{ $size }} {{ $class }}" />
+<i class="fa-solid fa-{{ $name }}" class="{{ $size }} {{ $class }}"></i>

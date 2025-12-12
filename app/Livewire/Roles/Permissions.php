@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Roles;
 
+use App\Traits\BaseTrait;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class Permissions extends Component
 {
+    use BaseTrait;
+
     public Role $role;
 
     public array $selectedPermissions = [];

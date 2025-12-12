@@ -1,6 +1,7 @@
 <div>
     <div
         x-data="{ show: @js($showModal) }"
+        x-effect="show = $wire.showModal"
         x-show="show"
         x-on:open-facility-form.window="show = true; $wire.handleOpenModal($event.detail || {})"
         x-on:close-modal.window="show = false"
@@ -72,7 +73,7 @@
                                     required
                                     class="flex-1"
                                 />
-                                <div class="flex size-10 items-center justify-center rounded-lg {{ $icon ? 'bg-primary/10' : 'bg-surface-variant border border-outline' }}">
+                                <div class="flex size-10 items-center justify-center rounded-lg {{ $icon ? 'bg-primary/80' : 'bg-surface-variant border border-outline' }}">
                                     @if($icon)
                                         <x-ui.icon-preview :name="$icon" size="size-5" />
                                     @else

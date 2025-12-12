@@ -44,7 +44,12 @@ class Form extends Component
         $this->roleId = $roleId;
 
         if ($roleId) {
-            $role = Role::findOrFail($roleId);
+            $role = Role::find($roleId);
+
+            if (! $role) {
+                abort(404);
+            }
+
             $this->name = $role->name;
             $this->description = $role->description ?? '';
         } else {
@@ -66,19 +71,26 @@ class Form extends Component
     {
         $this->validate();
 
+        $description = $this->description === '' ? null : $this->description;
+
         if ($this->roleId) {
-            $role = Role::findOrFail($this->roleId);
+            $role = Role::find($this->roleId);
+
+            if (! $role) {
+                abort(404);
+            }
+
             $role->update([
                 'name' => $this->name,
-                'description' => $this->description,
+                'description' => $description,
             ]);
-            session()->flash('message', 'Role updated successfully.');
+            session()->put('message', 'Role updated successfully.');
         } else {
             Role::create([
                 'name' => $this->name,
-                'description' => $this->description,
+                'description' => $description,
             ]);
-            session()->flash('message', 'Role created successfully.');
+            session()->put('message', 'Role created successfully.');
         }
 
         $this->closeModal();
