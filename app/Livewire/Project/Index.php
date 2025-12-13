@@ -8,6 +8,9 @@ class Index extends Component
 {
     public function render()
     {
-        return view('livewire.project.index');
+        return view('livewire.project.index')->layout('components.layouts.app', [
+            'header' => "Project",
+            'subtitle' => 'Manage your projects',
+        ]);
     }
 }

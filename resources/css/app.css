@@ -240,7 +240,51 @@ select:focus[data-flux-control] {
         @apply mb-2;
     }
 
-   
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-radius px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+        background-color: var(--color-primary) !important;
+        color: var(--color-on-primary) !important;
+        border: none !important;
+    }
+
+    .btn:hover {
+        background-color: var(--color-primary-600) !important;
+    }
+    
+    .btn:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1) !important;
+    }
+
+    .btn:disabled {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }
+
+    .btn:active {
+        scale: 0.98 !important;
+    }
+
+    .btn:focus-visible {
+        outline: none !important;
+    }
+
+    .btn:focus-visible:not(:focus-visible) {
+        outline: none !important;
+    }
+
+    .btn:focus-visible:not(:focus-visible) {
+        outline: none !important;
+    }
+
+    .btn:focus-visible:not(:focus-visible) {
+        outline: none !important;
+    }
+
+    .btn:focus-visible:not(:focus-visible) {
+        outline: none !important;
+    }
 }
 
 /* \[:where(&)\]:size-4 {

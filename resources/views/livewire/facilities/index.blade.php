@@ -47,7 +47,7 @@
                 </x-slot>
 
                 <div class="mt-4 flex items-center justify-center mb-4">
-                    <div class="flex size-16 items-center justify-center rounded-lg bg-primary/80">
+                    <div class="flex size-16 items-center justify-center rounded-lg bg-primary/80 text-white">
                         <x-ui.icon-preview :name="$facility->icon" size="size-8" />
                     </div>
                 </div>

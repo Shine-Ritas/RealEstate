@@ -73,7 +73,7 @@
                                     required
                                     class="flex-1"
                                 />
-                                <div class="flex size-10 items-center justify-center rounded-lg {{ $icon ? 'bg-primary/80' : 'bg-surface-variant border border-outline' }}">
+                                <div class="flex size-10 items-center justify-center rounded-lg text-white {{ $icon ? 'bg-primary/80' : 'bg-surface-variant border border-outline' }}">
                                     @if($icon)
                                         <x-ui.icon-preview :name="$icon" size="size-5" />
                                     @else

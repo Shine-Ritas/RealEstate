@@ -1,7 +1,7 @@
 @props([
     'name' => '',
     'size' => 'size-5',
-    'class' => 'text-primary',
+    'class' => 'text-white',
 ])
 
 
