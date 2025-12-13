@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Str;
 
 class Project extends Model
 {
@@ -28,6 +29,19 @@ class Project extends Model
         'year_completed',
         'status',
     ];
+
+    // boot that slug is always lowercase
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->slug = Str::slug($model->name);
+        });
+
+        static::updating(function ($model) {
+            $model->slug = Str::slug($model->name);
+        });
+    }
 
     /**
      * Summary of facilities

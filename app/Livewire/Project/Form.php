@@ -4,8 +4,10 @@ namespace App\Livewire\Project;
 
 use App\Models\Developer;
 use App\Models\District;
+use App\Models\Facility;
 use App\Models\Project;
 use App\Models\Province;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
@@ -39,6 +41,10 @@ class Form extends Component
 
     public ?int $yearCompleted = null;
 
+    public Collection $facilities ;
+
+    public mixed $selectedFacilities = [];
+
     public string $status = 'active';
 
     public function mount(?Project $project = null): void
@@ -58,7 +64,10 @@ class Form extends Component
             $this->totalUnits = $project->total_units;
             $this->yearCompleted = $project->year_completed;
             $this->status = $project->status ?? 'active';
+            $this->selectedFacilities = $project->facilities->pluck('id')->toArray();
         }
+
+        $this->facilities = Facility::where('status', 'active')->get();
     }
 
     public function updatedName(): void
@@ -172,5 +181,14 @@ class Form extends Component
             'header' => $this->projectId ? 'Edit Project' : 'Create Project',
             'subtitle' => $this->projectId ? 'Update project information' : 'Add a new project to the system',
         ]);
+    }
+
+    public function toggleSelectedFacility(int $facilityId): void
+    {
+        if (in_array($facilityId, $this->selectedFacilities)) {
+            $this->selectedFacilities = array_diff($this->selectedFacilities, [$facilityId]);
+        } else {
+            $this->selectedFacilities[] = $facilityId;
+        }
     }
 }

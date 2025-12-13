@@ -26,3 +26,14 @@ if (! function_exists('is_active_navigation')) {
         return request()->routeIs($route);
     }
 }
+
+if(!function_exists('convert_to_dropdown')) {
+    function convert_to_dropdown(mixed $data, string $label, string $value): mixed {
+            return $data->map(function ($item) use ($label, $value) {
+                return [
+                    'label' => $item->$label,
+                    'value' => $item->$value
+                ];
+            });
+    }
+}
