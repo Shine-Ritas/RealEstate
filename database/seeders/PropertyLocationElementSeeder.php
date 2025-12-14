@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DeveloperSeeder extends Seeder
+class PropertyLocationElementSeeder extends Seeder
 {
     /**
      * Run the database seeds.

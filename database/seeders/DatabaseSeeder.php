@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             DistrictSeeder::class,
             SubdistrictSeeder::class,
-            ProjectTypeSeeder::class,
+            LocationElementSeeder::class,
             PartnerSeeder::class,
             SocialLinkSeeder::class,
             FacilitySeeder::class,

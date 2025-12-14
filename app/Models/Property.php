@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Developer extends Model
+class Property extends Model
 {
-    /** @use HasFactory<\Database\Factories\DeveloperFactory> */
+    /** @use HasFactory<\Database\Factories\PropertyFactory> */
     use HasFactory;
 }
