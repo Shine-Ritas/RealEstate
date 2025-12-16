@@ -91,7 +91,7 @@ class SidebarService
                 'permission' => 'view-property_types', // Update when facilities permission exists
             ],
             [
-                'title' => 'Projects',
+                'title' => 'Properties',
                 'icon' => 'building-office',
                 'route' => route('projects.index'), // Update when projects.index route exists
                 'route_name' => 'projects.index',

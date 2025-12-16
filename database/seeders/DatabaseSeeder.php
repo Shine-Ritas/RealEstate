@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             LocationElementSeeder::class,
             PartnerSeeder::class,
             SocialLinkSeeder::class,
+            AmenitySeeder::class,
             FacilitySeeder::class,
         ]);
     }

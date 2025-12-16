@@ -1,10 +1,11 @@
 <?php
 
-use App\Livewire\Project\Index as ProjectIndex;
 use App\Livewire\Facilities\Index as FacilitiesIndex;
 use App\Livewire\Roles\Index as RolesIndex;
 use App\Livewire\Roles\Permissions as RolesPermissionsIndex;
-use App\Livewire\Project\Form as ProjectForm;
+
+use App\Livewire\Property\Index as PropertyIndex;
+use App\Livewire\Property\Form as PropertyForm;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -26,9 +27,9 @@ Route::middleware(['auth'])->group(function () {
     // Facility Management Routes
     Route::get('/facilities', FacilitiesIndex::class)->name('facilities.index');
 
-    Route::get('projects',ProjectIndex::class)->name('projects.index');
-    Route::get('/projects/create',ProjectForm::class)->name('projects.create');
-    Route::get('/projects/{project}/edit',ProjectForm::class)->name('projects.edit');
+    Route::get('projects',PropertyIndex::class)->name('projects.index');
+    Route::get('/projects/create',PropertyForm::class)->name('projects.create');
+    Route::get('/projects/{project}/edit',PropertyForm::class)->name('projects.edit');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');

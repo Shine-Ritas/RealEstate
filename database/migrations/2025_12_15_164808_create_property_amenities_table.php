@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\LocationElement;
+use App\Models\Amenity;
 use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_location_elements', function (Blueprint $table) {
+        Schema::create('property_amenities', function (Blueprint $table) {
             $table->ulid();
             $table->string('name');
             $table->string('details');
-            $table->string('distance');
             $table->foreignIdFor(Property::class);
-            $table->foreignIdFor(LocationElement::class);
+            $table->foreignIdFor(Amenity::class);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_location_elements');
+        Schema::dropIfExists('property_amenities');
     }
 };

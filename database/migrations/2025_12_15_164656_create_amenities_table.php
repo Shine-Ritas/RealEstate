@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\LocationElement;
-use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_location_elements', function (Blueprint $table) {
-            $table->ulid();
+        Schema::create('amenities', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('details');
-            $table->string('distance');
-            $table->foreignIdFor(Property::class);
-            $table->foreignIdFor(LocationElement::class);
+            $table->string('icon');
+            $table->string('description')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_location_elements');
+        Schema::dropIfExists('amenities');
     }
 };

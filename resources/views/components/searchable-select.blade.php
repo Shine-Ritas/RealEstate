@@ -3,7 +3,7 @@
     'name' => null,
     'placeholder' => 'Select an option',
     'options' => [], // [['value'=>1,'label'=>'A'], ...]
-    'wireModel' => null,
+    'model' => null,
 ])
 
 <div
@@ -15,13 +15,13 @@
         currentValue: null,
 
         init() {
-            @if($wireModel)
+            @if($model)
                 // Get initial value from Livewire
-                this.currentValue = $wire.get('{{ $wireModel }}');
+                this.currentValue = $wire.get('{{ $model }}');
                 this.updateSelectedLabel();
                 
                 // Watch for Livewire value changes
-                $wire.$watch('{{ $wireModel }}', (value) => {
+                $wire.$watch('{{ $model }}', (value) => {
                     this.currentValue = value;
                     this.updateSelectedLabel();
                 });
@@ -56,8 +56,8 @@
             this.currentValue = option.value;
             this.search = '';
             this.open = false;
-            @if($wireModel)
-                $wire.set('{{ $wireModel }}', option.value);
+            @if($model)
+                $wire.set('{{ $model }}', option.value);
             @endif
         }
     }"
@@ -65,8 +65,8 @@
 >
     <!-- Hidden input for normal form submit -->
     <input type="hidden" name="{{ $name }}" id="{{ $id }}"
-        @if($wireModel)
-            wire:model.live="{{ $wireModel }}"
+        @if($model)
+            wire:model.live="{{ $model }}"
         @endif
     >
 
@@ -76,6 +76,7 @@
         @click="open = !open"
         class="w-full bg-surface border border-outline rounded-radius px-3 py-2 text-left text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200 hover:border-outline-strong"
     >
+    
         <span x-text="selectedLabel || '{{ $placeholder }}'" :class="selectedLabel ? 'text-on-surface' : 'text-on-surface/60'"></span>
     </button>
 
@@ -96,7 +97,7 @@
         >
 
         <!-- Options -->
-        <ul class="max-h-60 overflow-y-auto">
+        <ul class="max-h-60 overflow-y-auto text-sm font-medium">
             <template x-for="option in filteredOptions()" :key="option.value">
                 <li
                     @click="select(option)"

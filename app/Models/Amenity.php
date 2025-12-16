@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PropertyLocationElement extends Model
+class Amenity extends Model
 {
-    /** @use HasFactory<\Database\Factories\PropertyLocationElementFactory> */
+    /** @use HasFactory<\Database\Factories\AmenityFactory> */
     use HasFactory,HasUlids;
 }

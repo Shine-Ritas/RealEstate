@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Livewire\Project;
+namespace App\Livewire\Property;
 
-use App\Models\Developer;
+use App\Enums\ListingTypeEnum;
+use App\Enums\PropertyTypeEnum;
 use App\Models\District;
 use App\Models\Facility;
-use App\Models\Project;
+use App\Models\Property;
 use App\Models\Province;
+use App\Services\Property\GeoLocationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
@@ -19,75 +21,46 @@ class Form extends Component
 
     public string $name = '';
 
-    public string $slug = '';
-
-    public ?string $developerId = null;
-
-    public ?string $description = null;
-
-    public ?string $latitude = null;
-
-    public ?string $longitude = null;
-
-    public ?string $address = null;
-
-    public ?int $districtId = null;
-
-    public ?int $provinceId = null;
-
-    public ?int $totalFloors = null;
-
-    public ?int $totalUnits = null;
-
-    public ?int $yearCompleted = null;
+    public ?string $propertyType = null;
+    public ?string $listingType = null;
 
     public Collection $facilities ;
 
+    public array $propertyTypes;
+    public Collection $provinces;
+    public ?Collection $districts = null;
+    public array $listingTypes ;
+
     public mixed $selectedFacilities = [];
+    public ?int $selectedProvince = null;
+    public ?int $selectedDistrict = null;
 
     public string $status = 'active';
 
-    public function mount(?Project $project = null): void
+    public function mount(?Property $project = null): void
     {
+
         if ($project) {
             $this->projectId = $project->id;
             $this->name = $project->name;
-            $this->slug = $project->slug;
-            $this->developerId = $project->developer_id;
-            $this->description = $project->description;
-            $this->latitude = $project->latitude ? (string) $project->latitude : null;
-            $this->longitude = $project->longitude ? (string) $project->longitude : null;
-            $this->address = $project->address;
-            $this->districtId = $project->district_id;
-            $this->provinceId = $project->province_id;
-            $this->totalFloors = $project->total_floors;
-            $this->totalUnits = $project->total_units;
-            $this->yearCompleted = $project->year_completed;
             $this->status = $project->status ?? 'active';
             $this->selectedFacilities = $project->facilities->pluck('id')->toArray();
         }
+        $this->propertyTypes = PropertyTypeEnum::dropdown();
 
+        $this->listingTypes = ListingTypeEnum::dropdown();
+        $this->provinces = GeoLocationService::getProvinces();
+        $this->districts = null;
         $this->facilities = Facility::where('status', 'active')->get();
     }
 
-    public function updatedName(): void
-    {
-        if (! $this->projectId) {
-            $this->slug = Str::slug($this->name);
-        }
-    }
 
-    public function updatedProvinceId(): void
-    {
-        $this->districtId = null;
-    }
 
     protected function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:projects,slug,'.$this->projectId],
-            'developerId' => ['nullable', 'exists:developers,ulid'],
             'description' => ['nullable', 'string'],
             'latitude' => ['nullable', 'numeric', 'between:-90,90'],
             'longitude' => ['nullable', 'numeric', 'between:-180,180'],
@@ -131,27 +104,15 @@ class Form extends Component
         $this->validate();
 
         $data = [
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'developer_id' => $this->developerId,
-            'description' => $this->description,
-            'latitude' => $this->latitude ? (float) $this->latitude : null,
-            'longitude' => $this->longitude ? (float) $this->longitude : null,
-            'address' => $this->address,
-            'district_id' => $this->districtId,
-            'province_id' => $this->provinceId,
-            'total_floors' => $this->totalFloors,
-            'total_units' => $this->totalUnits,
-            'year_completed' => $this->yearCompleted,
-            'status' => $this->status,
+           
         ];
 
         if ($this->projectId) {
-            $project = Project::findOrFail($this->projectId);
+            $project = Property::findOrFail($this->projectId);
             $project->update($data);
             session()->flash('message', 'Project updated successfully.');
         } else {
-            Project::create($data);
+            Property::create($data);
             session()->flash('message', 'Project created successfully.');
         }
 
@@ -160,25 +121,9 @@ class Form extends Component
 
     public function render()
     {
-        $developers = Developer::orderBy('name')->get();
-        $provinces = Province::orderBy('p_name')->get();
-
-        $districts = collect();
-        if ($this->provinceId) {
-            $province = Province::find($this->provinceId);
-            if ($province) {
-                $districts = District::where('p_code', $province->p_code)
-                    ->orderBy('d_name')
-                    ->get();
-            }
-        }
-
-        return view('livewire.project.form', [
-            'developers' => $developers,
-            'provinces' => $provinces,
-            'districts' => $districts,
+        return view('livewire.property.form', [
         ])->layout('components.layouts.app', [
-            'header' => $this->projectId ? 'Edit Project' : 'Create Project',
+            'header' => $this->projectId ? 'Modify Property' : 'Upload New Property',
             'subtitle' => $this->projectId ? 'Update project information' : 'Add a new project to the system',
         ]);
     }
