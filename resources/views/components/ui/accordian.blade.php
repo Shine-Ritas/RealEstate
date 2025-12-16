@@ -1,18 +1,24 @@
 @props([
     'title' => null,
     'open' => false,
+    'class' => '',
+    'icon' => null
 ])
 
 <div
     x-data="{ isOpen: {{ $open ? 'true' : 'false' }} }"
-    class="bg-surface rounded-radius border border-outline shadow-sm"
+    class="bg-surface rounded-radius border border-outline shadow-sm min-h-full"
 >
     <button
         type="button"
         @click="isOpen = !isOpen"
-        class="w-full flex items-center justify-between collapse-title text-lg font-semibold text-on-surface"
+        class="w-fit flex items-center justify-between collapse-title text-lg font-semibold text-on-surface hover:underline cursor-pointer hover:text-on-surface-variant"
     >
-        <span>{{ $title }}</span>
+        <span> 
+            @if ($icon)
+                <i class='fa fa-solid fa-{{ $icon }}'></i>
+            @endif
+            {{ $title }}</span>
 
         {{-- Right side content (optional) --}}
         @isset($right)
@@ -31,7 +37,7 @@
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-1"
         x-cloak
-        class="space-y-6 px-4 pb-4"
+        class="space-y-6 px-4 pb-4 {{ $class }} relative h-full"
     >
         {{ $slot }}
     </div>

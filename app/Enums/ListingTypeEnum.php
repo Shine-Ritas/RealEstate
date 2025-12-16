@@ -3,11 +3,11 @@
 namespace App\Enums;
 
 use App\Contracts\BaseEnumInterface;
-use App\Traits\HasDropdown;
+use App\Traits\HasDropDown;
 
 enum ListingTypeEnum : string implements BaseEnumInterface
 {
-    use HasDropdown;
+    use HasDropDown;
     case Rent = 'rent';
     case Sale = 'sale';
     case Both = 'both';

@@ -37,3 +37,26 @@ if(!function_exists('convert_to_dropdown')) {
             });
     }
 }
+
+
+if(!function_exists('currency')) {
+    function currency(): string
+    {
+        return config('control.default_currency');
+    }
+}
+
+if(!function_exists('currency_symbol')) {
+    function currency_symbol(): string
+    {
+        return match(currency()) {
+            'THB' => '฿',
+            'USD' => '$',
+            'EUR' => '€',
+            'GBP' => '£',
+            'JPY' => '¥',
+            'KRW' => '₩',
+            'CNY' => '¥',
+        };
+    }
+}

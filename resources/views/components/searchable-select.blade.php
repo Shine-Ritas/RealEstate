@@ -4,9 +4,12 @@
     'placeholder' => 'Select an option',
     'options' => [], // [['value'=>1,'label'=>'A'], ...]
     'model' => null,
+    'disabled' => false,
+    'event' => null,
 ])
 
 <div
+
     x-data="{
         open: false,
         search: '',
@@ -15,17 +18,26 @@
         currentValue: null,
 
         init() {
-            @if($model)
-                // Get initial value from Livewire
-                this.currentValue = $wire.get('{{ $model }}');
+        @if($model)
+            this.currentValue = $wire.get('{{ $model }}');
+            this.updateSelectedLabel();
+
+            $wire.$watch('{{ $model }}', (value) => {
+                this.currentValue = value;
                 this.updateSelectedLabel();
-                
-                // Watch for Livewire value changes
-                $wire.$watch('{{ $model }}', (value) => {
-                    this.currentValue = value;
-                    this.updateSelectedLabel();
-                });
-            @endif
+                this.open = false; // ✅ close on model change
+            });
+
+        @if($event)
+            window.addEventListener('{{ $event }}', (event) => {
+                this.open = false;
+                this.search = '';
+                this.options = event.detail.options;
+                this.currentValue = null;
+                this.selectedLabel = '';
+            });
+        @endif
+        @endif
         },
 
         updateSelectedLabel() {
@@ -55,7 +67,9 @@
             this.selectedLabel = option.label;
             this.currentValue = option.value;
             this.search = '';
-            this.open = false;
+            this.$nextTick(() => {
+                this.open = false; // ✅ ensure close AFTER DOM update
+            });
             @if($model)
                 $wire.set('{{ $model }}', option.value);
             @endif
@@ -74,10 +88,22 @@
     <button
         type="button"
         @click="open = !open"
-        class="w-full bg-surface border border-outline rounded-radius px-3 py-2 text-left text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200 hover:border-outline-strong"
+        @if ($disabled)
+        disabled
+        @endif
+        class="w-full bg-surface border border-outline rounded-radius px-3 py-2
+        flex items-center justify-between
+        text-left text-on-surface focus:outline-none focus:ring-2
+        focus:ring-primary focus:ring-offset-2 transition-all duration-200
+        hover:border-outline-strong disabled:opacity-50 disabled:cursor-not-allowed"
     >
     
-        <span x-text="selectedLabel || '{{ $placeholder }}'" :class="selectedLabel ? 'text-on-surface' : 'text-on-surface/60'"></span>
+        <span x-text="selectedLabel || '{{ $placeholder }}'" :class="selectedLabel ? 'text-on-surface font-normal text-sm' : 'text-on-surface/60'"></span>
+
+        <i
+        class="fa fa-solid transition-transform duration-200 "
+        :class="open ? 'fa-chevron-up' : 'fa-chevron-down'"
+    ></i>
     </button>
 
     <!-- Dropdown -->
@@ -100,7 +126,7 @@
         <ul class="max-h-60 overflow-y-auto text-sm font-medium">
             <template x-for="option in filteredOptions()" :key="option.value">
                 <li
-                    @click="select(option)"
+                    @click.stop="select(option)"
                     class="px-3 py-2 cursor-pointer hover:bg-surface-variant text-on-surface transition-colors duration-150"
                     :class="currentValue == option.value ? 'bg-surface-variant' : ''"
                     x-text="option.label"
@@ -109,6 +135,7 @@
 
             <li
                 x-show="filteredOptions().length === 0"
+                @click.stop
                 class="px-3 py-2 text-sm text-on-surface/60"
             >
                 No results found

@@ -10,5 +10,7 @@ class Property extends Model
 {
     /** @use HasFactory<\Database\Factories\PropertyFactory> */
     use HasFactory,HasUlids;
+
+    protected $guarded = [];
     
 }

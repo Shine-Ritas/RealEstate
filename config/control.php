@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'storage' => 'local'
+    'storage' => 'local',
+
+    'default_currency' => "THB"
 ];

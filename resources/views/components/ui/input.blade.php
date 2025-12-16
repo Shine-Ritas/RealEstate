@@ -6,17 +6,11 @@
     'placeholder' => null,
     'required' => false,
     'error' => null,
+    'bold' => false
 ])
 
 <div class="grid gap-2">
-    @if($label)
-        <label for="{{ $name }}" class="text-sm font-medium text-on-surface">
-            {{ $label }}
-            @if($required)
-                <span class="text-danger">*</span>
-            @endif
-        </label>
-    @endif
+    <x-ui.label for="{{ $name }}" label="{{ $label }}" required="{{ $required }}" :bold="$bold" />
 
     <flux:input
         id="{{ $name }}"

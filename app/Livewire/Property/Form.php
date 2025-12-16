@@ -12,30 +12,45 @@ use App\Services\Property\GeoLocationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Form extends Component
 {
+
+    use HasQuillEditor;
     public ?string $projectId = null;
 
+    // model prperties
     public string $name = '';
+    public string $description = '';
+    public string $zipcode = '';
+
 
     public ?string $propertyType = null;
     public ?string $listingType = null;
 
+
+    // data collection
     public Collection $facilities ;
 
     public array $propertyTypes;
-    public Collection $provinces;
-    public ?Collection $districts = null;
+    public mixed $provinces;
+    public mixed $districts = null;
+    public mixed $subDistricts = null;
     public array $listingTypes ;
 
+    // selected section
+
     public mixed $selectedFacilities = [];
-    public ?int $selectedProvince = null;
-    public ?int $selectedDistrict = null;
+    public ?string $selectedProvince = null;
+    public ?string $selectedDistrict = null;
+
+    public ?string $selectedSubDistrict = null;
 
     public string $status = 'active';
+
 
     public function mount(?Property $project = null): void
     {
@@ -49,11 +64,27 @@ class Form extends Component
         $this->propertyTypes = PropertyTypeEnum::dropdown();
 
         $this->listingTypes = ListingTypeEnum::dropdown();
-        $this->provinces = GeoLocationService::getProvinces();
-        $this->districts = null;
+        $this->provinces = convert_to_dropdown(GeoLocationService::getProvinces(), 'p_name', 'p_code');
+
         $this->facilities = Facility::where('status', 'active')->get();
     }
 
+    public function updatedSelectedProvince($value): void
+    {
+        $this->districts = convert_to_dropdown(GeoLocationService::getDistrctByProvince($value), 'd_name', 'd_code');
+        $this->dispatch('district-options-updated', options: $this->districts);
+    }
+
+    public function updatedSelectedDistrict($value): void
+    {
+        $this->subDistricts = convert_to_dropdown(GeoLocationService::getSubdistrictByDistrict($value), 's_name', 's_code');
+        $this->dispatch('sub-district-options-updated', options: $this->subDistricts);
+    }
+
+    public function updatedSelectedSubDistrict($value): void
+    {
+        $this->zipcode = GeoLocationService::getZipcodeBySubdistrict($value);
+    }
 
 
     protected function rules(): array

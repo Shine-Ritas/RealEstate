@@ -3,11 +3,11 @@
 namespace App\Enums;
 
 use App\Contracts\BaseEnumInterface;
-use App\Traits\HasDropdown;
+use App\Traits\HasDropDown;
 
 enum PropertyTypeEnum: string implements BaseEnumInterface
 {
-    use HasDropdown;
+    use HasDropDown;
     case Condo = 'condo';
     case House = 'house';
     case Apartment = 'apartment';

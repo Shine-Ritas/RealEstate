@@ -14,14 +14,18 @@ class GeoLocationService
         return Province::all();
     }
 
-    public static function getDistrctByProvince(Province $province): Collection
+    public static function getDistrctByProvince(string $p_code): Collection
     {
-        return District::where('p_code', $province->p_code)->get();
+        return District::where('p_code', $p_code)->get();
     }
 
-    public static function getSubdistrictByDistrict(District $district): Collection
+    public static function getSubdistrictByDistrict(string $d_code): Collection
     {
-        return Subdistrict::where('d_code', $district->d_code)->get();
+        return Subdistrict::where('d_code', $d_code)->get();
     }
-    
+
+    public static function getZipcodeBySubdistrict(string $s_code): string
+    {
+        return Subdistrict::where('s_code', $s_code)->first()->zip_code;
+    }
 }
