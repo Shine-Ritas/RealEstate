@@ -31,14 +31,14 @@
                     </div>
 
 
-                    <x-ui.input label="Sale Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.live="name"
-                    placeholder="e.g., *0000" required :error="$errors->first('name')" bold />
+                    <x-ui.input label="Sale Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="salePrice"
+                    placeholder="e.g., *0000" required :error="$errors->first('salePrice')" bold />
 
-                    <x-ui.input label="Current Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.live="name"
-                    placeholder="e.g., *0000" required :error="$errors->first('name')" bold />
+                    <x-ui.input label="Current Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="currentPrice"
+                    placeholder="e.g., *0000" required :error="$errors->first('currentPrice')" bold />
 
-                    <x-ui.input label="Rent Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.live="name"
-                    placeholder="e.g., *0000" required :error="$errors->first('name')" bold />
+                    <x-ui.input label="Rent Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="rentPrice"
+                        placeholder="e.g., *0000" required :error="$errors->first('rentPrice')" bold />
 
                 </div>
 
@@ -78,39 +78,88 @@
 
                     <div class="grid gap-2">
 
-                        <x-ui.label for="listingType" label="Province" required bold />
+                        <x-ui.label for="province" label="Province" required bold />
 
-                        <x-searchable-select id="province" name="province" :options="$provinces"
+                        <x-searchable-select id="selectedProvince" name="selectedProvince" :options="$provinces"
                         placeholder="Choose Province"
                             model="selectedProvince" />
                     </div>
 
                     <div class="grid gap-2" >
-                        <x-ui.label for="district" label="District" required bold />
-                        <x-searchable-select id="district" name="district" :options="$districts"
+                        <x-ui.label for="selectedDistrict" label="District" required bold />
+                        <x-searchable-select id="selectedDistrict" name="selectedDistrict" :options="$districts"
                         placeholder="Choose District" :disabled="!$selectedProvince"
                         event="district-options-updated"
                             model="selectedDistrict" />
                     </div>
 
                     <div class="grid gap-2">
-                        <x-ui.label for="sub_district" label="Sub District" required bold />
-                        <x-searchable-select id="sub_district" name="sub_district" :options="$subDistricts"
+                        <x-ui.label for="selectedSubDistrict" label="Sub District" required bold />
+                        <x-searchable-select id="selectedSubDistrict" name="selectedSubDistrict" :options="$subDistricts"
                         placeholder="Choose Sub District" :disabled="!$selectedDistrict"
                         event="sub-district-options-updated"
                             model="selectedSubDistrict" />
                     </div>
 
-                    <x-ui.input label="Postal Code" name="zipcode" type="number" wire:model.live="zipcode"
+                    <x-ui.input label="Postal Code" name="zipcode" type="number" wire:model.defer="zipcode"
                     placeholder="e.g., 13.7563" required :error="$errors->first('zipcode')" bold />
 
-                    <x-ui.input label="Latitude" name="latitude" type="number" wire:model.live="latitude"
+                    <x-ui.input label="Latitude" name="latitude" type="number" wire:model.defer="latitude"
                     placeholder="e.g., 13.7563" required :error="$errors->first('latitude')" bold />
 
-                    <x-ui.input label="Longitude" name="longitude" type="number" wire:model.live="longitude"
+                    <x-ui.input label="Longitude" name="longitude" type="number" wire:model.defer="longitude"
                     placeholder="e.g., 100.5018" required :error="$errors->first('longitude')" bold />
 
                 </div>
+            </x-ui.accordian>
+
+            <x-ui.accordian title="Room Details" open icon='bed'>
+
+              <div class="grid gap-6 lg:grid-cols-3">
+
+                <x-ui.input label="Floor" name="floor" type="number" wire:model.defer="floor"
+                placeholder="e.g., 1-1000" required :error="$errors->first('floor')" bold />
+
+                <x-ui.input label="Unit Number" name="unitNumber" wire:model.defer="unitNumber"
+                placeholder="e.g., **/**" required :error="$errors->first('unitNumber')" bold />
+
+                <x-ui.input label="Bed Room" name="bedrooms" type="number" wire:model.defer="bedrooms"
+                placeholder="e.g., 1-50" required :error="$errors->first('bedrooms')" bold />
+
+                <x-ui.input label="BathRooms" name="bathrooms" type="number" wire:model.defer="bathrooms"
+                placeholder="e.g., 1-50" required :error="$errors->first('bathrooms')" bold />
+             
+                <x-ui.input label="Size ( Sqm )" name="sizeSqm" type="number" wire:model.defer="sizeSqm"
+                placeholder="e.g., ***" required :error="$errors->first('sizeSqm')" bold />
+                
+                <x-ui.input label="Land Size ( Sqm )" name="landSizeSqm" type="number" wire:model.defer="landSizeSqm"
+                placeholder="e.g., ***" required :error="$errors->first('landSizeSqm')" bold />
+
+                <x-ui.input label="Year Built" name="yearBuilt" type="number" wire:model.defer="yearBuilt"
+                placeholder="e.g., ****" :error="$errors->first('yearBuilt')" bold />
+
+                <div class="grid gap-2">
+                    <x-ui.label for="propertyType" label="Ownership Type" required bold />
+                    <x-searchable-select id="ownership" name="ownership" :options="$ownershipTypes"
+                        model="ownership" />
+                </div>
+
+                <div class="grid gap-2">
+                    <x-ui.label for="Furnished Type" label="Furnished Type" required bold />
+                    <x-searchable-select id="furnished" name="furnished" :options="$furnishesTypes"
+                        model="furnished" />
+                </div>
+
+                <div class="grid gap-2">
+                    <x-ui.label for="propertyType" label="Property Status" required bold />
+                    <x-searchable-select id="propertyStatus" name="propertyStatus" :options="$propertyStatusTypes"
+                        model="propertyStatus" />
+                </div>
+
+              </div>
+
+
+
             </x-ui.accordian>
        
 
@@ -128,15 +177,13 @@
                                         ? selected = selected.filter(i => i !== {{ $facility->id }})
                                         : selected.push({{ $facility->id }})
                                 " class="flex items-center gap-2 badge cursor-pointer"
-                            :class="selected.includes({{ $facility->id }}) ? 'badge-primary' : 'badge-outline'">
+                            :class="selected.includes({{ $facility->id }}) ? 'badge-primary hover:bg-primary/60' : 'badge-outline hover:bg-primary/30'">
                             <x-ui.icon-preview :name="$facility->icon" size="size-8" />
                             <span>{{ $facility->name }}</span>
                         </div>
                     @endforeach
                 </div>
             </x-ui.accordian>
-
-
 
         </div>
 

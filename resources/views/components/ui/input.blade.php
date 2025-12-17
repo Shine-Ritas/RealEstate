@@ -18,6 +18,7 @@
         type="{{ $type }}"
         value="{{ $value }}"
         placeholder="{{ $placeholder }}"
+        :step="$type === 'number' ? 'any' : null"
         :required="$required"
         {{ $attributes->merge(['class' => 'w-full']) }}
     />

@@ -2,24 +2,29 @@
 
 namespace App\Livewire\Property;
 
+use App\Enums\FurnishedTypeEnum;
 use App\Enums\ListingTypeEnum;
+use App\Enums\OwnerShipTypeEnum;
+use App\Enums\PropertyStatusTypeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\District;
 use App\Models\Facility;
 use App\Models\Property;
 use App\Models\Province;
 use App\Services\Property\GeoLocationService;
+use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-
+use App\Traits\Property\PropertyDataTraits;
 class Form extends Component
 {
 
-    use HasQuillEditor;
+    use HasQuillEditor,PropertyDataTraits;
+
     public ?string $projectId = null;
 
     // model prperties
@@ -27,20 +32,33 @@ class Form extends Component
     public string $description = '';
     public string $zipcode = '';
 
+    public float $currentPrice ;
+    public float $rentPrice ;
+    public float $salePrice ;
+    public string $currency = 'THB';
+
+    public float $latitude ;
+    public float $longitude ;
+
+    public string $address = '';
 
     public ?string $propertyType = null;
     public ?string $listingType = null;
 
+    // property Detail properties
+    public int $floor;
+    public string $unitNumber = '';
+    public int $bedrooms ;
+    public int $bathrooms;
+    public float $sizeSqm;
+    public float $landSizeSqm;
+    public int $yearBuilt ;
+    public string $ownership = '';
+    public string $furnished;
+    public string $propertyStatus;
 
     // data collection
-    public Collection $facilities ;
-
-    public array $propertyTypes;
-    public mixed $provinces;
-    public mixed $districts = null;
-    public mixed $subDistricts = null;
-    public array $listingTypes ;
-
+ 
     // selected section
 
     public mixed $selectedFacilities = [];
@@ -55,18 +73,35 @@ class Form extends Component
     public function mount(?Property $project = null): void
     {
 
+        $this->loadAll();
         if ($project) {
             $this->projectId = $project->id;
             $this->name = $project->name;
             $this->status = $project->status ?? 'active';
             $this->selectedFacilities = $project->facilities->pluck('id')->toArray();
         }
-        $this->propertyTypes = PropertyTypeEnum::dropdown();
 
-        $this->listingTypes = ListingTypeEnum::dropdown();
-        $this->provinces = convert_to_dropdown(GeoLocationService::getProvinces(), 'p_name', 'p_code');
+        $this->name = 'Knightsbridge Space Ratchayothin';
+        $this->description = 'Knightsbridge Space Ratchayothin is a new project in Bangkok, Thailand. It is a mixed-use development with a mix of residential, commercial, and retail space.';
+        $this->latitude = 13.799874772331705;
+        $this->longitude = 100.55048350859911;
+        $this->address = '123 Bangkok, Thailand';
+        $this->propertyType = PropertyTypeEnum::Condo->value;
+        $this->listingType = ListingTypeEnum::Rent->value;
+        $this->currentPrice = 1000000;
+        $this->rentPrice = 10000;
+        $this->salePrice = 1000000;
 
-        $this->facilities = Facility::where('status', 'active')->get();
+        $this->floor = 10;
+        $this->unitNumber = '15/230';
+        $this->bedrooms = 2 ;
+        $this->bathrooms = 1;
+        $this->sizeSqm = 100;
+        $this->landSizeSqm = 100;
+        $this->yearBuilt = 2024;
+        $this->ownership = OwnerShipTypeEnum::Freehold->value;
+        $this->furnished = FurnishedTypeEnum::Fully->value;
+        $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
     }
 
     public function updatedSelectedProvince($value): void
@@ -101,51 +136,54 @@ class Form extends Component
             'totalFloors' => ['nullable', 'integer', 'min:1'],
             'totalUnits' => ['nullable', 'integer', 'min:1'],
             'yearCompleted' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 10)],
-            'status' => ['required', 'in:active,inactive'],
-        ];
-    }
-
-    protected function messages(): array
-    {
-        return [
-            'name.required' => 'The project name is required.',
-            'slug.required' => 'The slug is required.',
-            'slug.unique' => 'A project with this slug already exists.',
-            'districtId.required' => 'Please select a district.',
-            'districtId.exists' => 'The selected district is invalid.',
-            'provinceId.required' => 'Please select a province.',
-            'provinceId.exists' => 'The selected province is invalid.',
-            'latitude.numeric' => 'Latitude must be a valid number.',
-            'latitude.between' => 'Latitude must be between -90 and 90.',
-            'longitude.numeric' => 'Longitude must be a valid number.',
-            'longitude.between' => 'Longitude must be between -180 and 180.',
-            'totalFloors.integer' => 'Total floors must be a valid number.',
-            'totalFloors.min' => 'Total floors must be at least 1.',
-            'totalUnits.integer' => 'Total units must be a valid number.',
-            'totalUnits.min' => 'Total units must be at least 1.',
-            'yearCompleted.integer' => 'Year completed must be a valid year.',
-            'yearCompleted.min' => 'Year completed must be at least 1900.',
-            'yearCompleted.max' => 'Year completed cannot be more than '.(date('Y') + 10).'.',
-            'status.required' => 'The status is required.',
+            'floor' => ['required', 'integer', 'min:1'],
+            'unitNumber' => ['required', 'string', 'max:255'],
+            'bedrooms' => ['required', 'integer', 'min:1'],
+            'bathrooms' => ['required', 'integer', 'min:1'],
+            'sizeSqm' => ['required', 'numeric', 'min:0'],
+            'landSizeSqm' => ['required', 'numeric', 'min:0'],
+            'yearBuilt' => ['required', 'integer', 'min:1900', 'max:'.(date('Y') + 10)],
+            'ownership' => ['required', 'in:'.OwnerShipTypeEnum::commaSeparatedValues()],
+            'furnished' => ['required', 'in:'.FurnishedTypeEnum::commaSeparatedValues()],
+            'propertyStatus' => ['required', 'in:'.PropertyStatusTypeEnum::commaSeparatedValues()],
+            'propertyType' => ['required', 'in:'.PropertyTypeEnum::commaSeparatedValues()],
+            'listingType' => ['required', 'in:'.ListingTypeEnum::commaSeparatedValues()],
         ];
     }
 
     public function save(): void
     {
+
         $this->validate();
 
-        $data = [
-           
+        $propertyData = [
+            'name' => $this->name,
+            'description' => $this->description,
+            'property_type' => $this->propertyType,
+            'listing_type' => $this->listingType,
+            'current_price' => $this->currentPrice,
+            'rent_price' => $this->rentPrice,
+            'sale_price' => $this->salePrice,
+            'currency' => $this->currency,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'address' => $this->address,
+            'district_id' => $this->selectedDistrict,
+            'province_id' => $this->selectedProvince,
+            'subdistrict_id' => $this->selectedSubDistrict,
+            'zipcode' => $this->zipcode,
         ];
 
-        if ($this->projectId) {
-            $project = Property::findOrFail($this->projectId);
-            $project->update($data);
-            session()->flash('message', 'Project updated successfully.');
-        } else {
-            Property::create($data);
-            session()->flash('message', 'Project created successfully.');
-        }
+        DB::transaction(function () use ($propertyData) {
+            if ($this->projectId) {
+                $project = Property::findOrFail($this->projectId);
+                $project->update($propertyData);
+                session()->flash('message', 'Project updated successfully.');
+            } else {
+                Property::create($propertyData);
+                session()->flash('message', 'Project created successfully.');
+            }
+        });
 
         $this->redirect(route('projects.index'), navigate: true);
     }

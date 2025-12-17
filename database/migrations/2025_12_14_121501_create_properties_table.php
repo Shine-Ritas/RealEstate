@@ -25,7 +25,7 @@ return new class extends Migration
             $table->decimal('rent_price',15,2)->nullable();
             $table->decimal('sale_price', 15,2)->nullable();
             $table->char('currency','3');
-            $table->string('owener_name')->nullable();
+            $table->string('owner_name')->nullable();
 
             $table->decimal('latitude',10,7)->nullable();
             $table->decimal('longitude',10,7)->nullable();

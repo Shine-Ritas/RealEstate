@@ -11,10 +11,12 @@
 >
     <button
         type="button"
-        @click="isOpen = !isOpen"
-        class="w-fit flex items-center justify-between collapse-title text-lg font-semibold text-on-surface hover:underline cursor-pointer hover:text-on-surface-variant"
+        class="w-full flex items-center justify-between collapse-title text-lg font-semibold text-on-surface hover:underline cursor-pointer hover:text-on-surface-variant"
     >
-        <span> 
+        <span
+        @click="isOpen = !isOpen"
+        
+        > 
             @if ($icon)
                 <i class='fa fa-solid fa-{{ $icon }}'></i>
             @endif

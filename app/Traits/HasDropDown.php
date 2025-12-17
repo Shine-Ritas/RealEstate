@@ -40,4 +40,11 @@ trait HasDropDown
     {
         return self::tryFrom($value)?->label();
     }
+
+    public static function commaSeparatedValues(): string
+    {
+        return collect(self::cases())
+            ->pluck('value')
+            ->implode(',');
+    }
 }
