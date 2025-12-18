@@ -142,4 +142,11 @@
             </li>
         </ul>
     </div>
+
+    {{-- error handling --}}
+    @if($errors->has($name))
+        <div class="text-sm text-danger">
+            {{ $errors->first($name) }}
+        </div>
+    @endif
 </div>

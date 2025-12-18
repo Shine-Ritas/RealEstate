@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\ListingTypeEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Str;
 
 class Property extends Model
 {
@@ -14,8 +17,60 @@ class Property extends Model
 
     protected $guarded = [];
 
-    public function facilities() : HasMany{
-        return $this->hasMany(PropertyFacility::class);
+    // boot 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($property) {
+            $property->slug = Str::slug($property->name);
+        });
+
+        static::updating(function($property){
+            $property->slug = Str::slug($property->name);
+        });
+    }
+
+    // has_image get attribute
+    public function getHasImageAttribute(): bool
+    {
+        return $this->images()->exists();
+    }
+
+    public function getShowPriceAttribute(): string
+    {
+        $price = match($this->listing_type){
+            ListingTypeEnum::Sale->value => $this->sale_price ,
+            ListingTypeEnum::Rent->value => $this->rent_price ,
+            ListingTypeEnum::Both->value => $this->current_price,
+            default => null,
+        };
+
+        $extra = match($this->listing_type){
+            ListingTypeEnum::Sale->value => 'For Sale',
+            ListingTypeEnum::Rent->value => 'Per Month',
+            ListingTypeEnum::Both->value => 'Both',
+            default => null,
+        };
+
+        return $price ? currency() . ' ' . number_format($price, 2) . ' ' . $extra : 'N/A';
+    }
+
+
+    public function facilities(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Facility::class, 
+            'property_facilities',
+            'property_id',
+            'facility_id'
+        )
+        ->using(PropertyFacility::class)
+        ->withPivot('id')  // Important: tell Laravel about the pivot ID
+        ->withTimestamps();
     }
     
+    public function images(): HasMany
+    {
+        return $this->hasMany(PropertyImage::class);
+    }
 }

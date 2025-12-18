@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->string('slug');
             $table->longText('description');
@@ -34,10 +34,20 @@ return new class extends Migration
 
             $table->mediumInteger('view_count')->default(0);
 
-            $table->foreignIdFor(Province::class);
-            $table->foreignIdFor(District::class);
-            $table->foreignIdFor(Subdistrict::class);
+            $table->char('p_code',6)->references('p_code')->on('provinces')->onDelete('cascade');
+            $table->char('d_code',12)->references('d_code')->on('districts')->onDelete('cascade');
+            $table->char('s_code',14)->references('s_code')->on('subdistricts')->onDelete('cascade');
+
+            $table->foreign('p_code')->references('p_code')->on('provinces')->onDelete('cascade');
+            $table->foreign('d_code')->references('d_code')->on('districts')->onDelete('cascade');
+            $table->foreign('s_code')->references('s_code')->on('subdistricts')->onDelete('cascade');
             $table->string('zipcode',10);
+
+            // index 
+            $table->index('p_code');
+            $table->index('d_code');
+            $table->index('s_code');
+            $table->index('zipcode');
             $table->timestamps();
         });
     }

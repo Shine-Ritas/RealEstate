@@ -139,19 +139,19 @@
                 placeholder="e.g., ****" :error="$errors->first('yearBuilt')" bold />
 
                 <div class="grid gap-2">
-                    <x-ui.label for="propertyType" label="Ownership Type" required bold />
+                    <x-ui.label for="ownership" label="Ownership Type" required bold />
                     <x-searchable-select id="ownership" name="ownership" :options="$ownershipTypes"
                         model="ownership" />
                 </div>
 
                 <div class="grid gap-2">
-                    <x-ui.label for="Furnished Type" label="Furnished Type" required bold />
+                    <x-ui.label for="furnished" label="Furnished Type" required bold />
                     <x-searchable-select id="furnished" name="furnished" :options="$furnishesTypes"
                         model="furnished" />
                 </div>
 
                 <div class="grid gap-2">
-                    <x-ui.label for="propertyType" label="Property Status" required bold />
+                    <x-ui.label for="propertyStatus" label="Property Status" required bold />
                     <x-searchable-select id="propertyStatus" name="propertyStatus" :options="$propertyStatusTypes"
                         model="propertyStatus" />
                 </div>

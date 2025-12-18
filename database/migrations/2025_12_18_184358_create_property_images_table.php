@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\LocationElement;
 use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_location_elements', function (Blueprint $table) {
+        Schema::create('property_images', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('name');
-            $table->string('details');
-            $table->string('distance');
-            $table->foreignIdFor(Property::class);
-            $table->foreignIdFor(LocationElement::class);
+            $table->foreignIdFor(Property::class)->constrained()->onDelete('cascade');
+
+            $table->string('image_path'); // Full path to the image
+            $table->string('image_url')->nullable(); 
+            $table->boolean('is_primary')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_location_elements');
+        Schema::dropIfExists('property_images');
     }
 };

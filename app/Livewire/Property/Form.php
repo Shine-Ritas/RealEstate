@@ -12,6 +12,7 @@ use App\Models\Facility;
 use App\Models\Property;
 use App\Models\Province;
 use App\Services\Property\GeoLocationService;
+use App\Services\Property\PropertyFacilityService;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
@@ -81,6 +82,8 @@ class Form extends Component
             $this->selectedFacilities = $project->facilities->pluck('id')->toArray();
         }
 
+        // set fake validation eeror
+
         $this->name = 'Knightsbridge Space Ratchayothin';
         $this->description = 'Knightsbridge Space Ratchayothin is a new project in Bangkok, Thailand. It is a mixed-use development with a mix of residential, commercial, and retail space.';
         $this->latitude = 13.799874772331705;
@@ -102,6 +105,8 @@ class Form extends Component
         $this->ownership = OwnerShipTypeEnum::Freehold->value;
         $this->furnished = FurnishedTypeEnum::Fully->value;
         $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
+
+
     }
 
     public function updatedSelectedProvince($value): void
@@ -126,16 +131,14 @@ class Form extends Component
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:projects,slug,'.$this->projectId],
             'description' => ['nullable', 'string'],
             'latitude' => ['nullable', 'numeric', 'between:-90,90'],
             'longitude' => ['nullable', 'numeric', 'between:-180,180'],
             'address' => ['nullable', 'string', 'max:255'],
-            'districtId' => ['required', 'exists:districts,id'],
-            'provinceId' => ['required', 'exists:provinces,id'],
-            'totalFloors' => ['nullable', 'integer', 'min:1'],
-            'totalUnits' => ['nullable', 'integer', 'min:1'],
-            'yearCompleted' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 10)],
+            'zipcode' => ['required', 'string', 'max:10'],
+            'selectedDistrict' => ['required', 'exists:districts,d_code'],
+            'selectedProvince' => ['required', 'exists:provinces,p_code'],
+            'selectedSubDistrict' => ['required', 'exists:subdistricts,s_code'],
             'floor' => ['required', 'integer', 'min:1'],
             'unitNumber' => ['required', 'string', 'max:255'],
             'bedrooms' => ['required', 'integer', 'min:1'],
@@ -168,21 +171,23 @@ class Form extends Component
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'address' => $this->address,
-            'district_id' => $this->selectedDistrict,
-            'province_id' => $this->selectedProvince,
-            'subdistrict_id' => $this->selectedSubDistrict,
+            'd_code' => $this->selectedDistrict,
+            'p_code' => $this->selectedProvince,
+            's_code' => $this->selectedSubDistrict,
             'zipcode' => $this->zipcode,
         ];
 
         DB::transaction(function () use ($propertyData) {
             if ($this->projectId) {
-                $project = Property::findOrFail($this->projectId);
-                $project->update($propertyData);
+                $property = Property::findOrFail($this->projectId);
+                $property->update($propertyData);
                 session()->flash('message', 'Project updated successfully.');
             } else {
-                Property::create($propertyData);
+                $property = Property::create($propertyData);
                 session()->flash('message', 'Project created successfully.');
             }
+
+            (new PropertyFacilityService())->syncFacilities($property, $this->selectedFacilities);
         });
 
         $this->redirect(route('projects.index'), navigate: true);

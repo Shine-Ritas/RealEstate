@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_amenities', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->string('details');
             $table->foreignIdFor(Property::class);

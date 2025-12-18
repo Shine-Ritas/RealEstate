@@ -14,9 +14,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_facilities', function (Blueprint $table) {
-            $table->ulid();
-            $table->foreignIdFor(Property::class);
-            $table->foreignIdFor(Facility::class);
+            $table->ulid('id')->primary();
+            $table->ulid('property_id');
+            $table->unsignedBigInteger('facility_id');
+            
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
