@@ -6,6 +6,7 @@
   prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
   color-scheme: light; 
   --color-primary: #1e40af;
+  --color-success: #069e52;
 }
 @import '../../vendor/livewire/flux/dist/flux.css';
 
@@ -260,6 +261,12 @@ select:focus[data-flux-control] {
     .btn-danger{
         background-color: var(--color-danger) !important;
         color: var(--color-on-danger) !important;
+        border: none !important;
+    }
+    
+    .btn-success{
+        background-color: var(--color-success) !important;
+        color: var(--color-on-success) !important;
         border: none !important;
     }
     

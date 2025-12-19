@@ -121,7 +121,7 @@
                 placeholder="e.g., 1-1000" required :error="$errors->first('floor')" bold />
 
                 <x-ui.input label="Unit Number" name="unitNumber" wire:model.defer="unitNumber"
-                placeholder="e.g., **/**" required :error="$errors->first('unitNumber')" bold />
+                placeholder="e.g., total units" required :error="$errors->first('unitNumber')" bold />
 
                 <x-ui.input label="Bed Room" name="bedrooms" type="number" wire:model.defer="bedrooms"
                 placeholder="e.g., 1-50" required :error="$errors->first('bedrooms')" bold />
@@ -135,19 +135,10 @@
                 <x-ui.input label="Land Size ( Sqm )" name="landSizeSqm" type="number" wire:model.defer="landSizeSqm"
                 placeholder="e.g., ***" required :error="$errors->first('landSizeSqm')" bold />
 
-                <x-ui.input label="Year Built" name="yearBuilt" type="number" wire:model.defer="yearBuilt"
-                placeholder="e.g., ****" :error="$errors->first('yearBuilt')" bold />
-
                 <div class="grid gap-2">
                     <x-ui.label for="ownership" label="Ownership Type" required bold />
                     <x-searchable-select id="ownership" name="ownership" :options="$ownershipTypes"
                         model="ownership" />
-                </div>
-
-                <div class="grid gap-2">
-                    <x-ui.label for="furnished" label="Furnished Type" required bold />
-                    <x-searchable-select id="furnished" name="furnished" :options="$furnishesTypes"
-                        model="furnished" />
                 </div>
 
                 <div class="grid gap-2">
@@ -156,10 +147,13 @@
                         model="propertyStatus" />
                 </div>
 
+                <x-ui.input label="Year Built" name="yearBuilt" type="number" wire:model.defer="yearBuilt"
+                placeholder="e.g., ****" :error="$errors->first('yearBuilt')" bold />
+
+                <x-ui.input label="Number Of Room/House" name="number" type="text" wire:model.defer="number"
+                placeholder="e.g., **/**" :error="$errors->first('number')" bold />
+
               </div>
-
-
-
             </x-ui.accordian>
        
 

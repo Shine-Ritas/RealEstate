@@ -3,5 +3,7 @@
 return [
     'storage' => 'local',
 
-    'default_currency' => "THB"
+    'default_currency' => "฿ ",
+
+    'default_currency_text' => "THB",
 ];

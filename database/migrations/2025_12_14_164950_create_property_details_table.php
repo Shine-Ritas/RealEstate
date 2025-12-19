@@ -18,12 +18,11 @@ return new class extends Migration
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->integer('floor')->comment('unit floor');
-            $table->string('unit_number',50);
+            $table->integer('unit_number')->comment('unit number');
+            $table->string('number');
             $table->decimal('size_sqm', 8,2)->nullable();
             $table->decimal('land_size_sqm', 10,2)->nullable();
             $table->year('year_built')->nullable();
-
-            $table->enum('furnished',['unfurnished','partial','fully']);
             $table->enum('ownership',['freehold','leasehold']);
             
             $table->enum('status',['active','pending','sold','rented','draft']);

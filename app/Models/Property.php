@@ -6,8 +6,10 @@ use App\Enums\ListingTypeEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Str;
 
 class Property extends Model
@@ -46,13 +48,18 @@ class Property extends Model
         };
 
         $extra = match($this->listing_type){
-            ListingTypeEnum::Sale->value => 'For Sale',
-            ListingTypeEnum::Rent->value => 'Per Month',
+            ListingTypeEnum::Sale->value => '> Sale',
+            ListingTypeEnum::Rent->value => '/ Month',
             ListingTypeEnum::Both->value => 'Both',
             default => null,
         };
 
-        return $price ? currency() . ' ' . number_format($price, 2) . ' ' . $extra : 'N/A';
+        return $price ? currency() . ' ' . number_format($price, 0) . ' ' . $extra : 'N/A';
+    }
+
+    public function detail():HasOne
+    {
+        return $this->hasOne( PropertyDetail::class);
     }
 
 
@@ -68,7 +75,21 @@ class Property extends Model
         ->withPivot('id')  // Important: tell Laravel about the pivot ID
         ->withTimestamps();
     }
+
+    public function province():BelongsTo
+    {
+        return $this->belongsTo(Province::class, 'p_code', 'p_code');
+    }
+
+    public function district():BelongsTo
+    {
+        return $this->belongsTo(District::class, 'd_code', 'd_code');
+    }
     
+    public function subdistrict():BelongsTo
+    {
+        return $this->belongsTo(Subdistrict::class, 's_code', 's_code');
+    }
     public function images(): HasMany
     {
         return $this->hasMany(PropertyImage::class);

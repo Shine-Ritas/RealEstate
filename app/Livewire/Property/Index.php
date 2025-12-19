@@ -17,7 +17,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.property.index',[
-            'properties' => Property::with('images')->when($this->search, function ($query) {
+            'properties' => Property::with('images','detail','province','district','subdistrict')->when($this->search, function ($query) {
                 $query->where(function ($q) {
                     $q->where('name', 'like', '%' . $this->search . '%')
                         ->orWhere('description', 'like', '%' . $this->search . '%');

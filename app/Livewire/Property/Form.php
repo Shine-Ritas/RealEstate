@@ -13,6 +13,7 @@ use App\Models\Property;
 use App\Models\Province;
 use App\Services\Property\GeoLocationService;
 use App\Services\Property\PropertyFacilityService;
+use App\Services\Property\PropertyService;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
@@ -48,14 +49,14 @@ class Form extends Component
 
     // property Detail properties
     public int $floor;
-    public string $unitNumber = '';
+    public int $unitNumber ;
     public int $bedrooms ;
     public int $bathrooms;
     public float $sizeSqm;
     public float $landSizeSqm;
     public int $yearBuilt ;
     public string $ownership = '';
-    public string $furnished;
+    public string $number;
     public string $propertyStatus;
 
     // data collection
@@ -96,17 +97,15 @@ class Form extends Component
         $this->salePrice = 1000000;
 
         $this->floor = 10;
-        $this->unitNumber = '15/230';
+        $this->unitNumber = 1;
         $this->bedrooms = 2 ;
         $this->bathrooms = 1;
         $this->sizeSqm = 100;
         $this->landSizeSqm = 100;
         $this->yearBuilt = 2024;
+        $this->number = '10/340';
         $this->ownership = OwnerShipTypeEnum::Freehold->value;
-        $this->furnished = FurnishedTypeEnum::Fully->value;
         $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
-
-
     }
 
     public function updatedSelectedProvince($value): void
@@ -140,14 +139,14 @@ class Form extends Component
             'selectedProvince' => ['required', 'exists:provinces,p_code'],
             'selectedSubDistrict' => ['required', 'exists:subdistricts,s_code'],
             'floor' => ['required', 'integer', 'min:1'],
-            'unitNumber' => ['required', 'string', 'max:255'],
+            'unitNumber' => ['required', 'int', 'max:255'],
+            'number' => ['required', 'string', 'max:255'],
             'bedrooms' => ['required', 'integer', 'min:1'],
             'bathrooms' => ['required', 'integer', 'min:1'],
             'sizeSqm' => ['required', 'numeric', 'min:0'],
             'landSizeSqm' => ['required', 'numeric', 'min:0'],
             'yearBuilt' => ['required', 'integer', 'min:1900', 'max:'.(date('Y') + 10)],
             'ownership' => ['required', 'in:'.OwnerShipTypeEnum::commaSeparatedValues()],
-            'furnished' => ['required', 'in:'.FurnishedTypeEnum::commaSeparatedValues()],
             'propertyStatus' => ['required', 'in:'.PropertyStatusTypeEnum::commaSeparatedValues()],
             'propertyType' => ['required', 'in:'.PropertyTypeEnum::commaSeparatedValues()],
             'listingType' => ['required', 'in:'.ListingTypeEnum::commaSeparatedValues()],
@@ -187,6 +186,18 @@ class Form extends Component
                 session()->flash('message', 'Project created successfully.');
             }
 
+            (new PropertyService())->savePropertyDetail($property, [
+                'floor' => $this->floor,
+                'unit_number' => $this->unitNumber,
+                'bedrooms' => $this->bedrooms,
+                'bathrooms' => $this->bathrooms,
+                'size_sqm' => $this->sizeSqm,
+                'land_size_sqm' => $this->landSizeSqm,
+                'number' => $this->number,
+                'ownership' => $this->ownership,
+                'status' => $this->propertyStatus,
+                'year_built' => $this->yearBuilt,
+            ]);
             (new PropertyFacilityService())->syncFacilities($property, $this->selectedFacilities);
         });
 
