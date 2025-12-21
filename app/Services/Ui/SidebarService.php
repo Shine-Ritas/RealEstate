@@ -93,7 +93,7 @@ class SidebarService
             [
                 'title' => 'Properties',
                 'icon' => 'building-office',
-                'route' => route('projects.index'), // Update when projects.index route exists
+                'route' => route('properties.index'), // Update when projects.index route exists
                 'route_name' => 'projects.index',
                 'permission' => 'view-projects',
             ],

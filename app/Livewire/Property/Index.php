@@ -3,13 +3,15 @@
 namespace App\Livewire\Property;
 
 use App\Models\Property;
+use App\Services\Property\PropertyService;
+use App\Traits\BaseTrait;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
 
-    use WithPagination;
+    use WithPagination,BaseTrait;
 
     public string $search = '';
 
@@ -29,5 +31,17 @@ class Index extends Component
             'header' => "Property",
             'subtitle' => 'Manage your Property',
         ]);
+    }
+
+    public function deleteProperty(): void
+    {
+        (new PropertyService())->deleteProperty($this->toDelete);
+        $this->dispatch('notify', [
+            'variant' => 'success',
+            'title' => 'Success',
+            'message' => 'Property Deleted Successfully.',
+        ]);
+        $this->reset('toDelete');
+        $this->resetPage();
     }
 }

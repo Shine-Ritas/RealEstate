@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\PropertyImageController;
 use App\Livewire\Facilities\Index as FacilitiesIndex;
 use App\Livewire\Roles\Index as RolesIndex;
 use App\Livewire\Roles\Permissions as RolesPermissionsIndex;
 
 use App\Livewire\Property\Index as PropertyIndex;
 use App\Livewire\Property\Form as PropertyForm;
+use App\Livewire\Property\ImageForm as PropertyImageUpload;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -27,9 +29,12 @@ Route::middleware(['auth'])->group(function () {
     // Facility Management Routes
     Route::get('/facilities', FacilitiesIndex::class)->name('facilities.index');
 
-    Route::get('projects',PropertyIndex::class)->name('projects.index');
-    Route::get('/projects/create',PropertyForm::class)->name('projects.create');
-    Route::get('/projects/{project}/edit',PropertyForm::class)->name('projects.edit');
+    Route::get('properties',PropertyIndex::class)->name('properties.index');
+    Route::get('/properties/create',PropertyForm::class)->name('properties.create');
+    Route::get('/properties/{project}/edit',PropertyForm::class)->name('properties.edit');
+    Route::get('/properties/{property}/image-upload',PropertyImageUpload::class)->name('properties.image-upload');
+    Route::post('/properties/{property}/images/upload', [PropertyImageController::class, 'upload'])
+    ->name('properties.images.upload');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');

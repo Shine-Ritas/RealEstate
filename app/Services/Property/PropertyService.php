@@ -11,4 +11,11 @@ class PropertyService
             'property_id' => $property->id
         ],$data);
     }
+
+    public function deleteProperty(string $propertyId): void
+    {
+        Property::findOrFail($propertyId)->delete();
+
+    
+    }
 }
