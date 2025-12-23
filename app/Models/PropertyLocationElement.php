@@ -10,4 +10,17 @@ class PropertyLocationElement extends Model
 {
     /** @use HasFactory<\Database\Factories\PropertyLocationElementFactory> */
     use HasFactory,HasUlids;
+
+    protected $fillable = [
+        'name',
+        'details',
+        'distance',
+        'property_id',
+        'location_element_id',
+    ];
+
+    public function locationElement()
+    {
+        return $this->belongsTo(LocationElement::class);
+    }
 }

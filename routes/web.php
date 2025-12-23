@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PropertyImageController;
 use App\Livewire\Facilities\Index as FacilitiesIndex;
+use App\Livewire\Property\GeoForm;
 use App\Livewire\Roles\Index as RolesIndex;
 use App\Livewire\Roles\Permissions as RolesPermissionsIndex;
 
@@ -31,8 +32,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('properties',PropertyIndex::class)->name('properties.index');
     Route::get('/properties/create',PropertyForm::class)->name('properties.create');
-    Route::get('/properties/{project}/edit',PropertyForm::class)->name('properties.edit');
+    Route::get('/properties/{property}/edit',action: PropertyForm::class)->name('properties.edit');
     Route::get('/properties/{property}/image-upload',PropertyImageUpload::class)->name('properties.image-upload');
+    Route::get('/properties/{property}/geo-location',GeoForm::class)->name('properties.geo-location');
     Route::post('/properties/{property}/images/upload', [PropertyImageController::class, 'upload'])
     ->name('properties.images.upload');
 });

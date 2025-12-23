@@ -64,7 +64,6 @@
                                 ],
                             ],
                             ['link'],
-                            ['image'],
                         ],
                         'mergeToolbar' => true, // optional, if you want to merge the toolbar with the default toolbar configuration
                     ])
@@ -184,16 +183,16 @@
 
         <div
             class="bg-surface rounded-radius border border-outline shadow-sm px-8 py-5 flex items-center justify-between mt-3">
-            <a href="{{ route('projects.index') }}" wire:navigate class="btn btn-danger">
+            <a href="{{ route('properties.index') }}" wire:navigate class="btn btn-danger">
                 Cancel
             </a>
 
             <x-ui.button type="submit" variant="primary">
                 <span wire:loading.remove wire:target="save">
-                    {{ $projectId ? 'Update' : 'Create' }} Project
+                    {{ $propertyId ? 'Update' : 'Create' }} Project
                 </span>
                 <span wire:loading wire:target="save">
-                    {{ $projectId ? 'Updating...' : 'Creating...' }}
+                    {{ $propertyId ? 'Updating...' : 'Creating...' }}
                 </span>
             </x-ui.button>
         </div>

@@ -32,5 +32,11 @@ trait PropertyDataTraits
         $this->propertyStatusTypes = PropertyStatusTypeEnum::dropdown();
     }
 
+    public function loadForEdit($p_code,$d_code)
+    {
+        $this->districts = convert_to_dropdown(GeoLocationService::getDistrctByProvince($p_code), 'd_name', 'd_code');
+        $this->subDistricts = convert_to_dropdown(GeoLocationService::getSubdistrictByDistrict($d_code), 's_name', 's_code');
+    }
+
 
 }

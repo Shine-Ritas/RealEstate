@@ -14,6 +14,7 @@
         open: false,
         search: '',
         selectedLabel: '',
+        selectedIcon: null,
         options: @js($options),
         currentValue: null,
 
@@ -48,11 +49,14 @@
                 });
                 if (selected) {
                     this.selectedLabel = selected.label;
+                    this.selectedIcon = selected.icon ?? null;
                 } else {
                     this.selectedLabel = '';
+                    this.selectedIcon = null;
                 }
             } else {
                 this.selectedLabel = '';
+                this.selectedIcon = null;
             }
         },
 
@@ -66,6 +70,7 @@
         select(option) {
             this.selectedLabel = option.label;
             this.currentValue = option.value;
+            this.selectedIcon = option.icon ?? null;
             this.search = '';
             this.$nextTick(() => {
                 this.open = false; // ✅ ensure close AFTER DOM update
@@ -98,7 +103,16 @@
         hover:border-outline-strong disabled:opacity-50 disabled:cursor-not-allowed"
     >
     
-        <span x-text="selectedLabel || '{{ $placeholder }}'" :class="selectedLabel ? 'text-on-surface font-normal text-sm' : 'text-on-surface/60'"></span>
+        <span class="flex items-center gap-2">
+            <template x-if="selectedIcon">
+                <i :class="`fa-solid fa-${selectedIcon}`"></i>
+            </template>
+        
+            <span
+                x-text="selectedLabel || '{{ $placeholder }}'"
+                :class="selectedLabel ? 'text-on-surface font-normal text-sm' : 'text-on-surface/60'"
+            ></span>
+        </span>
 
         <i
         class="fa fa-solid transition-transform duration-200 "
@@ -129,8 +143,14 @@
                     @click.stop="select(option)"
                     class="px-3 py-2 cursor-pointer hover:bg-surface-variant text-on-surface transition-colors duration-150"
                     :class="currentValue == option.value ? 'bg-surface-variant' : ''"
-                    x-text="option.label"
-                ></li>
+                   
+                >
+                <div class="flex items-center gap-2">
+                    <template x-if="option.icon">
+                        <i :class="`fa-solid fa-${option.icon}`"></i>
+                    </template>
+                    <span x-text="option.label"></span>
+                </div></li>
             </template>
 
             <li

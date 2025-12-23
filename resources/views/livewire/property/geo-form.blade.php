@@ -1,0 +1,79 @@
+<div class="w-full">
+    @if (session()->has('message'))
+        <div class="mb-6 rounded-radius bg-success/10 border border-success/20 px-4 py-3 text-sm text-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
+    <form wire:submit="save" class=" ">
+
+        <div class=" space-y-4  ">
+            {{-- Basic Information --}}
+            <x-ui.accordian title="Add Nearby Location" open class="relative h-full" icon="database">
+
+                {{-- grid all align center --}}
+                <div class="grid gap-6 lg:grid-cols-4 items-end">
+               
+                    <div class="grid gap-2">
+
+                        <x-ui.label for="locationElement" label="Location Element" required bold />
+                        <x-searchable-select id="selectedLocationElement" name="selectedLocationElement" :options="$locationElements"
+                            model="selectedLocationElement" />
+                    </div>
+
+                    <x-ui.input label="Full Text" name="distance"  wire:model.defer="fullText"
+                    placeholder="e.g., *0000" required :error="$errors->first('fullText')" bold />
+
+                    <x-ui.input label="Distance ( meters ) " name="distance"  wire:model.defer="distance"
+                    placeholder="e.g., *0000" required :error="$errors->first('distance')" bold />
+
+                    {{-- add button --}}
+                    <x-ui.button type="button" variant="primary" class="btn btn-md w-12"  wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="save">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                        <span wire:loading wire:target="save">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        </span>
+                    </x-ui.button>
+                  
+                </div>
+
+            </x-ui.accordian>
+
+            <x-ui.accordian title="Locations" open class="relative h-full" icon="database">
+
+                <x-slot:right>
+                    @if(count($propertyLocationElements) > 0)
+                        <span class="text-sm text-muted">{{ count($propertyLocationElements) }}</span>
+                    @endif
+                </x-slot:right>
+
+                    <div class="flex  gap-2 gap-y-4 flex-wrap">
+                        @foreach ($propertyLocationElements as $propertyLocationElement)
+                           <div class="group relative border shadow-sm px-3 rounded-sm py-2">
+                            <div class="absolute top-0 right-0 -translate-x-0/2 -translate-y-2/2 opacity-0 group-hover:opacity-100 transition-opacity z-10 ">
+                                <button 
+                                    type="button"
+                                    wire:click="delete('{{ $propertyLocationElement->id }}')"
+                                    onclick="return confirm('Are you sure you want to delete this location element?')"
+                                    class="bg-red-600 text-white text-xs py-1 px-2 rounded-t-md hover:bg-red-700 font-medium shadow-lg cursor-pointer"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-{{ $propertyLocationElement->locationElement->icon }}"></i>
+                                    <span>{{ $propertyLocationElement->name }}</span>
+                                </div>
+                                <span class="ml-10 font-medium text-sm">{{ $propertyLocationElement->distance }}</span>
+                            </div>
+                           </div>
+                        @endforeach
+                </div>
+            </x-ui.accordian>
+
+        </div>
+    </form>

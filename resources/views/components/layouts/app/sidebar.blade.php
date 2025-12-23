@@ -3,6 +3,11 @@
 <html  data-theme="legend" lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         @include('partials.head')
+        <link
+  rel="stylesheet"
+  href="{{ asset('vendor/fancybox/dist/fancybox/fancybox.css') }}"
+/>
+<script src="{{ asset('vendor/fancybox/dist/fancybox/fancybox.umd.js') }}"></script>
     </head>
     <body class="min-h-screen bg-secondary-background dark:bg-zinc-800">
 

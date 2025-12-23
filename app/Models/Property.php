@@ -38,6 +38,11 @@ class Property extends Model
         return $this->images()->exists();
     }
 
+    public function getPrimaryImageAttribute(): string
+    {
+        return $this->images()->where('is_primary', true)->first()->image_url;
+    }
+
     public function getShowPriceAttribute(): string
     {
         $price = match($this->listing_type){
@@ -93,5 +98,10 @@ class Property extends Model
     public function images(): HasMany
     {
         return $this->hasMany(PropertyImage::class);
+    }
+
+    public function locationElements(): HasMany
+    {
+        return $this->hasMany(PropertyLocationElement::class);
     }
 }

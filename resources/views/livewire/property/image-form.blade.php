@@ -162,13 +162,13 @@
             <p class="text-sm text-gray-600 mb-4">{{ $propertyImages->count() }} image(s) uploaded</p>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                @foreach ($propertyImages as $image)
+                @foreach ($propertyImages as $index => $image)
                     <div class="relative group" wire:key="img-{{ $image->id }}">
-                        <img 
-                            src="{{ Storage::url($image->image_path) }}" 
-                            alt="Property Image"
-                            class="w-full h-32 object-cover rounded-lg border-2 {{ $image->is_primary ? 'border-blue-500' : 'border-gray-200' }}"
-                        >
+                            <img 
+                                src="{{ Storage::url($image->image_path) }}" 
+                                alt="Property Image"
+                                class="w-full h-32 object-cover rounded-lg border-2  {{ $image->is_primary ? 'border-blue-500' : 'border-gray-200' }}"
+                            >
                         
                         @if ($image->is_primary)
                             <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md font-medium shadow-lg">
@@ -176,7 +176,7 @@
                             </span>
                         @endif
 
-                        <div class="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-40 transition-all rounded-lg">
+                        <div class="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-40 transition-all rounded-lg !z-10">
                             <div class="absolute bottom-2 left-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 @if (!$image->is_primary)
                                     <button 

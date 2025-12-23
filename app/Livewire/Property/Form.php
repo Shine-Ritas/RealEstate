@@ -27,37 +27,37 @@ class Form extends Component
 
     use HasQuillEditor,PropertyDataTraits;
 
-    public ?string $projectId = null;
+    public ?string $propertyId = null;
 
     // model prperties
     public string $name = '';
     public string $description = '';
     public string $zipcode = '';
 
-    public float $currentPrice ;
-    public float $rentPrice ;
-    public float $salePrice ;
+    public ?float $currentPrice ;
+    public ?float $rentPrice ;
+    public ?float $salePrice ;
     public string $currency = 'THB';
 
-    public float $latitude ;
-    public float $longitude ;
+    public ?float $latitude ;
+    public ?float $longitude ;
 
-    public string $address = '';
+    public ?string $address = '';
 
     public ?string $propertyType = null;
     public ?string $listingType = null;
 
     // property Detail properties
-    public int $floor;
-    public int $unitNumber ;
-    public int $bedrooms ;
-    public int $bathrooms;
-    public float $sizeSqm;
-    public float $landSizeSqm;
-    public int $yearBuilt ;
-    public string $ownership = '';
-    public string $number;
-    public string $propertyStatus;
+    public ?int $floor;
+    public ?int $unitNumber ;
+    public ?int $bedrooms ;
+    public ?int $bathrooms;
+    public ?float $sizeSqm;
+    public ?float $landSizeSqm;
+    public ?int $yearBuilt ;
+    public ?string $ownership = '';
+    public ?string $number;
+    public ?string $propertyStatus;
 
     // data collection
  
@@ -72,46 +72,78 @@ class Form extends Component
     public string $status = 'active';
 
 
-    public function mount(?Property $project = null): void
+    public function mount(?Property $property = null): void
     {
 
         $this->loadAll();
-        if ($project) {
-            $this->projectId = $project->id;
-            $this->name = $project->name;
-            $this->status = $project->status ?? 'active';
-            $this->selectedFacilities = $project->facilities->pluck('id')->toArray();
+        if ($property) {
+            $property->load("detail","province","district","subdistrict");
+            $this->loadForEdit($property->province->p_code, $property->district->d_code);
+            $this->propertyId = $property->id;
+            $this->name = $property->name;
+            $this->description = $property->description;
+            $this->status = $property->status ?? 'active';
+            $this->selectedFacilities = $property->facilities->pluck('id')->toArray();
+            $this->selectedProvince = $property->province->p_code;
+            $this->selectedDistrict = $property->district->d_code;
+            $this->selectedSubDistrict = $property->subdistrict->s_code;
+            $this->zipcode = $property->zipcode;
+            $this->latitude = $property->latitude;
+            $this->longitude = $property->longitude;
+            $this->address = $property->address;
+            $this->propertyType = $property->property_type;
+            $this->listingType = $property->listing_type;
+            $this->currentPrice = $property->current_price;
+            $this->rentPrice = $property->rent_price;
+            $this->salePrice = $property->sale_price;
+            $this->floor = $property->detail?->floor;
+            $this->unitNumber = $property->detail?->unit_number;
+            $this->bedrooms = $property->detail?->bedrooms;
+            $this->bathrooms = $property->detail?->bathrooms;
+            $this->sizeSqm = $property->detail?->size_sqm;
+            $this->landSizeSqm = $property->detail?->land_size_sqm;
+            $this->yearBuilt = $property->detail?->year_built;
+            $this->number = $property->detail?->number;
+            $this->ownership = $property->detail?->ownership;
+            $this->propertyStatus = $property->detail?->status;
         }
+        else{
+            $this->name = 'Knightsbridge Space Ratchayothin';
+            $this->description = 'Knightsbridge Space Ratchayothin is a new project in Bangkok, Thailand. It is a mixed-use development with a mix of residential, commercial, and retail space.';
+            $this->latitude = 13.799874772331705;
+            $this->longitude = 100.55048350859911;
+            $this->address = '123 Bangkok, Thailand';
+            $this->propertyType = PropertyTypeEnum::Condo->value;
+            $this->listingType = ListingTypeEnum::Rent->value;
+            $this->currentPrice = 1000000;
+            $this->rentPrice = 10000;
+            $this->salePrice = 1000000;
+    
+            $this->floor = 10;
+            $this->unitNumber = 1;
+            $this->bedrooms = 2 ;
+            $this->bathrooms = 1;
+            $this->sizeSqm = 100;
+            $this->landSizeSqm = 100;
+            $this->yearBuilt = 2024;
+            $this->number = '10/340';
+            $this->ownership = OwnerShipTypeEnum::Freehold->value;
+            $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
+        }
+       
+    }
 
-        // set fake validation eeror
-
-        $this->name = 'Knightsbridge Space Ratchayothin';
-        $this->description = 'Knightsbridge Space Ratchayothin is a new project in Bangkok, Thailand. It is a mixed-use development with a mix of residential, commercial, and retail space.';
-        $this->latitude = 13.799874772331705;
-        $this->longitude = 100.55048350859911;
-        $this->address = '123 Bangkok, Thailand';
-        $this->propertyType = PropertyTypeEnum::Condo->value;
-        $this->listingType = ListingTypeEnum::Rent->value;
-        $this->currentPrice = 1000000;
-        $this->rentPrice = 10000;
-        $this->salePrice = 1000000;
-
-        $this->floor = 10;
-        $this->unitNumber = 1;
-        $this->bedrooms = 2 ;
-        $this->bathrooms = 1;
-        $this->sizeSqm = 100;
-        $this->landSizeSqm = 100;
-        $this->yearBuilt = 2024;
-        $this->number = '10/340';
-        $this->ownership = OwnerShipTypeEnum::Freehold->value;
-        $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
+    public function contentChanged($editorId, $content)
+    {
+        $this->description = $content;
     }
 
     public function updatedSelectedProvince($value): void
     {
         $this->districts = convert_to_dropdown(GeoLocationService::getDistrctByProvince($value), 'd_name', 'd_code');
+        $this->subDistricts = [];
         $this->dispatch('district-options-updated', options: $this->districts);
+        $this->dispatch('sub-district-options-updated', options: $this->subDistricts);
     }
 
     public function updatedSelectedDistrict($value): void
@@ -177,13 +209,13 @@ class Form extends Component
         ];
 
         DB::transaction(function () use ($propertyData) {
-            if ($this->projectId) {
-                $property = Property::findOrFail($this->projectId);
+            if ($this->propertyId) {
+                $property = Property::findOrFail($this->propertyId);
                 $property->update($propertyData);
-                session()->flash('message', 'Project updated successfully.');
+                session()->flash('success', 'Project updated successfully.');
             } else {
                 $property = Property::create($propertyData);
-                session()->flash('message', 'Project created successfully.');
+                session()->flash('success', 'Project created successfully.');
             }
 
             (new PropertyService())->savePropertyDetail($property, [
@@ -201,16 +233,16 @@ class Form extends Component
             (new PropertyFacilityService())->syncFacilities($property, $this->selectedFacilities);
         });
 
-        $this->redirect(route('projects.index'), navigate: true);
+        $this->redirect(route('properties.index'), navigate: true);
     }
 
     public function render()
     {
         return view('livewire.property.form', [
         ])->layout('components.layouts.app', [
-            'header' => $this->projectId ? 'Modify Property' : 'Upload New Property',
-            'subtitle' => $this->projectId ? 'Update project information' : 'Add a new project to the system',
-        ]);
+            'header' => $this->propertyId ? 'Modify Property' : 'Upload New Property',
+            'subtitle' => $this->propertyId ? 'Update project information' : 'Add a new project to the system',
+        ])->with('propertyId', $this->propertyId);
     }
 
     public function toggleSelectedFacility(int $facilityId): void

@@ -26,8 +26,12 @@
                         </div>
                     </div>
                     @if ($property->has_image)
-                        <img src="{{ $property->images->first()->image_url }}" alt="{{ $property->name }}"
-                            class="w-full h-full object-cover rounded-2xl">
+                    <a href="{{ $property->primaryImage }}" data-fancybox="gallery" data-caption="{{ $property->name }}">
+                        <img src="{{ $property->primaryImage }}" alt="{{ $property->name }}"
+                        
+                        class="w-full h-40 object-cover rounded-2xl">
+                      </a>
+                       
                     @else
                         <div class="w-full h-full bg-surface-variant rounded-radius">
                             <img src="{{ asset('assets/no_image.jpg') }}" alt="{{ $property->name }}"
@@ -67,12 +71,12 @@
                             </a>
                         </div>
                         <div class="tooltip inline" data-tip="Edit Property">
-                            <a href="#" class="btn btn-success">
+                            <a href="{{ route('properties.edit', $property->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-building-circle-arrow-right"></i>
                             </a>
                         </div>
                         <div class="tooltip inline" data-tip="Geography">
-                            <a href="#" class="btn btn-success">
+                            <a href="{{ route("properties.geo-location", $property->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-address-book"></i>
                             </a>
                         </div>
@@ -100,4 +104,8 @@
     </x-ui.modal>
     </div>
 
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+        });
+    </script>
 </div>

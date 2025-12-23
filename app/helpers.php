@@ -28,11 +28,12 @@ if (! function_exists('is_active_navigation')) {
 }
 
 if(!function_exists('convert_to_dropdown')) {
-    function convert_to_dropdown(mixed $data, string $label, string $value): mixed {
-            return $data->map(function ($item) use ($label, $value) {
+    function convert_to_dropdown(mixed $data, string $label, string $value,string $icon = null): mixed {
+            return $data->map(function ($item) use ($label, $value,$icon) {
                 return [
-                    'label' => $item->$label,
-                    'value' => $item->$value
+                    'label' => ucfirst($item->$label),
+                    'value' => $item->$value,
+                    'icon' => $icon ? $item->$icon : null
                 ];
             });
     }
