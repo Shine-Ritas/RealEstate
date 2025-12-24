@@ -10,12 +10,13 @@ trait HasDropDown
      *   ...
      * ]
      */
-    public static function dropdown(): array
+    public static function dropdown($icon = false): array
     {
         return collect(self::cases())
             ->map(fn ($case) => [
                 'label' => $case->label(),
                 'value' => $case->value,
+                'icon' => $icon ? $case->icon() : null,
             ])
             ->values()
             ->toArray();

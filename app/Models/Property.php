@@ -104,4 +104,9 @@ class Property extends Model
     {
         return $this->hasMany(PropertyLocationElement::class);
     }
+
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(PropertyContact::class);
+    }
 }

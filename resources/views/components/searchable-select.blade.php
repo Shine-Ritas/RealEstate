@@ -105,7 +105,12 @@
     
         <span class="flex items-center gap-2">
             <template x-if="selectedIcon">
-                <i :class="`fa-solid fa-${selectedIcon}`"></i>
+                <i
+                  :class="[
+                    selectedIcon === 'line' ? 'fa-brands' : 'fa-solid',
+                    `fa-${selectedIcon}`
+                  ]">
+                </i>
             </template>
         
             <span
@@ -147,7 +152,12 @@
                 >
                 <div class="flex items-center gap-2">
                     <template x-if="option.icon">
-                        <i :class="`fa-solid fa-${option.icon}`"></i>
+                        <i
+                        :class="option.icon === 'line'
+                          ? `fa-brands fa-${option.icon}`
+                          : `fa fa-${option.icon}`">
+                      </i>
+                      
                     </template>
                     <span x-text="option.label"></span>
                 </div></li>
