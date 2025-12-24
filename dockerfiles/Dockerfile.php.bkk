@@ -1,0 +1,57 @@
+# Base
+FROM php:8.2-fpm-alpine AS base
+WORKDIR /var/www/html
+RUN apk add --no-cache autoconf build-base linux-headers git curl oniguruma-dev libxml2-dev libzip-dev zip unzip \
+    freetype-dev libjpeg-turbo-dev libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sockets \
+    && pecl install redis \
+    && docker-php-ext-enable redis opcache
+COPY deploy/config/php/php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY deploy/config/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+RUN addgroup -g 1000 laravel && adduser -G laravel -u 1000 -D -s /bin/bash laravel && \
+    mkdir -p /home/laravel/.composer && chown -R laravel:laravel /home/laravel
+
+# Composer vendor builder
+FROM base AS vendor
+USER laravel
+COPY composer.json composer.lock ./
+COPY app/helpers.php app/helpers.php
+RUN composer install --optimize-autoloader --ansi --verbose --no-scripts \
+    && chown -R laravel:laravel /var/www/html/vendor \
+    && chmod -R 755 /var/www/html/vendor
+
+
+# Node assets builder
+FROM node:18-alpine AS assets
+WORKDIR /app
+
+COPY --chown=laravel:laravel . /app
+COPY --from=vendor /var/www/html/vendor /app/vendor
+RUN npm i
+RUN npm run build
+
+# App (runtime)
+FROM base AS app
+USER laravel
+COPY --chown=laravel:laravel . .
+COPY --from=vendor /var/www/html/vendor /var/www/html/vendor
+COPY --from=assets /app/public/build /var/www/html/public/build
+RUN php artisan optimize
+EXPOSE 9000
+CMD ["php-fpm"]
+
+# Supervisor (workers)
+FROM base AS supervisor
+RUN apk add --no-cache supervisor
+COPY deploy/config/supervisor/supervisord.conf /etc/supervisord.conf
+USER laravel
+COPY --chown=laravel:laravel . .
+COPY --from=vendor --chown=laravel:laravel /var/www/html/vendor /var/www/html/vendor
+RUN php artisan config:clear && php artisan route:clear && php artisan view:clear \
+    && php artisan package:discover --ansi \
+    && chown -R laravel:laravel /var/www/html/vendor \
+    && chmod -R 755 /var/www/html/vendor
+EXPOSE 9001
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

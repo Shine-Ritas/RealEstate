@@ -1,0 +1,42 @@
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Install system dependencies
+RUN apk add --no-cache \
+    git \
+    curl \
+    bash
+
+# Create non-root user
+RUN addgroup -g 2000 nodejs && \
+    adduser -G nodejs -u 2000 -D -s /bin/bash nodejs
+
+# Copy package.json only (package-lock.json excluded for volume mounting)
+COPY --chown=nodejs:nodejs package.json ./
+
+# Ensure node_modules directory exists and has proper permissions
+RUN mkdir -p node_modules && chown -R nodejs:nodejs /var/www/html
+
+# Install Node.js dependencies as nodejs user with proper platform targeting
+USER nodejs
+RUN npm install --platform=linux --arch=x64 --libc=musl
+
+# Copy application source as nodejs user
+COPY --chown=nodejs:nodejs . .
+
+# Switch back to root for final setup
+USER root
+
+# Set proper permissions
+RUN chown -R nodejs:nodejs /var/www/html
+
+# Switch to non-root user
+USER nodejs
+
+# Expose Vite dev server ports
+EXPOSE 5173 5174
+
+# Start development server
+CMD ["npm", "run", "dev"]

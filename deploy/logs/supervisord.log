@@ -1,0 +1,409 @@
+2025-08-05 10:17:44,716 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 10:17:44,717 INFO Set uid to user 0 succeeded
+2025-08-05 10:17:44,740 INFO RPC interface 'supervisor' initialized
+2025-08-05 10:17:44,763 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 10:17:44,765 INFO supervisord started with pid 1
+2025-08-05 10:17:45,769 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 10:17:45,773 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 10:17:45,776 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 10:17:45,784 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 10:17:45,798 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 10:17:45,824 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 10:17:45,830 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 10:17:46,659 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:17:47,688 INFO spawned: 'laravel-queue_00' with pid 24
+2025-08-05 10:17:47,689 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:17:49,709 INFO spawned: 'laravel-queue_01' with pid 34
+2025-08-05 10:17:49,713 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:17:51,678 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:17:52,633 INFO spawned: 'laravel-queue_00' with pid 45
+2025-08-05 10:17:54,391 INFO spawned: 'laravel-queue_01' with pid 49
+2025-08-05 10:17:54,393 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:17:55,940 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 10:17:55,941 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 10:17:55,942 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:17:57,955 INFO spawned: 'laravel-queue_00' with pid 53
+2025-08-05 10:17:59,513 INFO spawned: 'laravel-queue_01' with pid 57
+2025-08-05 10:17:59,515 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:18:00,030 INFO gave up: laravel-queue_00 entered FATAL state, too many start retries too quickly
+2025-08-05 10:18:00,787 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:18:01,789 INFO gave up: laravel-queue_01 entered FATAL state, too many start retries too quickly
+2025-08-05 10:19:49,819 WARN received SIGQUIT indicating exit request
+2025-08-05 10:19:49,820 INFO waiting for laravel-horizon, laravel-schedule to die
+2025-08-05 10:19:51,845 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 10:19:52,849 INFO waiting for laravel-horizon to die
+2025-08-05 10:19:52,877 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 10:19:52,878 INFO reaped unknown pid 71 (terminated by SIGTERM)
+2025-08-05 10:20:13,252 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 10:20:13,259 INFO Set uid to user 0 succeeded
+2025-08-05 10:20:13,272 INFO RPC interface 'supervisor' initialized
+2025-08-05 10:20:13,273 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 10:20:13,276 INFO supervisord started with pid 1
+2025-08-05 10:20:14,286 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 10:20:14,294 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 10:20:14,312 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 10:20:14,321 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 10:20:14,359 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 10:20:14,407 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 10:20:14,408 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 10:20:16,321 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:20:16,332 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:20:17,338 INFO spawned: 'laravel-queue_00' with pid 24
+2025-08-05 10:20:17,342 INFO spawned: 'laravel-queue_01' with pid 25
+2025-08-05 10:20:18,191 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:20:18,202 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:20:20,214 INFO spawned: 'laravel-queue_00' with pid 42
+2025-08-05 10:20:20,218 INFO spawned: 'laravel-queue_01' with pid 43
+2025-08-05 10:20:21,044 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:20:21,326 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:20:24,332 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 10:20:24,337 INFO spawned: 'laravel-queue_00' with pid 53
+2025-08-05 10:20:24,341 INFO spawned: 'laravel-queue_01' with pid 54
+2025-08-05 10:20:24,342 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 10:20:25,068 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 10:20:25,069 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 10:20:25,070 INFO gave up: laravel-queue_00 entered FATAL state, too many start retries too quickly
+2025-08-05 10:20:25,070 INFO gave up: laravel-queue_01 entered FATAL state, too many start retries too quickly
+2025-08-05 11:06:24,959 WARN received SIGQUIT indicating exit request
+2025-08-05 11:06:24,977 INFO waiting for laravel-horizon, laravel-schedule to die
+2025-08-05 11:06:26,991 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 11:06:27,997 INFO waiting for laravel-horizon to die
+2025-08-05 11:06:28,098 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 11:06:32,923 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 11:06:32,926 INFO Set uid to user 0 succeeded
+2025-08-05 11:06:32,950 INFO RPC interface 'supervisor' initialized
+2025-08-05 11:06:32,951 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 11:06:32,952 INFO supervisord started with pid 1
+2025-08-05 11:06:33,957 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 11:06:33,966 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 11:06:33,969 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 11:06:33,973 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 11:06:33,981 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 11:06:34,082 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 11:06:34,083 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 11:06:44,358 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:06:44,360 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:06:44,360 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:06:44,381 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:12:07,687 WARN received SIGQUIT indicating exit request
+2025-08-05 11:12:07,693 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule to die
+2025-08-05 11:12:09,739 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 11:12:09,771 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 11:12:09,779 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 11:12:09,835 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 11:12:09,836 INFO reaped unknown pid 29 (exit status 0)
+2025-08-05 11:12:16,477 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 11:12:16,481 INFO Set uid to user 0 succeeded
+2025-08-05 11:12:16,494 INFO RPC interface 'supervisor' initialized
+2025-08-05 11:12:16,496 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 11:12:16,499 INFO supervisord started with pid 1
+2025-08-05 11:12:17,507 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 11:12:17,516 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 11:12:17,538 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 11:12:17,547 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 11:12:17,557 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 11:12:17,599 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 11:12:17,600 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 11:12:28,081 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:12:28,081 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:12:28,082 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:12:28,083 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:17:17,613 WARN received SIGQUIT indicating exit request
+2025-08-05 11:17:17,620 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule to die
+2025-08-05 11:17:18,697 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 11:17:18,783 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 11:17:19,893 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 11:17:19,947 INFO reaped unknown pid 29 (exit status 0)
+2025-08-05 11:17:19,947 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 11:31:31,071 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 11:31:31,103 INFO Set uid to user 0 succeeded
+2025-08-05 11:31:31,204 INFO RPC interface 'supervisor' initialized
+2025-08-05 11:31:31,209 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 11:31:31,213 INFO supervisord started with pid 1
+2025-08-05 11:31:32,227 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 11:31:32,244 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 11:31:32,282 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 11:31:32,343 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 11:31:32,368 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 11:31:32,812 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 11:31:32,813 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 11:31:43,147 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:31:43,148 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:31:43,148 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:31:43,149 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:46:42,691 WARN received SIGQUIT indicating exit request
+2025-08-05 11:46:42,720 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule to die
+2025-08-05 11:46:44,805 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 11:46:45,487 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 11:46:45,634 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 11:46:46,264 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 11:46:46,265 INFO reaped unknown pid 29 (exit status 0)
+2025-08-05 11:46:58,066 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 11:46:58,068 INFO Set uid to user 0 succeeded
+2025-08-05 11:46:58,101 INFO RPC interface 'supervisor' initialized
+2025-08-05 11:46:58,101 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 11:46:58,109 INFO supervisord started with pid 1
+2025-08-05 11:46:59,124 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 11:46:59,175 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 11:46:59,201 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 11:46:59,240 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 11:46:59,313 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 11:46:59,393 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 11:46:59,413 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-05 11:47:09,403 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:47:09,415 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:47:09,425 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:47:09,427 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 11:55:52,013 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 11:55:52,021 INFO spawned: 'laravel-queue_01' with pid 57
+2025-08-05 11:55:52,022 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 11:55:52,619 INFO spawned: 'laravel-queue_00' with pid 61
+2025-08-05 11:55:52,631 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 11:55:54,070 INFO spawned: 'laravel-queue_01' with pid 66
+2025-08-05 11:55:54,071 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 11:55:55,068 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 11:55:56,071 INFO spawned: 'laravel-queue_00' with pid 73
+2025-08-05 11:55:57,763 INFO spawned: 'laravel-queue_01' with pid 77
+2025-08-05 11:55:57,766 WARN exited: laravel-queue_00 (exit status 1; not expected)
+2025-08-05 11:55:58,355 WARN received SIGQUIT indicating exit request
+2025-08-05 11:55:58,355 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule to die
+2025-08-05 11:55:58,369 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 11:55:58,369 WARN exited: laravel-queue_01 (exit status 1; not expected)
+2025-08-05 11:55:59,465 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 12:52:49,289 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 12:52:49,299 INFO Set uid to user 0 succeeded
+2025-08-05 12:52:49,367 INFO RPC interface 'supervisor' initialized
+2025-08-05 12:52:49,368 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 12:52:49,369 INFO supervisord started with pid 1
+2025-08-05 12:52:50,387 INFO spawned: 'laravel-horizon' with pid 7
+2025-08-05 12:52:50,398 INFO spawned: 'laravel-queue_00' with pid 8
+2025-08-05 12:52:50,421 INFO spawned: 'laravel-queue_01' with pid 9
+2025-08-05 12:52:50,436 INFO spawned: 'laravel-schedule' with pid 10
+2025-08-05 12:52:50,455 INFO spawned: 'wait-for-redis' with pid 11
+2025-08-05 12:52:50,671 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 12:53:00,973 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 12:53:00,975 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 12:53:00,975 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 12:53:00,976 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:05:44,675 INFO exited: laravel-queue_01 (exit status 0; expected)
+2025-08-05 13:05:44,866 INFO spawned: 'laravel-queue_01' with pid 842
+2025-08-05 13:05:45,046 INFO exited: laravel-queue_00 (exit status 0; expected)
+2025-08-05 13:05:46,059 INFO spawned: 'laravel-queue_00' with pid 849
+2025-08-05 13:05:54,913 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:05:56,924 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:08:14,189 WARN received SIGQUIT indicating exit request
+2025-08-05 13:08:14,196 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule, wait-for-redis to die
+2025-08-05 13:08:14,230 WARN stopped: wait-for-redis (terminated by SIGTERM)
+2025-08-05 13:08:14,231 INFO reaped unknown pid 1008 (exit status 1)
+2025-08-05 13:08:15,238 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 13:08:15,263 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 13:08:15,265 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 13:08:17,268 INFO waiting for laravel-horizon to die
+2025-08-05 13:08:17,678 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 13:08:19,682 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 13:08:19,683 INFO Set uid to user 0 succeeded
+2025-08-05 13:08:19,698 INFO RPC interface 'supervisor' initialized
+2025-08-05 13:08:19,699 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 13:08:19,700 INFO supervisord started with pid 1
+2025-08-05 13:08:20,731 INFO spawned: 'laravel-horizon' with pid 6
+2025-08-05 13:08:20,847 INFO spawned: 'laravel-queue_00' with pid 7
+2025-08-05 13:08:20,859 INFO spawned: 'laravel-queue_01' with pid 8
+2025-08-05 13:08:20,905 INFO spawned: 'laravel-schedule' with pid 9
+2025-08-05 13:08:20,949 INFO spawned: 'wait-for-redis' with pid 10
+2025-08-05 13:08:20,985 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 13:08:31,144 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:08:31,146 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:08:31,146 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:08:31,147 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:25:45,234 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 13:25:46,382 INFO spawned: 'laravel-queue_01' with pid 896
+2025-08-05 13:25:46,390 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 13:25:47,313 INFO spawned: 'laravel-queue_00' with pid 899
+2025-08-05 13:25:56,337 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:25:57,340 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:30:25,848 WARN received SIGQUIT indicating exit request
+2025-08-05 13:30:25,855 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule, wait-for-redis to die
+2025-08-05 13:30:25,874 WARN stopped: wait-for-redis (terminated by SIGTERM)
+2025-08-05 13:30:25,875 INFO reaped unknown pid 1198 (exit status 1)
+2025-08-05 13:30:26,926 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 13:30:26,956 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 13:30:26,956 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 13:30:28,962 INFO waiting for laravel-horizon to die
+2025-08-05 13:30:28,982 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 13:34:40,751 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 13:34:40,759 INFO Set uid to user 0 succeeded
+2025-08-05 13:34:40,828 INFO RPC interface 'supervisor' initialized
+2025-08-05 13:34:40,832 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 13:34:40,835 INFO supervisord started with pid 1
+2025-08-05 13:34:41,841 INFO spawned: 'laravel-horizon' with pid 6
+2025-08-05 13:34:41,847 INFO spawned: 'laravel-queue_00' with pid 7
+2025-08-05 13:34:41,858 INFO spawned: 'laravel-queue_01' with pid 8
+2025-08-05 13:34:41,869 INFO spawned: 'laravel-schedule' with pid 9
+2025-08-05 13:34:41,882 INFO spawned: 'wait-for-redis' with pid 10
+2025-08-05 13:34:41,929 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 13:34:51,967 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:34:51,980 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:34:51,981 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:34:51,985 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:35:06,069 WARN received SIGQUIT indicating exit request
+2025-08-05 13:35:06,071 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule, wait-for-redis to die
+2025-08-05 13:35:06,076 WARN stopped: wait-for-redis (terminated by SIGTERM)
+2025-08-05 13:35:06,076 INFO reaped unknown pid 58 (exit status 1)
+2025-08-05 13:35:07,083 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 13:35:07,098 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 13:35:07,103 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 13:35:07,123 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 13:35:07,124 INFO reaped unknown pid 33 (exit status 0)
+2025-08-05 13:36:47,197 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-05 13:36:47,202 INFO Set uid to user 0 succeeded
+2025-08-05 13:36:47,211 INFO RPC interface 'supervisor' initialized
+2025-08-05 13:36:47,212 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-05 13:36:47,212 INFO supervisord started with pid 1
+2025-08-05 13:36:48,229 INFO spawned: 'laravel-horizon' with pid 8
+2025-08-05 13:36:48,243 INFO spawned: 'laravel-queue_00' with pid 9
+2025-08-05 13:36:48,267 INFO spawned: 'laravel-queue_01' with pid 10
+2025-08-05 13:36:48,296 INFO spawned: 'laravel-schedule' with pid 11
+2025-08-05 13:36:48,337 INFO spawned: 'wait-for-redis' with pid 12
+2025-08-05 13:36:48,415 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-05 13:36:58,554 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:36:58,555 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:36:58,555 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:36:58,556 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:42:10,864 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 13:42:10,971 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 13:42:11,152 INFO spawned: 'laravel-queue_00' with pid 275
+2025-08-05 13:42:11,161 INFO spawned: 'laravel-queue_01' with pid 276
+2025-08-05 13:42:21,920 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:42:21,929 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:44:44,800 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 13:44:44,801 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 13:44:44,818 INFO spawned: 'laravel-queue_00' with pid 346
+2025-08-05 13:44:44,824 INFO spawned: 'laravel-queue_01' with pid 347
+2025-08-05 13:44:54,857 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:44:54,859 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:53:14,025 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 13:53:14,026 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 13:53:14,068 INFO spawned: 'laravel-queue_00' with pid 372
+2025-08-05 13:53:14,101 INFO spawned: 'laravel-queue_01' with pid 373
+2025-08-05 13:53:24,141 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 13:53:24,148 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:18:58,222 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:18:58,228 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:18:59,231 INFO spawned: 'laravel-queue_00' with pid 1916
+2025-08-05 14:18:59,237 INFO spawned: 'laravel-queue_01' with pid 1917
+2025-08-05 14:19:09,278 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:19:09,289 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:23:10,743 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:23:10,744 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:23:10,753 INFO spawned: 'laravel-queue_00' with pid 1939
+2025-08-05 14:23:10,766 INFO spawned: 'laravel-queue_01' with pid 1940
+2025-08-05 14:23:20,782 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:23:20,783 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:24:45,440 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:24:45,456 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:24:46,548 INFO spawned: 'laravel-queue_00' with pid 1986
+2025-08-05 14:24:46,554 INFO spawned: 'laravel-queue_01' with pid 1987
+2025-08-05 14:24:57,511 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:24:57,551 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:34:36,034 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:34:36,036 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:34:36,066 INFO spawned: 'laravel-queue_00' with pid 2057
+2025-08-05 14:34:36,087 INFO spawned: 'laravel-queue_01' with pid 2058
+2025-08-05 14:34:46,087 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:34:46,089 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:41:49,427 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:41:49,435 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:41:50,487 INFO spawned: 'laravel-queue_00' with pid 2161
+2025-08-05 14:41:50,518 INFO spawned: 'laravel-queue_01' with pid 2162
+2025-08-05 14:42:00,577 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:42:00,578 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:50:42,300 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:50:42,305 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:50:42,344 INFO spawned: 'laravel-queue_00' with pid 2209
+2025-08-05 14:50:42,358 INFO spawned: 'laravel-queue_01' with pid 2210
+2025-08-05 14:50:52,357 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:50:52,363 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:54:30,745 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-05 14:54:30,752 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-05 14:54:31,048 INFO spawned: 'laravel-queue_00' with pid 2260
+2025-08-05 14:54:31,062 INFO spawned: 'laravel-queue_01' with pid 2261
+2025-08-05 14:54:41,891 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:54:41,892 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-05 14:55:24,247 WARN received SIGQUIT indicating exit request
+2025-08-05 14:55:24,249 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule, wait-for-redis to die
+2025-08-05 14:55:25,248 WARN stopped: wait-for-redis (terminated by SIGTERM)
+2025-08-05 14:55:25,249 INFO reaped unknown pid 2326 (exit status 0)
+2025-08-05 14:55:26,256 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-05 14:55:26,281 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-05 14:55:26,283 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-05 14:55:26,323 INFO stopped: laravel-horizon (exit status 0)
+2025-08-05 14:55:26,323 INFO reaped unknown pid 2262 (exit status 0)
+2025-08-07 17:29:50,205 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-07 17:29:50,207 INFO Set uid to user 1000 succeeded
+2025-08-07 17:29:50,216 INFO RPC interface 'supervisor' initialized
+2025-08-07 17:29:50,217 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-07 17:29:50,217 INFO supervisord started with pid 1
+2025-08-07 17:29:51,222 INFO spawned: 'laravel-horizon' with pid 6
+2025-08-07 17:29:51,237 INFO spawned: 'laravel-queue_00' with pid 7
+2025-08-07 17:29:51,264 INFO spawned: 'laravel-queue_01' with pid 8
+2025-08-07 17:29:51,272 INFO spawned: 'laravel-schedule' with pid 9
+2025-08-07 17:29:51,282 INFO spawned: 'wait-for-redis' with pid 10
+2025-08-07 17:29:51,321 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-07 17:29:51,322 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-07 17:30:02,169 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 17:30:02,171 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 17:30:02,172 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 17:30:02,177 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 18:13:58,281 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-07 18:13:58,282 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-07 18:13:59,291 INFO spawned: 'laravel-queue_00' with pid 70
+2025-08-07 18:13:59,299 INFO spawned: 'laravel-queue_01' with pid 71
+2025-08-07 18:14:09,972 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 18:14:09,974 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 19:25:07,591 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-07 19:25:07,592 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-07 19:25:08,613 INFO spawned: 'laravel-queue_00' with pid 94
+2025-08-07 19:25:08,648 INFO spawned: 'laravel-queue_01' with pid 95
+2025-08-07 19:25:18,681 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-07 19:25:18,684 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 05:44:41,609 WARN For [program:laravel-horizon], redirect_stderr=true but stderr_logfile has also been set to a filename, the filename has been ignored
+2025-08-08 05:44:41,610 INFO Set uid to user 1000 succeeded
+2025-08-08 05:44:41,929 INFO RPC interface 'supervisor' initialized
+2025-08-08 05:44:41,929 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-08-08 05:44:41,930 INFO supervisord started with pid 1
+2025-08-08 05:44:42,936 INFO spawned: 'laravel-horizon' with pid 6
+2025-08-08 05:44:42,944 INFO spawned: 'laravel-queue_00' with pid 7
+2025-08-08 05:44:42,955 INFO spawned: 'laravel-queue_01' with pid 8
+2025-08-08 05:44:42,970 INFO spawned: 'laravel-schedule' with pid 9
+2025-08-08 05:44:42,989 INFO spawned: 'wait-for-redis' with pid 10
+2025-08-08 05:44:43,027 INFO success: wait-for-redis entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2025-08-08 05:44:43,047 INFO exited: wait-for-redis (exit status 0; expected)
+2025-08-08 05:44:53,820 INFO success: laravel-horizon entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 05:44:53,821 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 05:44:53,822 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 05:44:53,823 INFO success: laravel-schedule entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:05:27,024 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-08 06:05:27,025 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-08 06:05:28,034 INFO spawned: 'laravel-queue_00' with pid 54
+2025-08-08 06:05:28,039 INFO spawned: 'laravel-queue_01' with pid 55
+2025-08-08 06:05:38,065 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:05:38,069 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:21:14,691 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-08 06:21:14,692 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-08 06:21:15,698 INFO spawned: 'laravel-queue_00' with pid 69
+2025-08-08 06:21:15,707 INFO spawned: 'laravel-queue_01' with pid 70
+2025-08-08 06:21:25,724 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:21:25,728 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:47:59,597 WARN exited: laravel-queue_00 (terminated by SIGKILL; not expected)
+2025-08-08 06:47:59,831 WARN exited: laravel-queue_01 (terminated by SIGKILL; not expected)
+2025-08-08 06:48:00,875 INFO spawned: 'laravel-queue_00' with pid 82
+2025-08-08 06:48:00,887 INFO spawned: 'laravel-queue_01' with pid 83
+2025-08-08 06:48:11,131 INFO success: laravel-queue_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:48:11,132 INFO success: laravel-queue_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-08-08 06:52:03,657 WARN received SIGQUIT indicating exit request
+2025-08-08 06:52:03,658 INFO waiting for laravel-horizon, laravel-queue_00, laravel-queue_01, laravel-schedule to die
+2025-08-08 06:52:05,665 WARN stopped: laravel-schedule (terminated by SIGTERM)
+2025-08-08 06:52:05,685 INFO stopped: laravel-queue_00 (exit status 0)
+2025-08-08 06:52:05,685 INFO stopped: laravel-queue_01 (exit status 0)
+2025-08-08 06:52:05,704 INFO reaped unknown pid 81 (exit status 0)
+2025-08-08 06:52:05,704 INFO stopped: laravel-horizon (exit status 0)

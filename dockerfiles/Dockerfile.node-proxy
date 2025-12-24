@@ -1,0 +1,21 @@
+FROM nginx:alpine
+
+# Install necessary tools
+RUN apk add --no-cache curl
+
+# Copy custom nginx configuration
+COPY deploy/config/nginx/node-proxy.conf /etc/nginx/conf.d/default.conf
+
+# Create a script to dynamically update upstream configuration
+RUN echo '#!/bin/sh\n\
+# This script will be used to dynamically update nginx upstream configuration\n\
+# when containers are scaled up or down\n\
+echo "Updating nginx upstream configuration..."\n\
+nginx -s reload\n\
+' > /usr/local/bin/update-upstream.sh && chmod +x /usr/local/bin/update-upstream.sh
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"] 
