@@ -131,7 +131,7 @@
 
                             <div class="flex justify-between items-center">
                                 <div class="flex items-center gap-1 text-sm font-medium">
-                                    <i class="fa-solid fa-{{ $propertyContact->icon }}"></i>
+                                    <x-render-icon :icon="$propertyContact->icon" />
                                     <span>{{ $propertyContact->text }}</span>
                                 </div>
                                 <span class="ml-10 font-medium text-sm">{{ $propertyContact->url }}</span>

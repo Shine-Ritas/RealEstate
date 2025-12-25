@@ -15,73 +15,11 @@ class SidebarService
                 'permission' => 'public',
             ],
             [
-                'title' => 'Properties',
-                'icon' => 'building-office-2',
-                'route' => '#',
-                'route_name' => 'properties*',
-                'permission' => 'view-properties',
-                'children' => [
-                    [
-                        'title' => 'List',
-                        'icon' => 'table-cells',
-                        'route' => route('dashboard'), // Update when properties.index route exists
-                        'route_name' => 'properties.index',
-                        'permission' => 'view-properties',
-                    ],
-                    [
-                        'title' => 'New',
-                        'icon' => 'folder-plus',
-                        'route' => route('dashboard'), // Update when properties.create route exists
-                        'route_name' => 'properties.create',
-                        'permission' => 'create-properties',
-                    ],
-                ],
-            ],
-            [
                 'title' => 'Announcements',
                 'icon' => 'speaker-wave',
                 'route' => route('dashboard'), // Update when announcements.index route exists
                 'route_name' => 'announcements*',
                 'permission' => 'view-properties', // Using view-properties for now, update when announcements permission exists
-            ],
-            [
-                'title' => 'Users',
-                'icon' => 'user-group',
-                'route' => '#',
-                'route_name' => 'users*',
-                'permission' => 'view-users',
-                'children' => [
-                    [
-                        'title' => 'List',
-                        'icon' => 'table-cells',
-                        'route' => route('dashboard'), // Update when users.index route exists
-                        'route_name' => 'users.index',
-                        'permission' => 'view-users',
-                    ],
-                    [
-                        'title' => 'New',
-                        'icon' => 'folder-plus',
-                        'route' => route('dashboard'), // Update when users.create route exists
-                        'route_name' => 'users.create',
-                        'permission' => 'create-users',
-                    ],
-                ],
-            ],
-            [
-                'title' => 'Locations',
-                'icon' => 'map-pin',
-                'route' => '#',
-                'route_name' => 'locations*',
-                'permission' => 'view-property_types',
-                'children' => [
-                    [
-                        'title' => 'Property Types',
-                        'icon' => 'tag',
-                        'route' => route('dashboard'), // Update when property-types.index route exists
-                        'route_name' => 'property-types.index',
-                        'permission' => 'view-property_types',
-                    ],
-                ],
             ],
             [
                 'title' => 'Facilities',
@@ -117,6 +55,13 @@ class SidebarService
                 'route' => route('roles.index'),
                 'route_name' => 'roles*',
                 'permission' => 'view-roles',
+            ],
+            [
+                'title' => 'Users',
+                'icon' => 'user-group',
+                'route' => route('users.index'),
+                'route_name' => 'users*',
+                'permission' => 'view-users',
             ],
             [
                 'title' => 'Settings',

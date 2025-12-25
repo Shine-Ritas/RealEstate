@@ -29,40 +29,28 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         @forelse($facilities as $facility)
-            <x-ui.card :title="$facility->name" :subtitle="$facility->description ?? 'No description'">
-                <x-slot name="actions">
-                    <div class="flex items-center gap-2">
-                        @if($facility->status === 'active')
-                            <span
-                                class="inline-flex items-center rounded-full bg-success/10 px-2 py-1 text-xs font-medium text-success">
-                                Active
-                            </span>
-                        @else
-                            <span
-                                class="inline-flex items-center rounded-full bg-on-surface-variant/10 px-2 py-1 text-xs font-medium text-on-surface-variant">
-                                Inactive
-                            </span>
-                        @endif
-                    </div>
-                </x-slot>
-
-                <div class="mt-4 flex items-center justify-center mb-4">
-                    <div class="flex size-16 items-center justify-center rounded-lg bg-primary/80 text-white">
+            <div
+                class="bg-surface rounded-radius border border-outline px-6 py-3 shadow-sm transition-all duration-200 hover:shadow-md hover:border-outline-strong">
+                <div class=" flex gap-4 mb-4">
+                    <div class="flex size-12 items-center justify-center rounded-lg bg-primary/80 text-white">
                         <x-ui.icon-preview :name="$facility->icon" size="size-8" />
                     </div>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-md font-semibold text-on-surface">{{ $facility->name }}</h3>
+                        <h3 class="text-sm text-on-surface-variant">{{ Str::words($facility->description ?? 'No description', 10) }}</h3>
+                    </div>
                 </div>
 
-                <div class="mt-4 flex flex-wrap items-center gap-2">
-                    <x-ui.button variant="secondary" icon="pencil" icon-position="left"
-                        onclick="window.dispatchEvent(new CustomEvent('open-facility-form', { detail: { facilityId: {{ $facility->id }} } }))">
-                        Edit
-                    </x-ui.button>
-                    <x-ui.button variant="danger" icon="trash" icon-position="left"
-                        wire:click="openDeleteModal({{ $facility->id }})">
-                        Delete
-                    </x-ui.button>
+                <div class="mt-4 flex flex-wrap items-center gap-2 justify-end">
+                    <button type="button" class="btn btn-sm btn-outline shadow-sm" 
+                    onclick="window.dispatchEvent(new CustomEvent('open-facility-form', { detail: { facilityId: {{ $facility->id }} } }))">
+                        <flux:icon.pencil class="size-4" />
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger shadow-sm" wire:click="openDeleteModal({{ $facility->id }})">
+                        <flux:icon.trash class="size-4" />
+                    </button>
                 </div>
-            </x-ui.card>
+            </div>
         @empty
             <div class="col-span-full">
                 <x-ui.card>

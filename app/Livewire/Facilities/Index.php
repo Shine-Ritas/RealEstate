@@ -59,7 +59,7 @@ class Index extends Component
             });
         })
             ->orderBy('name')
-            ->paginate(12);
+            ->paginate(20);
 
         return view('livewire.facilities.index', [
             'facilities' => $facilities,
