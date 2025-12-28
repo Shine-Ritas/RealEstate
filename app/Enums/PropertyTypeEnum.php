@@ -15,6 +15,8 @@ enum PropertyTypeEnum: string implements BaseEnumInterface
     case Villa = 'villa';
     case Land = 'land';
     case Commercial = 'commercial';
+    
+    case OffPlan = 'off-plan';
 
     public function label(): string
     {
@@ -26,6 +28,7 @@ enum PropertyTypeEnum: string implements BaseEnumInterface
             self::Villa => 'Villa',
             self::Land => 'Land',
             self::Commercial => 'Commercial',
+            self::OffPlan => 'off-plan',
         };
     }
 

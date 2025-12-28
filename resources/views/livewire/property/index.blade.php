@@ -65,14 +65,14 @@
                     </div>
 
                     <div class="flex justify-between items-center">
-                        <div class="tooltip inline" data-tip="Photo">
-                            <a href="{{ route('properties.image-upload', $property->id) }}" class="btn btn-success">
-                                <i class="fa fa-solid fa-photo-film"></i>
-                            </a>
-                        </div>
                         <div class="tooltip inline" data-tip="Edit Property">
                             <a href="{{ route('properties.edit', $property->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-building-circle-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="tooltip inline" data-tip="Photo">
+                            <a href="{{ route('properties.image-upload', $property->id) }}" class="btn btn-success">
+                                <i class="fa fa-solid fa-photo-film"></i>
                             </a>
                         </div>
                         <div class="tooltip inline" data-tip="Geography">

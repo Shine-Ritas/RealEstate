@@ -37,7 +37,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <h3 class="text-md font-semibold text-on-surface">{{ $facility->name }}</h3>
-                        <h3 class="text-sm text-on-surface-variant">{{ Str::words($facility->description ?? 'No description', 10) }}</h3>
+                        <h3 class="text-sm text-on-surface-variant">{{ Str::words($facility->description ?? 'No description', 4) }}</h3>
                     </div>
                 </div>
 

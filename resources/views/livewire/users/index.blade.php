@@ -13,27 +13,23 @@
 
                 <x-ui.card :title="$user->name" :subtitle="$user->email">
                     <x-slot name="actions">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-medium text-on-surface-variant">
-                                @if($user->roles->isNotEmpty())
-                                    {{ $user->roles->first()->name }}
-                                @else
-                                    No role
-                                @endif
-                            </span>
+                        <div class="flex  gap-2 ">
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <button variant="secondary" 
+                                    class="btn btn-sm btn-outline"
+                                    onclick="window.dispatchEvent(new CustomEvent('open-user-form', { detail: { userId: {{ $user->id }} } }))">
+                                    Edit
+                                </button>
+                                <button variant="danger" x-on:click="removeUsers=true;$wire.setToDelete('{{ $user->id }}')"
+                                    class="btn btn-sm btn-danger">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
+                        
                     </x-slot>
 
-                    <div class="mt-4 flex flex-wrap items-center gap-2">
-                        <x-ui.button variant="secondary" icon="pencil" icon-position="left"
-                            onclick="window.dispatchEvent(new CustomEvent('open-user-form', { detail: { userId: {{ $user->id }} } }))">
-                            Edit
-                        </x-ui.button>
-                        <x-ui.button variant="danger" x-on:click="removeUsers=true;$wire.setToDelete('{{ $user->id }}')"
-                            icon="trash">
-                            Delete
-                        </x-ui.button>
-                    </div>
+                  
 
                 </x-ui.card>
             @empty
@@ -64,4 +60,5 @@
 
     <livewire:users.form />
 </div>
+
 

@@ -15,13 +15,6 @@ class SidebarService
                 'permission' => 'public',
             ],
             [
-                'title' => 'Announcements',
-                'icon' => 'speaker-wave',
-                'route' => route('dashboard'), // Update when announcements.index route exists
-                'route_name' => 'announcements*',
-                'permission' => 'view-properties', // Using view-properties for now, update when announcements permission exists
-            ],
-            [
                 'title' => 'Facilities',
                 'icon' => 'sparkles',
                 'route' => route('facilities.index'),
@@ -36,20 +29,6 @@ class SidebarService
                 'permission' => 'view-projects',
             ],
             [
-                'title' => 'Bookings',
-                'icon' => 'calendar-days',
-                'route' => route('dashboard'), // Update when bookings.index route exists
-                'route_name' => 'bookings*',
-                'permission' => 'view-bookings',
-            ],
-            [
-                'title' => 'Reports',
-                'icon' => 'chart-bar',
-                'route' => route('dashboard'), // Update when reports.index route exists
-                'route_name' => 'reports*',
-                'permission' => 'view-reports',
-            ],
-            [
                 'title' => 'Roles',
                 'icon' => 'lock-closed',
                 'route' => route('roles.index'),
@@ -60,6 +39,13 @@ class SidebarService
                 'title' => 'Users',
                 'icon' => 'user-group',
                 'route' => route('users.index'),
+                'route_name' => 'users*',
+                'permission' => 'view-users',
+            ],
+            [
+                'title' => 'Social Links',
+                'icon' => 'link',
+                'route' => route('social-links.index'),
                 'route_name' => 'users*',
                 'permission' => 'view-users',
             ],

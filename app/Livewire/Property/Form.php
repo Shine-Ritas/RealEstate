@@ -2,82 +2,90 @@
 
 namespace App\Livewire\Property;
 
-use App\Enums\FurnishedTypeEnum;
 use App\Enums\ListingTypeEnum;
 use App\Enums\OwnerShipTypeEnum;
 use App\Enums\PropertyStatusTypeEnum;
 use App\Enums\PropertyTypeEnum;
-use App\Models\District;
-use App\Models\Facility;
 use App\Models\Property;
-use App\Models\Province;
 use App\Services\Property\GeoLocationService;
 use App\Services\Property\PropertyFacilityService;
 use App\Services\Property\PropertyService;
+use App\Traits\Property\PropertyDataTraits;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
 use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
-use App\Traits\Property\PropertyDataTraits;
+
 class Form extends Component
 {
-
     use HasQuillEditor,PropertyDataTraits;
 
     public ?string $propertyId = null;
 
     // model prperties
     public string $name = '';
+
     public string $description = '';
+
     public string $zipcode = '';
 
-    public ?float $currentPrice ;
-    public ?float $rentPrice ;
-    public ?float $salePrice ;
+    public ?float $rentPrice;
+
+    public ?float $salePrice;
+
     public string $currency = 'THB';
 
-    public ?float $latitude ;
-    public ?float $longitude ;
+    public ?float $latitude;
+
+    public ?float $longitude;
 
     public ?string $address = '';
 
     public ?string $propertyType = null;
+
     public ?string $listingType = null;
 
     // property Detail properties
     public ?int $floor;
-    public ?int $unitNumber ;
-    public ?int $bedrooms ;
+
+    public ?int $unitNumber;
+
+    public ?int $bedrooms;
+
     public ?int $bathrooms;
+
     public ?float $sizeSqm;
+
     public ?float $landSizeSqm;
-    public ?int $yearBuilt ;
+
+    public ?int $yearBuilt;
+
     public ?string $ownership = '';
+
     public ?string $number;
+
     public ?string $propertyStatus;
 
     // data collection
- 
+
     // selected section
 
     public mixed $selectedFacilities = [];
+
     public ?string $selectedProvince = null;
+
     public ?string $selectedDistrict = null;
 
     public ?string $selectedSubDistrict = null;
 
     public string $status = 'active';
 
-
     public function mount(?Property $property = null): void
     {
 
         $this->loadAll();
         if ($property) {
-            $property->load("detail","province","district","subdistrict");
+            $property->load('detail', 'province', 'district', 'subdistrict');
             $this->loadForEdit($property->province->p_code, $property->district->d_code);
             $this->propertyId = $property->id;
             $this->name = $property->name;
@@ -93,7 +101,6 @@ class Form extends Component
             $this->address = $property->address;
             $this->propertyType = $property->property_type;
             $this->listingType = $property->listing_type;
-            $this->currentPrice = $property->current_price;
             $this->rentPrice = $property->rent_price;
             $this->salePrice = $property->sale_price;
             $this->floor = $property->detail?->floor;
@@ -106,11 +113,10 @@ class Form extends Component
             $this->number = $property->detail?->number;
             $this->ownership = $property->detail?->ownership;
             $this->propertyStatus = $property->detail?->status;
+        } else {
+
         }
-        else{
-           
-        }
-       
+
     }
 
     public function contentChanged($editorId, $content)
@@ -136,7 +142,6 @@ class Form extends Component
     {
         $this->zipcode = GeoLocationService::getZipcodeBySubdistrict($value);
     }
-
 
     protected function rules(): array
     {
@@ -175,7 +180,6 @@ class Form extends Component
             'description' => $this->description,
             'property_type' => $this->propertyType,
             'listing_type' => $this->listingType,
-            'current_price' => $this->currentPrice,
             'rent_price' => $this->rentPrice,
             'sale_price' => $this->salePrice,
             'currency' => $this->currency,
@@ -198,7 +202,7 @@ class Form extends Component
                 session()->flash('success', 'Project created successfully.');
             }
 
-            (new PropertyService())->savePropertyDetail($property, [
+            (new PropertyService)->savePropertyDetail($property, [
                 'floor' => $this->floor,
                 'unit_number' => $this->unitNumber,
                 'bedrooms' => $this->bedrooms,
@@ -210,7 +214,7 @@ class Form extends Component
                 'status' => $this->propertyStatus,
                 'year_built' => $this->yearBuilt,
             ]);
-            (new PropertyFacilityService())->syncFacilities($property, $this->selectedFacilities);
+            (new PropertyFacilityService)->syncFacilities($property, $this->selectedFacilities);
         });
 
         $this->redirect(route('properties.index'), navigate: true);

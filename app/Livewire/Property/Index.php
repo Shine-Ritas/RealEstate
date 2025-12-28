@@ -28,8 +28,8 @@ class Index extends Component
             ->orderBy('name')
             ->paginate(12),
         ])->layout('components.layouts.app', [
-            'header' => "Property",
-            'subtitle' => 'Manage your Property',
+            'header' => "Properties",
+            'subtitle' => 'Manage your Properties',
         ]);
     }
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('description');
-            $table->enum('property_type',['condo','house','apartment','townhouse','villa','land','commercial']);
+            $table->enum('property_type',['condo','house','apartment','townhouse','villa','land','commercial','off-plan']);
             $table->enum('listing_type',['rent','sale','both']);
             $table->decimal('current_price',15,2)->nullable();
             $table->decimal('rent_price',15,2)->nullable();

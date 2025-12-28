@@ -30,15 +30,19 @@
                             model="listingType" />
                     </div>
 
-
                     <x-ui.input label="Sale Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="salePrice"
                     placeholder="e.g., *0000" required :error="$errors->first('salePrice')" bold />
 
-                    <x-ui.input label="Current Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="currentPrice"
-                    placeholder="e.g., *0000" required :error="$errors->first('currentPrice')" bold />
-
                     <x-ui.input label="Rent Price ( {{ currency() }} ) " name="current_price" type="number" wire:model.defer="rentPrice"
-                        placeholder="e.g., *0000" required :error="$errors->first('rentPrice')" bold />
+                    placeholder="e.g., *0000" required :error="$errors->first('rentPrice')" bold />
+                    
+                    <div class="grid gap-2">
+                        <x-ui.label for="propertyStatus" label="Property Status" required bold />
+                        <x-searchable-select id="propertyStatus" name="propertyStatus" :options="$propertyStatusTypes"
+                            model="propertyStatus" />
+                    </div>
+
+               
 
                 </div>
 
@@ -140,11 +144,7 @@
                         model="ownership" />
                 </div>
 
-                <div class="grid gap-2">
-                    <x-ui.label for="propertyStatus" label="Property Status" required bold />
-                    <x-searchable-select id="propertyStatus" name="propertyStatus" :options="$propertyStatusTypes"
-                        model="propertyStatus" />
-                </div>
+           
 
                 <x-ui.input label="Year Built" name="yearBuilt" type="number" wire:model.defer="yearBuilt"
                 placeholder="e.g., ****" :error="$errors->first('yearBuilt')" bold />

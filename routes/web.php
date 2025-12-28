@@ -8,6 +8,8 @@ use App\Livewire\Property\ImageForm as PropertyImageUpload;
 use App\Livewire\Property\Index as PropertyIndex;
 use App\Livewire\Roles\Index as RolesIndex;
 use App\Livewire\Roles\Permissions as RolesPermissionsIndex;
+use App\Livewire\SocailLink\SocailLinkForm;
+use App\Livewire\SocailLink\SocialLinkPage;
 use App\Livewire\Users\Index as UsersIndex;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -40,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/properties/{property}/geo-location', GeoForm::class)->name('properties.geo-location');
     Route::post('/properties/{property}/images/upload', [PropertyImageController::class, 'upload'])
         ->name('properties.images.upload');
+
+    Route::get('social-links', SocialLinkPage::class)->name('social-links.index');
+    Route::get('social-links/create', SocailLinkForm::class)->name('social-links.create');
+    Route::get('social-links/{socialLink}/edit', SocailLinkForm::class)->name('social-links.edit');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');

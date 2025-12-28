@@ -13,6 +13,7 @@ class SocialLink extends Model
     protected $fillable = [
         'name',
         'url',
+        'photo_url',
         'status',
         'icon',
     ];
