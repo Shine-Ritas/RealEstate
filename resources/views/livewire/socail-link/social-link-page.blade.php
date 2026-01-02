@@ -43,7 +43,7 @@
                                 class="h-12 w-12 object-cover rounded-lg"
                             >
                         @elseif($socialLink->icon)
-                            <x-ui.icon-preview :name="$socialLink->icon" size="size-6" />
+                            <x-render-icon :icon="$socialLink->icon" prefix="fa-brands" size="size-6" />
                         @else
                             <flux:icon.link class="size-6" />
                         @endif

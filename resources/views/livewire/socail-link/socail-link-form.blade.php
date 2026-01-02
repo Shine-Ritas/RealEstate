@@ -51,7 +51,7 @@
 
         {{-- Display Type Selection --}}
         <x-ui.accordian title="Display Options" open icon="photo">
-            <div class="space-y-6">
+            <div class="space-y-6 grid grid-cols-2 gap-3">
                 <div class="grid gap-2">
                     <x-ui.label for="displayType" label="Display Type" required bold />
                     <flux:select
@@ -85,13 +85,7 @@
                                 required
                                 class="flex-1"
                             />
-                            <div class="flex size-12 items-center justify-center rounded-lg text-white {{ $icon ? 'bg-primary/80' : 'bg-surface-variant border border-outline' }}">
-                                @if($icon)
-                                    <x-ui.icon-preview :name="$icon" size="size-6" />
-                                @else
-                                    <flux:icon.sparkles class="size-6 text-on-surface-variant" />
-                                @endif
-                            </div>
+                       
                         </div>
                         @if($errors->first('icon'))
                             <p class="text-sm text-danger">{{ $errors->first('icon') }}</p>

@@ -1,7 +1,7 @@
-@props(['icon' => null, 'class' => ''])
+@props(['icon' => null, 'class' => '','prefix' => 'fa-solid'])
 
 @if($icon == 'line')
     <i class="fa-brands fa-{{ $icon }} {{ $class }}"></i>
 @else
-    <i class="fa-solid fa-{{ $icon }} {{ $class }}"></i>
+    <i class="{{ $prefix }} fa-{{ $icon }} {{ $class }}"></i>
 @endif
