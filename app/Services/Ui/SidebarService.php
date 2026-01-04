@@ -50,6 +50,13 @@ class SidebarService
                 'permission' => 'view-users',
             ],
             [
+                'title' => 'Listings',
+                'icon' => 'list-bullet',
+                'route' => route('prefer-list.index'),
+                'route_name' => 'prefer-list*',
+                'permission' => 'view-prefer-list',
+            ],
+            [
                 'title' => 'Settings',
                 'icon' => 'cog-6-tooth',
                 'route' => route('profile.edit'),

@@ -69,7 +69,7 @@ new class extends Component {
     }
 }; ?>
 
-<section class="w-full">
+<section class="w-full bg-surface rounded-radius border border-outline shadow-sm min-h-fit px-3 py-4">
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
@@ -100,9 +100,9 @@ new class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-profile-button">
+                    <button type="submit" class="btn  btn-primary" data-test="update-profile-button">
                         {{ __('Save') }}
-                    </flux:button>
+                    </button>
                 </div>
 
                 <x-action-message class="me-3" on="profile-updated">

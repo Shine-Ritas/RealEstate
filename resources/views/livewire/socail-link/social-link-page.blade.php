@@ -49,15 +49,16 @@
                         @endif
                     </div>
                     <div class="flex flex-col gap-1 min-w-0 flex-1">
+                       <div class="flex items-center gap-2">
                         <h3 class="text-md font-semibold text-on-surface truncate">{{ $socialLink->name }}</h3>
                         <a 
-                            href="{{ $socialLink->url }}" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
+                            href="{{ $socialLink->getContactUrl() }}" 
+                            @if(!$socialLink->isPhone()) target="_blank" rel="noopener noreferrer" @endif
                             class="text-sm text-primary hover:text-primary-700 truncate"
                         >
-                            {{ Str::limit($socialLink->url, 30) }}
+                                <i class="fa-solid fa-link"></i>
                         </a>
+                       </div>
                         <div class="flex items-center gap-2 mt-1">
                             @if($socialLink->status === 'active')
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-success/10 text-success">
@@ -70,7 +71,7 @@
                             @endif
                         </div>
                     </div>
-                </div>
+
 
                 <div class="mt-4 flex flex-wrap items-center gap-2 justify-end">
                     <a 
@@ -78,16 +79,18 @@
                         wire:navigate
                         class="btn btn-sm btn-outline shadow-sm"
                     >
-                        <flux:icon.pencil class="size-4" />
+                        <flux:icon.pencil class="size-3" />
                     </a>
                     <button 
                         type="button" 
                         class="btn btn-sm btn-danger shadow-sm" 
                         wire:click="openDeleteModal({{ $socialLink->id }})"
                     >
-                        <flux:icon.trash class="size-4" />
+                        <flux:icon.trash class="size-3" />
                     </button>
                 </div>
+                </div>
+
             </div>
         @empty
             <div class="col-span-full">

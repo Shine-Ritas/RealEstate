@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PropertyImageController;
 use App\Livewire\Facilities\Index as FacilitiesIndex;
+use App\Livewire\PreferList\PreferListPage;
 use App\Livewire\Property\Form as PropertyForm;
 use App\Livewire\Property\GeoForm;
 use App\Livewire\Property\ImageForm as PropertyImageUpload;
@@ -46,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('social-links', SocialLinkPage::class)->name('social-links.index');
     Route::get('social-links/create', SocailLinkForm::class)->name('social-links.create');
     Route::get('social-links/{socialLink}/edit', SocailLinkForm::class)->name('social-links.edit');
+
+    Route::get('prefer-list', PreferListPage::class)->name('prefer-list.index');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');

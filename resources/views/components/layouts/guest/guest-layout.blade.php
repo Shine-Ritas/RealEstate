@@ -3,7 +3,6 @@
 
 <head>
     @include('partials.head')
-    @stack('scripts')
 </head>
 
 <body class="bg-surface text-on-surface antialiased">
@@ -32,6 +31,10 @@
             });
         });
     </script>
+
+@livewireScripts    
+    @stack('scripts')
+
 
 </body>
 

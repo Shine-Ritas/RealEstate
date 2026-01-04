@@ -11,5 +11,12 @@
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
 <script src="https://kit.fontawesome.com/f39d469662.js" crossorigin="anonymous"></script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwfFhF3hutd5l1lIAdnoYVrfbPMfxH5fM&callback=console.debug&libraries=maps,marker&v=beta">
+</script>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+
 @fluxAppearance

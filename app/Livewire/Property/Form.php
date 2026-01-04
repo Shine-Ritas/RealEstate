@@ -113,8 +113,28 @@ class Form extends Component
             $this->number = $property->detail?->number;
             $this->ownership = $property->detail?->ownership;
             $this->propertyStatus = $property->detail?->status;
-        } else {
-
+        }   else{
+            $this->name = 'Knightsbridge Space Ratchayothin';
+            $this->description = 'Knightsbridge Space Ratchayothin is a new project in Bangkok, Thailand. It is a mixed-use development with a mix of residential, commercial, and retail space.';
+            $this->latitude = 13.799874772331705;
+            $this->longitude = 100.55048350859911;
+            $this->address = '123 Bangkok, Thailand';
+            $this->propertyType = PropertyTypeEnum::Condo->value;
+            $this->listingType = ListingTypeEnum::Rent->value;
+            $this->currentPrice = 1000000;
+            $this->rentPrice = 10000;
+            $this->salePrice = 1000000;
+    
+            $this->floor = 10;
+            $this->unitNumber = 1;
+            $this->bedrooms = 2 ;
+            $this->bathrooms = 1;
+            $this->sizeSqm = 100;
+            $this->landSizeSqm = 100;
+            $this->yearBuilt = 2024;
+            $this->number = '10/340';
+            $this->ownership = OwnerShipTypeEnum::Freehold->value;
+            $this->propertyStatus = PropertyStatusTypeEnum::Active->value;
         }
 
     }

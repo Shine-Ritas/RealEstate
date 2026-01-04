@@ -31,7 +31,7 @@ class SocailLinkForm extends Component
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'url' => ['required', 'url', 'max:500'],
+            'url' => ['required', 'max:500'],
             'status' => ['required', 'in:active,inactive'],
             'displayType' => ['required', 'in:icon,photo'],
         ];
@@ -88,7 +88,9 @@ class SocailLinkForm extends Component
 
     public function save(): void
     {
+    
         $this->validate();
+
 
         $data = [
             'name' => $this->name,

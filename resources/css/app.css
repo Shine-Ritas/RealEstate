@@ -1,13 +1,20 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
-  name: "legend";
-  default: true; /* set as default */
-  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
-  color-scheme: light; 
-  --color-primary: #1e40af;
-  --color-success: #069e52;
+    name: "legend";
+    default: true;
+    /* set as default */
+    prefersdark: false;
+    /* set as default dark mode (prefers-color-scheme:dark) */
+    color-scheme: light;
+    --color-primary: #1e40af;
+    --color-secondary: #6366f1;
+
+    --color-accent: #1e40af;
+    --color-success: #069e52;
 }
+
 @import '../../vendor/livewire/flux/dist/flux.css';
 
 @source '../views';
@@ -17,11 +24,23 @@
 
 @custom-variant dark (&:where(.darkd, .darkd *));
 
+gmp-map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 @theme {
- 
+
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
     --font-barlow-condensed: "Barlow Condensed", ui-sans-serif, system-ui,
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
@@ -121,6 +140,7 @@
     @apply !mb-0 !leading-tight text-on-surface font-medium text-sm;
 }
 
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
@@ -158,8 +178,10 @@ select:focus[data-flux-control] {
         color: var(--color-zinc-500);
     }
 }
+
 /* Auth Page Styles */
 @layer components {
+
     /* Auth Card Container */
     .auth-card {
         @apply bg-surface rounded-radius border border-outline p-8 shadow-sm;
@@ -243,7 +265,7 @@ select:focus[data-flux-control] {
         @apply flex flex-col gap-2;
     }
 
-   
+
     /* Navigation Group Styles */
     .nav-group {
         @apply mb-2;
@@ -257,25 +279,25 @@ select:focus[data-flux-control] {
         border: none !important;
     }
 
-    .btn-danger{
+    .btn-danger {
         background-color: var(--color-danger) !important;
         color: var(--color-on-danger) !important;
         border: none !important;
     }
-    
-    .btn-success{
+
+    .btn-success {
         background-color: var(--color-success) !important;
         color: var(--color-on-success) !important;
         border: none !important;
     }
 
-    .btn-outline{
+    .btn-outline {
         background-color: var(--color-surface) !important;
         color: var(--color-on-surface) !important;
         border: 1px solid var(--color-outline) !important;
     }
-    
-    
+
+
     .btn:focus {
         outline: none !important;
         box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1) !important;
@@ -309,8 +331,57 @@ select:focus[data-flux-control] {
     .btn:focus-visible:not(:focus-visible) {
         outline: none !important;
     }
-}
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
+    /* Google Map property marker card */
+    .map-property-card {
+        width: 120px;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .map-property-card img {
+        width: 100%;
+        height: 70px;
+        object-fit: cover;
+    }
+
+    .map-property-body {
+        padding: 6px 8px;
+    }
+
+    .map-property-name {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 2px;
+    }
+
+    .map-property-price {
+        font-size: 12px;
+        font-weight: 700;
+        color: #16a34a;
+        margin-bottom: 2px;
+    }
+
+    .map-property-meta {
+        font-size: 10px;
+        color: #6b7280;
+        white-space: nowrap;
+    }
+
+    .map-property-card:hover {
+        transform: translateY(-2px);
+        transition: 0.2s ease;
+    }
+
+    .swiper-button-prev, .swiper-button-next{
+        height: 35px!important;
+        width: 35px!important;
+        font-weight: bold;
+    }
+    
+
+}

@@ -36,7 +36,8 @@ new class extends Component {
     }
 }; ?>
 
-<section class="w-full">
+<section class="w-full bg-surface rounded-radius border border-outline shadow-sm min-h-fit px-3 py-4">
+
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
@@ -65,7 +66,7 @@ new class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-password-button">
+                    <flux:button variant="primary" type="submit" class="w-full text-white" data-test="update-password-button">
                         {{ __('Save') }}
                     </flux:button>
                 </div>

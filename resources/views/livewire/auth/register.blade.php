@@ -5,7 +5,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
 
-        <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
+        <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6 auth-card ">
             @csrf
             <!-- Name -->
             <flux:input
@@ -54,7 +54,7 @@
 
             <div class="flex items-center justify-end">
                 <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">
-                    {{ __('Create account') }}
+                    <span>{{ __('Create account') }}</span>
                 </flux:button>
             </div>
         </form>
@@ -63,5 +63,7 @@
             <span>{{ __('Already have an account?') }}</span>
             <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
         </div>
+
+        
     </div>
 </x-layouts.auth>
