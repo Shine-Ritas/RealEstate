@@ -58,10 +58,6 @@
                 </flux:button>
             </form>
 
-            <!-- Social Login Divider -->
-            <div class="auth-divider">
-                <span>{{ __('Or continue with') }}</span>
-            </div>
 
             <!-- Social Login Buttons -->
     

@@ -109,4 +109,9 @@ class Property extends Model
     {
         return $this->hasMany(PropertyContact::class);
     }
+
+    public function preferenceTypes() : HasMany
+    {
+        return $this->hasMany(Preference::class);
+    }
 }

@@ -2,11 +2,29 @@
 
 namespace App\Livewire\PreferList;
 
+use App\Enums\PreferenceTypeEnum;
 use App\Models\Property;
 use Livewire\Component;
 
 class PreferListPage extends Component
 {
+
+    public string $type = PreferenceTypeEnum::Recommendation->value;
+
+    public  $searchProperties = [];
+
+    public string $search = '';
+
+    public function mount()
+    {
+        
+    }
+
+    public function mutateSearchProperties()
+    {
+    }
+
+
     public function render()
     {
         $topProperties = Property::with('images', 'detail', 'province', 'district', 'subdistrict', 'facilities')

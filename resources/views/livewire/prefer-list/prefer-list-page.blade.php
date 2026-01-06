@@ -25,7 +25,7 @@
                         {{-- Navigation arrows --}}
                         <div class="swiper-button-prev top-listing-prev !text-white bg-secondary   rounded-full  !mt-0  p-2"></div>
                         <div class="swiper-button-next top-listing-next !text-white bg-secondary  rounded-full  !mt-0  p-2"></div>
-                    </div>
+                    </div>  
                 </div>
             @else
                 <div class="text-center py-12 text-on-surface-variant">
