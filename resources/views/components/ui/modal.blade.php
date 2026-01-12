@@ -39,9 +39,12 @@
 
 <div x-data="{ {{ $uid }}: {{ $default }} }">
     {{ $slot }}
-    <div x-cloak x-show="{{ $uid }}" x-transition.opacity.duration.200ms x-trap.inert.noscroll="{{ $uid }}" x-on:keydown.esc.window="{{ $uid }} = false" x-on:click.self="{{ $uid }} = false" class="fixed inset-0 z-60 flex items-center justify-center bg-black/20 p-4 pb-8 backdrop-blur-md  lg:p-8" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div x-show="{{ $uid }}"
+    wire:ignore.self
+    
+    x-transition.opacity.duration.200ms x-trap.inert.noscroll="{{ $uid }}" x-on:keydown.esc.window="{{ $uid }} = false" x-on:click.self="{{ $uid }} = false" class="fixed inset-0 z-60 flex items-center justify-center bg-black/20 p-4 pb-8 backdrop-blur-md  lg:p-8" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <!-- Modal Dialog -->
-        <div x-show="{{ $uid }}" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0 scale-50" x-transition:enter-end="opacity-100 scale-100" class="flex w-{{$size}} flex-col gap-4 overflow-hidden rounded-radius border border-outline bg-surface text-on-surface {{$class}} ">
+        <div x-show="{{ $uid }}" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="flex w-full min-w-{{$size}} flex-col gap-4 overflow-hidden rounded-radius border border-outline bg-surface text-on-surface {{$class}} ">
             <!-- Dialog Header -->
             <div class="flex items-center justify-between border-b border-outline bg-surface-alt/60 px-4 py-2">
                 <div class="flex items-center justify-center rounded-full {{ $currentVariant['iconBg'] }} p-1">

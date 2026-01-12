@@ -112,6 +112,7 @@
 
                     <x-ui.input label="Longitude" name="longitude" type="number" wire:model.defer="longitude"
                     placeholder="e.g., 100.5018" required :error="$errors->first('longitude')" bold />
+                    
 
                 </div>
             </x-ui.accordian>

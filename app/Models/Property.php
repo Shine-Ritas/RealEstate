@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ListingTypeEnum;
+use App\Enums\PreferenceTypeEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -110,8 +111,9 @@ class Property extends Model
         return $this->hasMany(PropertyContact::class);
     }
 
-    public function preferenceTypes() : HasMany
+    public function preferences(): HasMany
     {
         return $this->hasMany(Preference::class);
     }
+
 }

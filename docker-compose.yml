@@ -38,7 +38,7 @@ services:
       - app
 
   # MySQL Database
-  mysql:
+  estate-mysql:
     image: mysql:8.0
     container_name: real_estate_mysql
     restart: unless-stopped
