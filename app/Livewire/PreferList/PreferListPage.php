@@ -18,6 +18,12 @@ class PreferListPage extends Component
         $this->loadSearchProperties();
     }
 
+    public function loadModalData()
+    {
+        $this->loadSearchProperties();
+        $this->dispatch('refreshSwiper');
+    }
+
     public function updatedSearch()
     {
         $this->loadSearchProperties();
@@ -54,6 +60,7 @@ class PreferListPage extends Component
 
         return view('livewire.prefer-list.prefer-list-page', [
             'topProperties' => $this->loadProperites(PreferenceTypeEnum::Recommendation->value),
+            'popularProperties' => $this->loadProperites(PreferenceTypeEnum::Popular->value),
             'searchProperties' => $this->searchProperties,
         ])->layout('components.layouts.app', [
             'header' => 'Prefer List',

@@ -1,12 +1,12 @@
-<div>
+<div class="">
     <x-ui.modal uid="openModal" variant="info" title="" size="xl" htitle="Manage The List" class="mx-40 text-left">
-        <div class="bg-surface rounded-radius border border-outline shadow-sm min-h-full p-4">
+        <div class="bg-surface rounded-radius border border-outline shadow-sm min-h-full p-4 mb-8">
             <div class="flex items-center justify-between mb-6">
                 <h4 class="text-xl font-bold text-on-surface">
                     Top Listing
                 </h4>
                 <a href="javascript:void(0)" 
-                   x-on:click="openModal=true;"
+                   x-on:click="$wire.type='recommendation';$wire.loadModalData();openModal=true;"
                    class="text-primary hover:text-primary-700 font-semibold text-sm transition-colors hover:underline">
                     Manage
                 </a>
@@ -29,10 +29,46 @@
             @else
                 <div class="text-center py-12 text-on-surface-variant">
                     <i class="fa fa-solid fa-home text-4xl mb-4 opacity-50"></i>
+                    <p>No recommendation listings available at the moment.</p>
+                </div>
+            @endif
+        </div>
+
+
+        <div class="bg-surface rounded-radius border border-outline shadow-sm min-h-full p-4">
+            <div class="flex items-center justify-between mb-6">
+                <h4 class="text-xl font-bold text-on-surface">
+                    Popular Properties
+                </h4>
+                <a href="javascript:void(0)" 
+                   x-on:click="$wire.type='popular';$wire.loadModalData();openModal=true;"
+                   class="text-primary hover:text-primary-700 font-semibold text-sm transition-colors hover:underline">
+                    Manage
+                </a>
+            </div>
+
+            @if($popularProperties->count() > 0)
+                <div class="relative">
+                    <div class="swiper top-listing-swiper">
+                        <div class="swiper-wrapper">
+                            @foreach($popularProperties as $property)
+                            <div x-cloak class="swiper-slide">
+                                <x-property-card :property="$property" />
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="swiper-button-prev top-listing-prev !text-white bg-secondary rounded-full !mt-0 p-2"></div>
+                        <div class="swiper-button-next top-listing-next !text-white bg-secondary rounded-full !mt-0 p-2"></div>
+                    </div>  
+                </div>
+            @else
+                <div class="text-center py-12 text-on-surface-variant">
+                    <i class="fa fa-solid fa-home text-4xl mb-4 opacity-50"></i>
                     <p>No top listings available at the moment.</p>
                 </div>
             @endif
         </div>
+
 
         <x-slot:body>
             <div class="relative">
