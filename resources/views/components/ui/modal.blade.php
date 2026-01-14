@@ -4,6 +4,7 @@
     'variant' => "success",
     'uid' => "successModalIsOpen",
     'title' => "Transaction Complete",
+    'htitle' => "",
     'body' => "Your funds transfer was successful. Check your balance for confirmation.",
     'size' => "lg",
     'default' => 'false',
@@ -47,11 +48,17 @@
         <div x-show="{{ $uid }}" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="flex w-full min-w-{{$size}} flex-col gap-4 overflow-hidden rounded-radius border border-outline bg-surface text-on-surface {{$class}} ">
             <!-- Dialog Header -->
             <div class="flex items-center justify-between border-b border-outline bg-surface-alt/60 px-4 py-2">
-                <div class="flex items-center justify-center rounded-full {{ $currentVariant['iconBg'] }} p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6" aria-hidden="true">
-                        {!! $currentVariant['icon'] !!}
-                    </svg>
+
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center rounded-full {{ $currentVariant['iconBg'] }} p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6" aria-hidden="true">
+                            {!! $currentVariant['icon'] !!}
+                        </svg>
+                    </div>
+                {{ $htitle }}
                 </div>
+             
+
                 <button x-on:click="{{ $uid }} = false" aria-label="close modal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="1.4" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>

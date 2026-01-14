@@ -1,5 +1,5 @@
 <div>
-    <x-ui.modal uid="openModal" variant="info" title="" size="xl" class="mx-40 text-left">
+    <x-ui.modal uid="openModal" variant="info" title="" size="xl" htitle="Manage The List" class="mx-40 text-left">
         <div class="bg-surface rounded-radius border border-outline shadow-sm min-h-full p-4">
             <div class="flex items-center justify-between mb-6">
                 <h4 class="text-xl font-bold text-on-surface">
@@ -63,7 +63,9 @@
                             @foreach($searchProperties as $property)
                             <div class="relative swiper-slide">
                                 <x-property-card :property="$property" />
-                                <button class="absolute bottom-4 right-4 btn btn-sm {{ $property->has_preference ? 'btn-success' : 'btn-primary' }}">
+                                <button 
+                                x-on:click="$wire.togglePreference('{{ $property->id }}')"
+                                class="absolute bottom-4 right-4 btn btn-sm {{ $property->has_preference ? 'btn-success' : 'btn-primary' }}">
                                  {{ $property->has_preference ? 'Added' : 'Add' }}
                                 </button>
                             </div>
