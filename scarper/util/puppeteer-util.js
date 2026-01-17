@@ -2,8 +2,8 @@ import puppeteer from "puppeteer-extra";
 
 export const launchBrowser = async (userDataDir) => {
     return puppeteer.launch({
-        headless: false,
-        // headless: "new",
+        // headless: false,
+        headless: "new",
         channel: "chrome",
         // executablePath: "/usr/bin/google-chrome",
         userDataDir,
