@@ -16,8 +16,12 @@ class Index extends Component
 
     public ?Facility $facilityToDelete = null;
 
-    protected $listeners = ['facility-saved' => '$refresh'];
+    protected $listeners = ['facility-saved' => '$refresh', 'update-filter' => 'updateFilter'];
 
+    public function updateFilter($data)
+    {
+        $this->search = $data['search'];
+    }
 
     public function openDeleteModal(int $facilityId): void
     {
@@ -44,11 +48,6 @@ class Index extends Component
         }
     }
 
-
-    public function updatedSearch(): void
-    {
-        $this->resetPage();
-    }
 
     public function render()
     {

@@ -26,6 +26,10 @@ class Property extends Model
         parent::boot();
         static::creating(function ($property) {
             $property->slug = Str::slug($property->name);
+            $last_property = Property::orderBy('created_at', 'desc')->first();
+            $last_property_code = $last_property->property_code;
+            $last_property_code_number = intval(substr($last_property_code, strlen(config('control.property_prefix'))));
+            $property->property_code = config('control.property_prefix') . str_pad($last_property_code_number + 1, 7, '0', STR_PAD_LEFT);
         });
 
         static::updating(function($property){

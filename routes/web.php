@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PropertyImageController;
+use App\Http\Controllers\PropertyMapController;
+use App\Livewire\Content\ContentPage;
 use App\Livewire\Facilities\Index as FacilitiesIndex;
 use App\Livewire\PreferList\PreferListPage;
 use App\Livewire\Property\Form as PropertyForm;
@@ -49,7 +51,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('social-links/{socialLink}/edit', SocailLinkForm::class)->name('social-links.edit');
 
     Route::get('prefer-list', PreferListPage::class)->name('prefer-list.index');
+
+    Route::get('crm',ContentPage::class)->name('content-page.index');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');
 Route::get('/detail', \App\Livewire\Guest\PropertyDetailPage::class)->name('detail');
+
+// AJAX endpoint for property map bounds
+Route::get('/api/properties/map-bounds', [PropertyMapController::class, 'getPropertiesByBounds'])
+    ->name('api.properties.map-bounds');

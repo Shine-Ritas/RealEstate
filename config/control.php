@@ -6,4 +6,6 @@ return [
     'default_currency' => "฿ ",
 
     'default_currency_text' => "THB",
+
+    "property_prefix" => "PR",
 ];

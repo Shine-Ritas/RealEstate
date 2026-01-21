@@ -4,28 +4,13 @@
     @section('action')
         <div class="flex items-center gap-4">
 
+           <livewire:facilities.facility-filter />
             <x-ui.button variant="primary" icon="plus"
                 onclick="window.dispatchEvent(new CustomEvent('open-facility-form', { detail: {} }))">
                 Create Facility
             </x-ui.button>
         </div>
     @endsection
-
-
-    <div class="flex justify-between mb-3">
-        <div class=""></div>
-        <div class="relative w-64">
-            <flux:input type="search" wire:model.live.debounce.300ms="search"
-                placeholder="Search facilities by name or description..." class="w-full " style="text-indent: 20px" />
-            <flux:icon.magnifying-glass class="size-5 text-on-surface-variant absolute top-0 left-2 bottom-0 my-auto" />
-            @if($search)
-                <button type="button" wire:click="$set('search', '')"
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-on-surface-variant hover:text-on-surface">
-                    <flux:icon.x-mark class="size-5" />
-                </button>
-            @endif
-        </div>
-    </div>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         @forelse($facilities as $facility)

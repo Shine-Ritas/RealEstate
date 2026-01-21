@@ -2,9 +2,13 @@
     {{-- The whole world belongs to you. --}}
 
     @section('action')
+
+        <livewire:property.property-filter />
+        
         <a href="{{ route('properties.create') }}" class="btn btn-primary" wire:navigate>
-            New Project
+            New Property
         </a>
+
     @endsection
 
     <x-ui.modal uid="removeProperty" variant="danger" title="Remove Property"
@@ -18,7 +22,8 @@
                     class="bg-surface rounded-radius border border-outline px-6 py-3 shadow-sm transition-all duration-200 hover:shadow-md hover:border-outline-strong">
                     <div class="flex flex-col gap-3">
                         <div class="flex justify-between items-center text-xs font-bold">
-                            <div class="">
+                            <div class="text-xs font-semibold text-primary/80 ">
+                                #{{ $property->property_code }}
                             </div>
                             <div class="flex items-center gap2">
                                 <i class="fa fa-solid fa-calendar"></i>
@@ -42,8 +47,8 @@
 
                         <h4 class="font-bold text-sm">{{ $property->name }}</h4>
 
-                        <div class="flex gap-2 text-sm font-medium items-center">
-                            <i class="fa fa-solid fa-city text-md "></i>
+                        <div class="flex gap-2 text-sm font-medium items-center max-w-full overflow-hidden whitespace-nowrap">
+                            <i class="fa fa-solid fa-city text-sm  "></i>
 
                             {{ $property->province?->p_name }} ,
                             {{ $property->subdistrict?->s_name }}
@@ -54,11 +59,15 @@
 
                             <div class="flex items-center gap-3 font-bold text-primary">
                                 <span>
-                                    {{$property->detail?->bedrooms}} <i class="fa fa-solid fa-bed"></i>
+                                    {{$property->detail?->bedrooms}} <i class="fa-solid fa-bed"></i>
                                 </span>
 
                                 <span>
-                                    {{$property->detail?->bathrooms}} <i class="fa fa-solid fa-bath"></i>
+                                    {{$property->detail?->bathrooms}} <i class="fa-solid fa-bath"></i>
+                                </span>
+
+                                <span>
+                                    {{numberToK($property->view_count)}} <i class="fa-solid fa-eye"></i>
                                 </span>
                             </div>
                         </div>
@@ -96,13 +105,21 @@
 
             @endforelse
 
+
             <x-slot:footer>
                 <x-ui.button variant="danger" x-on:click="$wire.deleteProperty();removeProperty=false">
                     Delete Property
                 </x-ui.button>
             </x-slot:footer>
         </div>
+
     </x-ui.modal>
+
+    <div class="mt-4">
+        {{-- only 3 items per page --}}
+        {{ $properties->links(data: ['scrollTo' => false,]) }}
+
+    </div>
 
 
     <script>

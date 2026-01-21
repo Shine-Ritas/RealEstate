@@ -57,6 +57,13 @@ class SidebarService
                 'permission' => 'view-prefer-list',
             ],
             [
+                'title' => 'CRM',
+                'icon' => 'clipboard-document',
+                'route' => route('content-page.index'),
+                'route_name' => 'content-page*',
+                'permission' => 'view-content-page',
+            ],
+            [
                 'title' => 'Settings',
                 'icon' => 'cog-6-tooth',
                 'route' => route('profile.edit'),

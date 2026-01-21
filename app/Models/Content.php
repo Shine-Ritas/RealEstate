@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
-    //
+    protected $fillable = ['key','label','en','th','my','zh'];
+
 }

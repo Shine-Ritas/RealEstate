@@ -18,6 +18,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('slug');
+            $table->string('property_code',13)->unique();
             $table->longText('description');
             $table->enum('property_type',['condo','house','apartment','townhouse','villa','land','commercial','off-plan']);
             $table->enum('listing_type',['rent','sale','both']);
@@ -48,6 +49,9 @@ return new class extends Migration
             $table->index('d_code');
             $table->index('s_code');
             $table->index('zipcode');
+
+            $table->index('latitude');
+            $table->index('longitude');
             $table->timestamps();
         });
     }

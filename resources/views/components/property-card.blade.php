@@ -49,13 +49,22 @@
         {{-- Card Content --}}
         <div class="px-4 py-2 space-y-1">
             {{-- Title --}}
-            <h5 class="font-bold text-on-surface text-sm uppercase line-clamp-2 min-h-[1.5rem]">
-                {{ $property['name'] }}
-            </h5>
+            <div class="flex">
+                <div class="max-w-full w-2/3 overflow-hidden">
+                <h5 class="font-bold text-on-surface text-sm uppercase line-clamp-2 min-h-[1.5rem]">
+                        {{ $property['name'] }}
+                    </h5>
+                </div>
+                <div class="w-1/3 text-right">
+                    <span class="text-xs text-primary font-medium">
+                            #{{ $property['property_code'] }}
+                        </span>
+                    </div>
+            </div>
 
             {{-- Location --}}
             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                <i class="fa fa-solid fa-map-marker-alt text-primary"></i>
+                <i class="fa fa-solid fa-location-dot text-primary"></i>
                 <span class="line-clamp-1">
                     @if($property['subdistrict'] && $property['subdistrict']['s_name'])
                         {{ $property['subdistrict']['s_name'] }},
@@ -66,11 +75,6 @@
                 </span>
             </div>
 
-            {{-- Code and Posted Date --}}
-            <div class="text-xs text-on-surface-variant">
-                Code NRES-{{ strtoupper(substr($property['id'], -5)) }} - Posted in 
-                {{ \Carbon\Carbon::parse($property['created_at'])->format('jS M, Y') }}
-            </div>
 
             {{-- Price --}}
             <div class="text-lg font-bold text-primary">

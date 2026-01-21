@@ -31,7 +31,7 @@ class ImportScrapedProperty extends Command
         $uuid = $this->option('uuid');
 
         // loop all json file under folder and get the data
-        $datas = Storage::disk('public')->files(directory: 'property_api/');
+         $datas = Storage::disk('public')->files(directory: 'property_api/');
         foreach ($datas as $data) {
             $data = json_decode(file_get_contents(storage_path('app/public/' . $data)), true);
             //     dd($data);
@@ -58,8 +58,8 @@ class ImportScrapedProperty extends Command
                         'description' => $data['description'] ?? '',
                         'property_type' => $this->mapPropertyType($data['propertyType'] ?? 'condo'),
                         'listing_type' => $this->mapListingType($data['listingType'] ?? 'rent'),
-                        'rent_price' => $data['rentPrice'] ?? null,
-                        'sale_price' => $data['salePrice'] ?? null,
+                        'rent_price' => $data['rentPrice'] ?? 0,
+                        'sale_price' => $data['salePrice'] ?? 0,
                         'currency' => $data['currency'] ?? 'THB',
                         'latitude' => $data['latitude'] ?? null,
                         'longitude' => $data['longitude'] ?? null,
@@ -77,9 +77,9 @@ class ImportScrapedProperty extends Command
                             'unit_number' => $data['details']['unitNumber'] ?? 1,
                             'bedrooms' => $data['details']['bedrooms'] ?? 1,
                             'bathrooms' => $data['details']['bathrooms'] ?? 1,
-                            'size_sqm' => $data['details']['sizeSqm'] ?? null,
-                            'land_size_sqm' => $data['details']['landSizeSqm'] ?? null,
-                            'year_built' => $data['details']['yearBuilt'] ?? null,
+                            'size_sqm' => $data['details']['sizeSqm'] ?? 0,
+                            'land_size_sqm' => $data['details']['landSizeSqm'] ?? 0,
+                            'year_built' => $data['details']['yearBuilt'] ?? 200,
                             'number' => $data['details']['number'] ?? '',
                             'ownership' => $data['details']['ownership'] ?? 'freehold',
                             'status' => $data['details']['status'] ?? 'active',

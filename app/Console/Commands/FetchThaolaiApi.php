@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 class FetchThaolaiApi extends Command
 {
     protected $signature = 'thaolai:api 
-                            {--max-lat=14.330920808224132 : Maximum latitude}
-                            {--min-lat=13.221229745578954 : Minimum latitude}
-                            {--max-lon=102.37060546875001 : Maximum longitude}
-                            {--min-lon=99.67895507812501 : Minimum longitude}
+                            {--max-lat=13.628970999081146 : Maximum latitude}
+                            {--min-lat=13.559560487521031 : Minimum latitude}
+                            {--max-lon=100.69278717041016 : Maximum longitude}
+                            {--min-lon=100.53142547607423 : Minimum longitude}
                             {--limit=300 : Limit of results}';
 
     protected $description = 'Fetch property data from Thaolai API and store JSON in storage folder';
@@ -55,7 +55,7 @@ class FetchThaolaiApi extends Command
                 return Command::FAILURE;
             }
 
-            $filename = "thaolai_api_.json";
+            $filename = "thaolai_api_2.json";
             $storagePath = "api_data/{$filename}";
 
             // Save to storage/app/api_data/

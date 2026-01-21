@@ -9,12 +9,13 @@ use Livewire\WithPagination;
 class SocialLinkPage extends Component
 {
     use WithPagination;
-
     public string $search = '';
 
     public bool $showDeleteModal = false;
 
     public ?SocialLink $socialLinkToDelete = null;
+
+    protected $listeners = ['update-filter' => 'updateFilter'];
 
     public function openDeleteModal(int $socialLinkId): void
     {
@@ -46,10 +47,11 @@ class SocialLinkPage extends Component
         }
     }
 
-    public function updatedSearch(): void
+    public function updateFilter($data)
     {
-        $this->resetPage();
+        $this->search = $data['search'];
     }
+
 
     public function render()
     {

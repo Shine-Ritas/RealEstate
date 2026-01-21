@@ -334,17 +334,17 @@ select:focus[data-flux-control] {
 
     /* Google Map property marker card */
     .map-property-card {
-        width: 120px;
+        width: 160px;
         background: #fff;
         border-radius: 10px;
         overflow: hidden;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.10);
     }
 
     .map-property-card img {
         width: 100%;
-        height: 70px;
+        height: 80px;
         object-fit: cover;
     }
 

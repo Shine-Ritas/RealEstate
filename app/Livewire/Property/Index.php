@@ -14,7 +14,20 @@ class Index extends Component
     use WithPagination,BaseTrait;
 
     public string $search = '';
+    public string $selectedPropertyStatus = '';
 
+
+    protected $listeners = ['update-filter' => 'updateFilter'];
+
+    public function mount(){
+    }
+
+
+    public function updateFilter($data)
+    {
+        $this->search = $data['search'];
+        $this->selectedPropertyStatus = $data['selectedPropertyStatus'];
+    }
 
     public function render()
     {
@@ -22,7 +35,13 @@ class Index extends Component
             'properties' => Property::with('images','detail','province','district','subdistrict')->when($this->search, function ($query) {
                 $query->where(function ($q) {
                     $q->where('name', 'like', '%' . $this->search . '%')
-                        ->orWhere('description', 'like', '%' . $this->search . '%');
+                        ->orWhere('property_code', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->when($this->selectedPropertyStatus, function ($query) {
+                // its details status not property status
+                $query->whereHas('detail', function ($q) {
+                    $q->where('status', $this->selectedPropertyStatus);
                 });
             })
             ->orderBy('name')

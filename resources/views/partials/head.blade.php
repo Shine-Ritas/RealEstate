@@ -13,7 +13,18 @@
 <script src="https://kit.fontawesome.com/f39d469662.js" crossorigin="anonymous"></script>
 
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwfFhF3hutd5l1lIAdnoYVrfbPMfxH5fM&callback=console.debug&libraries=maps,marker&v=beta">
+<script>
+    // Google Maps Loader - proper loading pattern
+    window.initGoogleMaps = function() {
+        // Maps API is loaded, our code will check for window.google.maps
+        if (window.google && window.google.maps) {
+            // Trigger custom event for components that need it
+            window.dispatchEvent(new Event('googlemapsloaded'));
+        }
+    };
+</script>
+<script async defer 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwfFhF3hutd5l1lIAdnoYVrfbPMfxH5fM&callback=initGoogleMaps&libraries=maps,marker,places&v=beta">
 </script>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 

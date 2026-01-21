@@ -1,6 +1,9 @@
 <div>
     @section('action')
         <div class="flex items-center gap-4">
+        <livewire:social-link.social-link-filter />
+
+        
             <x-ui.button variant="primary" icon="plus" wire:navigate href="{{ route('social-links.create') }}">
                 Create Social Link
             </x-ui.button>
@@ -9,25 +12,6 @@
 
     <div class="flex justify-between mb-6">
         <div></div>
-        <div class="relative w-64">
-            <flux:input 
-                type="search" 
-                wire:model.live.debounce.300ms="search"
-                placeholder="Search social links..." 
-                class="w-full" 
-                style="text-indent: 20px" 
-            />
-            <flux:icon.magnifying-glass class="size-5 text-on-surface-variant absolute top-0 left-2 bottom-0 my-auto" />
-            @if($search)
-                <button 
-                    type="button" 
-                    wire:click="$set('search', '')"
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-on-surface-variant hover:text-on-surface"
-                >
-                    <flux:icon.x-mark class="size-5" />
-                </button>
-            @endif
-        </div>
     </div>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

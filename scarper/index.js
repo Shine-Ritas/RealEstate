@@ -433,7 +433,7 @@ const scarp = async () => {
         const currentDir = process.cwd();
         const isInScarperDir = currentDir.endsWith('scarper');
         const projectRoot = isInScarperDir ? pathJoin(currentDir, '..') : currentDir;
-        const apiJsonPath = pathJoin(projectRoot, 'storage', 'app', 'public', 'api_data', 'thaolai_api_.json');
+        const apiJsonPath = pathJoin(projectRoot, 'storage', 'app', 'public', 'api_data', 'thaolai_api_2.json');
         // console.log("📂 Loading API data from:", apiJsonPath);
         const apiData = loadApiData(apiJsonPath);
         
@@ -462,7 +462,7 @@ const scarp = async () => {
         let skippedCount = 0;
 
         // Loop through all properties
-        for (let i = 188; i < totalProperties; i++) {
+        for (let i = 0; i < totalProperties; i++) {
             const apiProperty = properties[i];
             const uuid = apiProperty.uuid;
             
