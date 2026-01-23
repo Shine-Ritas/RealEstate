@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html data-theme="legend" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     @include('partials.head')
@@ -7,7 +7,7 @@
 
 <body class="bg-surface text-on-surface antialiased">
 
-    <div class="min-h-screen bg-surface">
+    <div class="min-h-screen bg-primary relative w-full">
 
         <x-guest.header />
 
@@ -32,7 +32,13 @@
         });
     </script>
 
-@livewireScripts    
+    <script>
+
+    
+        // initial draw
+    </script>
+
+    @livewireScripts
     @stack('scripts')
 
 

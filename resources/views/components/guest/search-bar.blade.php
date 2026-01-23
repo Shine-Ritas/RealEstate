@@ -1,6 +1,6 @@
-<section class="relative -mt-8 md:-mt-12 lg:-mt-16 z-20">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8">
-        <div class="bg-white dark:bg-surface rounded-xl shadow-xl p-6 md:p-8 border border-outline">
+<section class="relative -mt-8 md:-mt-12 lg:-mt-32 z-20 ">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8 bg-red">
+        <div class="bg-glass rounded-xl shadow-xl p-6 md:p-8 ">
             <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Property Type -->
                 <div>
@@ -52,7 +52,7 @@
 
             <!-- Search Button -->
             <div class="mt-6">
-                <button type="submit" class="w-full bg-primary text-on-primary py-3 rounded-lg hover:bg-primary-800 transition-colors font-semibold flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-primary text-on-primary py-3 rounded-lgtransition-colors font-semibold flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>

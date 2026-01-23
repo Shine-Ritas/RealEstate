@@ -23,8 +23,19 @@
         }
     };
 </script>
+
+@php
+    $googleMapLang = match (app()->getLocale()) {
+        'zh' => 'zh-CN',
+        'zh_TW' => 'zh-TW',
+        'th' => 'th',
+        'my' => 'my',
+        default => 'en',
+    };
+@endphp
+
 <script async defer 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwfFhF3hutd5l1lIAdnoYVrfbPMfxH5fM&callback=initGoogleMaps&libraries=maps,marker,places&v=beta">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwfFhF3hutd5l1lIAdnoYVrfbPMfxH5fM&callback=initGoogleMaps&libraries=maps,marker,places&v=beta&language={{ $googleMapLang }}">
 </script>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 

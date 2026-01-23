@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Content;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ContentSeeder extends Seeder
@@ -13,13 +12,12 @@ class ContentSeeder extends Seeder
      */
     public function run(): void
     {
-        // header 
+        // header
         $guest = require base_path('lang/my/guest.php');
 
         $keys = array_keys($guest);
 
-        
-        foreach($keys as $key => $value){
+        foreach ($keys as $key => $value) {
             // get from langague files
             $en = trans('guest.'.$value, [], 'en');
             $th = trans('guest.'.$value, [], 'th');
