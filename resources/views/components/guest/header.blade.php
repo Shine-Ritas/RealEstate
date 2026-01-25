@@ -1,7 +1,7 @@
 <header id="navBar" class="w-full flex justify-center px-4 md:px-6 lg:px-8 py-4 absolute top-3 left-0  z-50">
     <div class=" max-w-7xl rounded-xl
-        h-full w-full bg-glass
-    dark:bg-surface shadow-sm text-white">
+        h-full w-full bg-glass 
+    dark:bg-surface shadow-xl text-white">
     
         <div class="flex items-center justify-between h-16 md:h-16 px-6 md:px-8">
             <!-- Logo -->

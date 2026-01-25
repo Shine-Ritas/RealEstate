@@ -90,4 +90,6 @@ return array (
   'feature_high_speed_internet' => 'High-Speed Internet',
   'location_min_walk' => ':minutes min walk',
   'location_min_drive' => ':minutes min drive',
+  'location' => 'Location',
+  'type' => 'Type',
 );

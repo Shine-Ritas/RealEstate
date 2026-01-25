@@ -1,4 +1,4 @@
-<section  class="bg-primary text-white overflow-hidden min-h-[100vh] relative mb-10">
+<section  class="bg-custom text-white overflow-hidden min-h-[100vh] relative mb-10">
 
 
     <div class="container mx-auto px-4 md:px-6 lg:px-8 mt-20 relative h-[80vh] ">
@@ -6,9 +6,9 @@
 
         <div class="flex items-center h-full  ">
             <!-- Content -->
-            <div class="z-40 my-auto  px-4 py-7 max-w-2xl bg-glass rounded-xl" id="heroTitle">
+            <div class="z-40 my-auto  px-4 py-7 max-w-2xl bg-glass rounded-xl shadow-2xl" id="heroTitle">
                 @php
-                    $words = explode(' ', __('guest.hero_title'));
+$words = explode(' ', __('guest.hero_title'));
                 @endphp
             
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 leading-14">
@@ -23,28 +23,56 @@
                     @endforeach
                 </h1>
             
-                <p class="text-lg text-muted mb-6 leading-normal max-w-md">
+                <p class="text-lg text-gray-300 mb-6 leading-normal max-w-md">
                     {{ __('guest.hero_subtitle') }}
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#" class="px-6 py-3 bg-white text-primary-700 rounded-lg hover:bg-primary-50 transition-colors font-semibold text-center">
-                        {{ __('guest.btn_explore_properties') }}
-                    </a>
-                    <a href="#" class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold text-center">
-                        {{ __('guest.btn_learn_more') }}
-                    </a>
+                <div class="flex flex-col text-sm sm:flex-row gap-4 bg-white rounded-t-lg w-80 h-10 text-muted font-bold items-center justify-between px-3  border-b-2 border-white/90">
+                    <a href="#" class="hover:text-neon-primary">{{ __('guest.nav_buy') }}</a>
+                    <a href="#" class="hover:text-neon-primary">{{ __('guest.nav_rent') }}</a>
+                    <a href="#" class="hover:text-neon-primary">{{ __('guest.nav_sell') }}</a>
+                    <a href="#" class="hover:text-neon-primary">{{ __('guest.nav_projects') }}</a>
+                </div>
+                <div class=" bg-white  rounded-b-lg rounded-tr-lg text-muted font-bold grid grid-cols-4 divide-x-2 divide-muted py-3 justify-between text-sm">
+                    <div class="flex flex-col items-center justify-center">
+                        <label for="search_property_type">{{ __('guest.location') }}</label>
+
+                        <span class="text-black">Youcenosi</span>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center">
+                        <label for="search_property_type">{{ __('guest.type') }}</label>
+
+                        <span class="text-black">Youcenosi</span>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center">
+                        <label for="search_property_type">{{ __('guest.average_price') }}</label>
+
+                        <span class="text-black">Youcenosi</span>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center">
+                            <button class="btn btn-sm !bg-neon-primary text-white  hover:!bg-neon-primary/80 w-28 h-10" >
+                                Search
+                            </button>
+                    </div>
+
                 </div>
             </div>
 
             <!-- Image -->
             <div class="absolute right-10 z-10 l" id="heroImage">
-                <div class=" overflow-hidden shadow-2xl rounded-x">
+                <div class=" overflow-hidden shadow-2xl rounded-xl">
                     <img 
                         src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop" 
                         alt="Modern cityscape in Thailand" 
-                        class="object-cover w-[1000px] h-[600px]"
+                        class="object-cover w-[1000px] h-[600px] rounded-xl "
                     >
                 </div>
+            </div>
+
+            <div class="absolute bg-glass w-40 h-40 z-60 bottom-12 -right-0 rounded-2xl shadow-2xl">
+
             </div>
         </div>
     </div>
