@@ -1,21 +1,22 @@
-<section class="py-12 md:py-16 lg:py-20 bg-primary-700 text-white">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                {{ __('guest.cta_title') }}
-            </h2>
-            <p class="text-lg md:text-xl text-primary-100 mb-8">
-                {{ __('guest.cta_subtitle') }}
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#" class="px-6 py-3 bg-white text-primary-700 rounded-lg hover:bg-primary-50 transition-colors font-semibold">
-                    {{ __('guest.btn_start_searching') }}
-                </a>
-                <a href="#" class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold">
-                    {{ __('guest.btn_list_your_property') }}
-                </a>
-            </div>
-        </div>
+<section class="relative overflow-hidden bg-primary py-16 md:py-20 lg:py-24">
+    <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
+    <div class="cta-bg absolute inset-0 opacity-30" aria-hidden="true"></div>
+
+    <div class="container relative z-10 mx-auto px-4 text-center md:px-6 lg:px-8">
+        <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            {{ __('guest.cta_title') }}
+        </h2>
+        <p class="mx-auto mb-8 max-w-2xl text-lg text-gray-300 md:text-xl">
+            {{ __('guest.cta_subtitle') }}
+        </p>
+        <a
+            href="{{ route('register') }}"
+            class="inline-flex items-center gap-2 rounded-radius bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-gray-100"
+        >
+            {{ __('guest.btn_get_started') }}
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+        </a>
     </div>
 </section>
-

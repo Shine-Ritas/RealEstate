@@ -1,8 +1,8 @@
-<div class="relative" x-data="{ open: false }">
+<div class="relative bg-glass rounded-2xl shadow-2xl" x-data="{ open: false }">
     <!-- Current Language Button -->
     <button
         @click="open = !open"
-        class="flex items-center gap-2 px-3 py-2 rounded-radius  transition-colors"
+        class="flex items-center gap-2 px-3 py-2 rounded-radius  transition-colors "
     >
         <span class="text-2xl">{{ $languages[$currentLocale]['flag'] ?? '🌐' }}</span>
         <span class="hidden md:inline font-medium text-sm ">
@@ -19,15 +19,15 @@
         @click.away="open = false"
         x-transition
         class="absolute -right-8 mt-5 w-48 
-        glass-bg
-        rounded-radius shadow-lg overflow-hidden z-60
+        bg-glass
+        rounded-radius shadow-lg overflow-hidden z-80
              flex flex-col divide-y-2 divide-gray-400/20
         "
     >
         @foreach ($languages as $code => $lang)
             <button
                 wire:click="switchLanguage('{{ $code }}')"
-                class="w-full flex bg-glass items-center gap-3 px-4 py-3 hover-glass text-on-primary transition-colors text-left bg-gray-500/20
+                class="w-full flex bg-slate-100  hover:bg-slate-200 items-center gap-3 px-4 py-3  text-on-surface transition-colors text-left 
                 
                 {{ $currentLocale === $code ? '' : ' ' }}"
             >

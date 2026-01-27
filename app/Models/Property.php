@@ -48,6 +48,27 @@ class Property extends Model
         return $this->images()->where('is_primary', true)->first()->image_url;
     }
 
+    public function getNormalShowPriceAttribute(): string
+    {
+        $price = match($this->listing_type){
+            ListingTypeEnum::Sale->value => $this->sale_price ,
+            ListingTypeEnum::Rent->value => $this->rent_price ,
+            ListingTypeEnum::Both->value => $this->current_price,
+            default => null,
+        };
+        return $price ? currency() . ' ' . number_format($price, 0) : 'N/A';
+    }
+
+    public function getShowPricePeriodAttribute(): string
+    {
+        return match($this->listing_type){
+            ListingTypeEnum::Sale->value => '> Sale',
+            ListingTypeEnum::Rent->value => '/ Month',
+            ListingTypeEnum::Both->value => 'Both',
+            default => null,
+        };
+    }
+
     public function getShowPriceAttribute(): string
     {
         $price = match($this->listing_type){

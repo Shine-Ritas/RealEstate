@@ -1,14 +1,17 @@
-    
 <main>
-        <x-guest.hero-section />
+    <x-guest.hero-section />
 
-        <x-guest.search-bar />
-       <livewire:guest.property-map />
-        <x-guest.property-types />
-        <x-guest.featured-properties />
-        <x-guest.market-insights />
-        <x-guest.cta-section />
+    <x-guest.primary-home-section />
 
-            
+
+    {{-- <x-guest.property-types /> --}}
+    <livewire:guest.property-display />
+
+
+    <livewire:guest.property-map />
+    <x-guest.value-proposition />
+
+    <x-guest.faq-section />
+    <x-guest.testimonials-section />
+    <x-guest.cta-section />
 </main>
-    

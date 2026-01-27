@@ -7,12 +7,10 @@
 
 <body class="bg-surface text-on-surface antialiased">
 
-    <div class="min-h-screen bg-primary relative w-full">
+    <div class="relative min-h-screen bg-surface">
 
-        <x-guest.header />
 
         {{ $slot }}
-
 
         <x-guest.footer />
     </div>

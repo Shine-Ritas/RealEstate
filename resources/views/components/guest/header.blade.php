@@ -1,8 +1,5 @@
-<header id="navBar" class="w-full flex justify-center px-4 md:px-6 lg:px-8 py-4 absolute top-3 left-0  z-50">
-    <div class=" max-w-7xl rounded-xl
-        h-full w-full bg-glass 
-    dark:bg-surface shadow-xl text-white">
-    
+<header id="navBar" class="w-full flex justify-center px-4 md:px-6 lg:px-16  py-4   z-50">
+    <div class=" rounded-xl h-full w-full dark:bg-surface  text-white">
         <div class="flex items-center justify-between h-16 md:h-16 px-6 md:px-8">
             <!-- Logo -->
             <div class="flex items-center gap-2">
@@ -13,11 +10,11 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="hidden md:flex items-center gap-6">
-                <a href="#" class="guest-header-nav-link">{{ __('guest.nav_buy') }}</a>
-                <a href="#" class="guest-header-nav-link">{{ __('guest.nav_rent') }}</a>
-                <a href="#" class="guest-header-nav-link">{{ __('guest.nav_sell') }}</a>
-                <a href="#" class="guest-header-nav-link">{{ __('guest.nav_projects') }}</a>
+            <nav class="hidden md:flex items-center gap-6 shadow-xl bg-glass md:w-md justify-between rounded-xl">
+                <a href="#" class="guest-header-nav-link w-1/4 nav-active">{{ __('guest.nav_buy') }}</a>
+                <a href="#" class="guest-header-nav-link w-1/4">{{ __('guest.nav_rent') }}</a>
+                <a href="#" class="guest-header-nav-link w-1/4">{{ __('guest.nav_sell') }}</a>
+                <a href="#" class="guest-header-nav-link w-1/4">{{ __('guest.nav_projects') }}</a>
             </nav>
 
             <!-- Action Buttons -->

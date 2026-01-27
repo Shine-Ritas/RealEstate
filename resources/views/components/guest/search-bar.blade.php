@@ -1,46 +1,57 @@
-<section class="relative -mt-8 md:-mt-12 lg:-mt-32 z-20 ">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8 bg-red">
-        <div class="bg-glass rounded-xl shadow-xl p-6 md:p-8 ">
-            <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <!-- Property Type -->
-                <div>
-                    <label class="block text-sm font-medium text-on-surface-variant mb-2">{{ __('guest.search_property_type') }}</label>
-                    <select class="w-full px-4 py-3 border border-outline rounded-lg bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <option>{{ __('guest.option_all_types') }}</option>
-                        <option>{{ __('guest.property_type_condominiums') }}</option>
-                        <option>{{ __('guest.property_type_houses') }}</option>
-                        <option>{{ __('guest.property_type_land') }}</option>
-                        <option>{{ __('guest.property_type_commercial') }}</option>
-                    </select>
-                </div>
+<section class="relative z-20 -mt-32 md:-mt-28 lg:-mt-32">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+        <div class="rounded-2xl bg-surface py-3 px-5 shadow-xl md:p-8 text-xs md:text-sm">
+            <h2 class="mb-2 md:mb-6 text-lg font-semibold text-on-surface md:text-2xl">
+                {{ __('guest.search_find_best_place') }}
+            </h2>
 
-                <!-- Location -->
+            <form id="guest-search-form" action="{{ route('home') }}" method="get" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <div>
-                    <label class="block text-sm font-medium text-on-surface-variant mb-2">{{ __('guest.search_location') }}</label>
-                    <input 
-                        type="text" 
-                        placeholder="{{ __('guest.search_location_placeholder') }}" 
-                        class="w-full px-4 py-3 border border-outline rounded-lg bg-surface text-on-surface placeholder-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    <label class="mb-2 block  font-medium text-on-surface-variant">
+                        {{ __('guest.search_looking_for') }} ({{ __('guest.search_looking_placeholder') }})
+                    </label>
+                    <input
+                        type="text"
+                        name="type"
+                        class="w-full rounded-radius border border-outline bg-surface-variant px-4 py-3 text-on-surface placeholder-on-surface-variant focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                        placeholder="{{ __('guest.search_looking_placeholder') }}"
                     >
                 </div>
-
-                <!-- Price Range -->
                 <div>
-                    <label class="block text-sm font-medium text-on-surface-variant mb-2">{{ __('guest.search_price_range') }}</label>
-                    <select class="w-full px-4 py-3 border border-outline rounded-lg bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <option>{{ __('guest.option_any_price') }}</option>
+                    <label class="mb-2 block text-sm font-medium text-on-surface-variant">
+                        {{ __('guest.search_price_range') }}
+                    </label>
+                    <select
+                        name="price"
+                        class="w-full rounded-radius border border-outline bg-surface-variant px-4 py-3 text-on-surface focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    >
+                        <option value="">{{ __('guest.option_any_price') }}</option>
                         <option>Under ฿5M</option>
                         <option>฿5M - ฿15M</option>
                         <option>฿15M - ฿30M</option>
                         <option>Over ฿30M</option>
                     </select>
                 </div>
-
-                <!-- Bedrooms -->
                 <div>
-                    <label class="block text-sm font-medium text-on-surface-variant mb-2">{{ __('guest.search_bedrooms') }}</label>
-                    <select class="w-full px-4 py-3 border border-outline rounded-lg bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <option>{{ __('guest.option_any') }}</option>
+                    <label class="mb-2 block text-sm font-medium text-on-surface-variant">
+                        {{ __('guest.search_location') }}
+                    </label>
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="{{ __('guest.search_location_placeholder') }}"
+                        class="w-full rounded-radius border border-outline bg-surface-variant px-4 py-3 text-on-surface placeholder-on-surface-variant focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    >
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-on-surface-variant">
+                        {{ __('guest.search_bedrooms') }} ({{ __('guest.search_bedrooms_example') }})
+                    </label>
+                    <select
+                        name="bedrooms"
+                        class="w-full rounded-radius border border-outline bg-surface-variant px-4 py-3 text-on-surface focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    >
+                        <option value="">{{ __('guest.option_any') }}</option>
                         <option>1+</option>
                         <option>2+</option>
                         <option>3+</option>
@@ -50,16 +61,43 @@
                 </div>
             </form>
 
-            <!-- Search Button -->
-            <div class="mt-6">
-                <button type="submit" class="w-full bg-primary text-on-primary py-3 rounded-lgtransition-colors font-semibold flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              
+                <button
+                    type="button"
+                    class="rounded-full bg-primary px-4 py-2 font-medium text-on-primary transition-colors hover:bg-primary-700"
+                >
+                    {{ __('guest.city') }}
+                </button>
+                <a
+                    href="#"
+                    class="rounded-full bg-surface-variant px-4 py-2 font-medium text-on-surface-variant transition-colors hover:bg-outline"
+                >
+                    {{ __('guest.filter_house') }}
+                </a>
+                <a
+                    href="#"
+                    class="rounded-full bg-surface-variant px-4 py-2 font-medium text-on-surface-variant transition-colors hover:bg-outline"
+                >
+                    {{ __('guest.filter_residential') }}
+                </a>
+                <a
+                    href="#"
+                    class="rounded-full bg-surface-variant px-4 py-2 font-medium text-on-surface-variant transition-colors hover:bg-outline"
+                >
+                    {{ __('guest.filter_apartment') }}
+                </a>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button
+                    type="submit"
+                    form="guest-search-form"
+                    class="flex items-center gap-2 rounded-4xl bg-primary px-6 py-3 font-semibold text-on-primary transition-colors hover:bg-primary-700"
+                >
                     {{ __('guest.search_btn') }}
                 </button>
             </div>
         </div>
     </div>
 </section>
-

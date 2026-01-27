@@ -1,12 +1,16 @@
-<section class="relative py-12 md:py-20 overflow-hidden bg-primary">
+<section id="property-map-section" class="relative overflow-hidden  py-6 md:py-12 bg-stone-100">
     <div class="container mx-auto px-4 md:px-6 lg:px-8">
+
+        <h2 class="mb-6 text-2xl font-semibold text-on-surface md:text-3xl">
+            {{ __('guest.map_title') }}
+        </h2>
         <div class="relative">
             <div id="map" class="h-[60vh] w-full rounded-xl"></div>
 
             <!-- Search Box -->
             <div class="absolute bottom-4 left-4 right-4 sm:right-auto sm:w-80 z-10">
                 <div class="relative">
-                    <input id="searchBox" type="text" placeholder="Search for a location..."
+                    <input id="searchBox" type="text" placeholder="{{ __('guest.map_search_placeholder') }}"
                         class="w-full bg-surface text-on-surface border border-outline rounded-radius px-4 py-3 pl-10 pr-10 shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                     <i
                         class="fa fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"></i>
@@ -20,10 +24,10 @@
 
             <!-- Location button - only request geolocation on user click -->
             <button id="locateMeBtn" onclick="requestUserLocation()"
-                class="absolute top-4 right-4 bg-primary text-on-primary px-4 py-2 rounded-radius shadow-lg hover:bg-primary-700 transition-colors z-10 flex items-center gap-2"
-                title="Show my location">
+                class="absolute top-4 right-4 z-10 flex items-center gap-2 rounded-radius bg-primary px-4 py-2 text-on-primary shadow-lg transition-colors hover:bg-primary-700"
+                title="{{ __('guest.map_my_location') }}">
                 <i class="fa fa-solid fa-location-crosshairs"></i>
-                <span class="hidden sm:inline">My Location</span>
+                <span class="hidden sm:inline">{{ __('guest.map_my_location') }}</span>
             </button>
         </div>
     </div>
