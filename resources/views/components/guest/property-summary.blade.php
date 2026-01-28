@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-surface-variant rounded-xl p-6 md:p-8 border border-outline sticky top-4">
+<div class="bg-white dark:bg-surface-variant rounded-xl p-6 md:p-8 border border-outline ">
     <h1 class="text-3xl font-bold text-on-surface mb-2">{{ $title ?? 'Luxury Sky Residence' }}</h1>
     
     <div class="flex items-center gap-2 text-on-surface-variant mb-6">

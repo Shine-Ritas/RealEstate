@@ -116,7 +116,7 @@ return [
     'map_search_placeholder' => 'Search for a location...',
     'map_my_location' => 'My Location',
     'breadcrumb_home' => 'Home',
-    'property_description_title' => 'Property Description',
+    'property_description_title' => 'About This Property',
     'special_features_title' => 'Special Features',
     'nearby_locations_title' => 'Nearby Locations',
     'property_details_title' => 'Property Details',

@@ -378,7 +378,7 @@
         function createCard(item) {
             const div = document.createElement('div');
             div.innerHTML = `
-                    <div class="map-property-card">
+                    <div onclick='alert("modal open")' class="map-property-card">
                         <img src="${item.image}" alt="${item.name}" />
                         <div class="map-property-body">
                             <div class="map-property-name">${item.name}</div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Guest;
 
+use App\Models\Property;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -15,6 +16,14 @@ class PropertyDetailPage extends Component
     public string $phone = '';
 
     public string $message = '';
+
+    public Property $property;
+
+    public function mount(Property $property): void
+    {
+        $property->load('detail', 'images', 'province', 'district', 'subdistrict', 'contacts');
+        $this->property = $property;
+    }
 
     /**
      * @var array<string, string>

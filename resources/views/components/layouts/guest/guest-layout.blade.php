@@ -3,6 +3,9 @@
 
 <head>
     @include('partials.head')
+
+    <link rel="stylesheet" href="{{ asset('vendor/fancybox/dist/fancybox/fancybox.css') }}">
+    <script src="{{ asset('vendor/fancybox/dist/fancybox/fancybox.umd.js') }}"></script>
 </head>
 
 <body class="bg-surface text-on-surface antialiased">

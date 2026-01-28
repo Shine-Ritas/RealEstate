@@ -1,7 +1,12 @@
 @props(['property'])
 
+
 <article
 class=" rounded-radius border border-gray-300 bg-surface shadow-xl transition-shadow hover:shadow-md w-full">
+<a 
+href="{{ route('detail', $property->id) }}"
+wire:navigate
+>
 <div style="background-image: url({{$property->primary_image}});"
     class="relative w-full h-72 bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-4 px-4 rounded-radius">
 
@@ -52,5 +57,5 @@ class=" rounded-radius border border-gray-300 bg-surface shadow-xl transition-sh
         </div>
     </div>
 </div>
-
+</a>
 </article>

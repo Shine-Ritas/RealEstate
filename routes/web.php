@@ -52,11 +52,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('prefer-list', PreferListPage::class)->name('prefer-list.index');
 
-    Route::get('crm',ContentPage::class)->name('content-page.index');
+    Route::get('crm', ContentPage::class)->name('content-page.index');
 });
 
 Route::get('/', \App\Livewire\Guest\HomePage::class)->name('home');
-Route::get('/detail', \App\Livewire\Guest\PropertyDetailPage::class)->name('detail');
+Route::get('/detail/{property}', \App\Livewire\Guest\PropertyDetailPage::class)->name('detail');
+Route::get('/filter', \App\Livewire\Guest\PropertyFilterPage::class)->name('fitler');
 
 // AJAX endpoint for property map bounds
 Route::get('/api/properties/map-bounds', [PropertyMapController::class, 'getPropertiesByBounds'])
